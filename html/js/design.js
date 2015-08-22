@@ -11,9 +11,65 @@ $(document).ready(function() {
 	}
 
 
+	//Footer link popup
+
+	// Contacts
+	$('.footer__contacts').click(function(){
+		$('body').addClass('hold');
+		$('.popup_holder').fadeIn(250);
+		$('.popup_contacts').fadeIn(250);
+	});
+
+
+	// Contidions
+	$('.footer__conditions').click(function(){
+		$('body').addClass('hold');
+		$('.popup_holder').fadeIn(250);
+		$('.popup_terms').fadeIn(250);
+	});
+
+	// Politics
+	$('.footer__politics').click(function(){
+		$('body').addClass('hold');
+		$('.popup_holder').fadeIn(250);
+		$('.popup_police').fadeIn(250);
+	});
+
+
+	$('.popup-close').click(function(){
+		$('.popup').fadeOut(250);
+		$('.popup_holder').fadeOut(250);
+		$('body').removeClass('hold');
+	});
+
 	// Skip video
 	$('.load_video__skip').click(function(){
 		$('.load_video').fadeOut(250);
+
+		$('#load_video')[0].pause();
+	});
+
+	$('#load_video').on('ended', function(){
+		$('.load_video').fadeOut(250);
+    });
+
+
+	// Count vote result
+    $('.countto__number').each(function() {
+
+		var count_element = $(this).html();
+
+		$(this).countTo({
+			from: 0,
+			to: count_element,
+			speed: 750,
+			refreshInterval: 50,
+			onUpdate: function(value){
+				value = value + '%';
+
+				$(this).parents('.progress').find('.progress__in').css({'width': value});
+			}
+		});
 	});
 
 

@@ -11,10 +11,11 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="js/jquery.formstyler.min.js"></script>
 <script src="js/circle-progress.js"></script>
+<script src="js/jquery.countTo.js"></script>
 <script src="js/design.js"></script>
 </head>
 
-<body class="h100">
+<body>
 
 <div class="bg_video">
 	<video poster="images/bg-main.jpg" preload="none" loop autoplay muted id="bg_video">
@@ -49,35 +50,102 @@
 
 </div><!--.top-->
 
-<div class="vam">
+<div class="vote_result">
 
-	<div class="vam__in">
+	<div class="vote_result__in">
 
-<div class="vote_page">
+		<div class="vote_result__head cf">
+			<h3>Результат опитування</h3>
 
-	<h2>Скажи чесно! чому ні?</h2>
+			<h4>Так</h4>
+			<div class="result"><b>37</b>%</div>
 
-	<form action="#">
-	
-	<div class="vote_page__list">
-		<ul>
-			<li><input type="radio" name="#" class="inp-decorate inp-vote" id="vote_page1" checked=""> <label for="vote_page1">Не вірю у зміни</label></li>
-			<li><input type="radio" name="#" class="inp-decorate inp-vote" id="vote_page2"> <label for="vote_page2">Результат відомий заздалегідь</label></li>
-			<li><input type="radio" name="#" class="inp-decorate inp-vote" id="vote_page3"> <label for="vote_page3">Не хочу витрачати свій час та сили</label></li>
-			<li><input type="radio" name="#" class="inp-decorate inp-vote" id="vote_page4"> <label for="vote_page4">Від мене нічого не залежить</label></li>
-			<li><input type="radio" name="#" class="inp-decorate inp-vote" id="vote_page5"> <label for="vote_page5">Важко визначитись із кандидатом</label></li>
-		</ul>
-	</div><!--.vote_page__list-->
+		</div><!--.vote_result__head-->
 
-	<input type="submit" value="Відповісти" class="btn-y-bordered">
+		<div class="vote_result__list">
+			
+			<div class="vote_result__item cf">
+				
+				<h4><span>1.</span> Мені не байдуже моє майбутнє</h4>
 
-	</form>
+				<div class="progress">
+					<div class="progress__in" style="width: 36%;"></div>
+					<div class="progress__txt"><span class="countto__number">36</span>%</div>
+				</div><!--.progress-->
 
-</div><!--.vote_page-->
+				<div class="smile smile1"></div>
 
-</div><!--.vam__in-->
+			</div><!--.vote_result__item-->
 
-</div><!--.vam-->
+			<div class="vote_result__item cf">
+				
+				<h4><span>2.</span> Тому що маю голос</h4>
+
+				<div class="progress">
+					<div class="progress__in" style="width: 3%;"></div>
+					<div class="progress__txt"><span class="countto__number">3</span>%</div>
+				</div><!--.progress-->
+
+				<div class="smile smile2"></div>
+
+			</div><!--.vote_result__item-->
+
+			<div class="vote_result__item cf">
+				
+				<h4><span>3.</span> Вiрю, що мiй голос може щось змiнити</h4>
+
+				<div class="progress">
+					<div class="progress__in" style="width: 17%;"></div>
+					<div class="progress__txt"><span class="countto__number">17</span>%</div>
+				</div><!--.progress-->
+
+				<div class="smile smile3"></div>
+
+			</div><!--.vote_result__item-->
+
+			<div class="vote_result__item cf">
+				
+				<h4><span>4.</span> Це мій обов’язок</h4>
+
+				<div class="progress">
+					<div class="progress__in" style="width: 2%;"></div>
+					<div class="progress__txt"><span class="countto__number">2</span>%</div>
+				</div><!--.progress-->
+
+				<div class="smile smile4"></div>
+
+			</div><!--.vote_result__item-->
+
+			<div class="vote_result__item cf">
+				
+				<h4><span>5.</span> Не хочу, щоб від мого імені віддали голос</h4>
+
+				<div class="progress">
+					<div class="progress__in" style="width: 100%;"></div>
+					<div class="progress__txt"><span class="countto__number">100</span>%</div>
+				</div><!--.progress-->
+
+				<div class="smile smile5"></div>
+
+			</div><!--.vote_result__item-->
+
+		</div><!--.vote_result__list-->
+		
+		<div class="w_page__bt">
+			<h4>Поділитись з друзями</h4>
+			<ul>
+				<li class="fb"><a href="#">Facebook</a></li>
+				<li class="ok"><a href="#">Одноклассники</a></li>
+				<li class="vk"><a href="#">ВКонтакте</a></li>
+			</ul>
+
+			<a href="#" class="btn-b-bordered">Назад</a>
+
+		</div><!--.w_page__bt-->
+
+	</div><!--.vote_result__in-->
+
+</div><!--.vote_result-->
 
 <div class="push"></div>
 </div><!--.container-->

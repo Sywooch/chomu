@@ -143,9 +143,9 @@ class SiteController extends Controller
 
                     $identity = User::findByEAuth($eauth);
                     Yii::$app->getUser()->login($identity);
-
-                    //Yii::$app->session->get('question_id')
-
+                    
+                    //Vote::processVote();
+                    
                     // special redirect with closing popup window
                     $eauth->redirect(Yii::$app->request->referrer);
                 } else {
@@ -248,47 +248,46 @@ class SiteController extends Controller
                 'model' => $model,
         ]);
     }
+    /* public function actionNo()
+      {
 
-    /*public function actionNo()
-    {
+      if (Yii::$app->request->isAjax) {
+      Yii::$app->response->format = Response::FORMAT_JSON;
 
-        if (Yii::$app->request->isAjax) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
+      $session = new Session;
+      $session->open();
+      Yii::$app->session->set('q', $_POST['data'][0]['value']);
+      Yii::$app->session->set('no', '1');
 
-            $session = new Session;
-            $session->open();
-            Yii::$app->session->set('q', $_POST['data'][0]['value']);
-            Yii::$app->session->set('no', '1');
+      $result = array(
+      'success' => true,
+      );
 
-            $result = array(
-                'success' => true,
-            );
+      return $result;
+      Yii::app()->end();
+      }
+      }
 
-            return $result;
-            Yii::app()->end();
-        }
-    }
+      public function actionYes()
+      {
+      if (Yii::$app->request->isAjax) {
+      Yii::$app->response->format = Response::FORMAT_JSON;
 
-    public function actionYes()
-    {
-        if (Yii::$app->request->isAjax) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
+      $session = new Session;
+      $session->open();
+      Yii::$app->session->set('q', $_POST['data'][0]['value']);
+      Yii::$app->session->set('yes', '1');
 
-            $session = new Session;
-            $session->open();
-            Yii::$app->session->set('q', $_POST['data'][0]['value']);
-            Yii::$app->session->set('yes', '1');
+      $result = array(
+      'success' => true,
+      );
 
-            $result = array(
-                'success' => true,
-            );
+      return $result;
+      Yii::app()->end();
+      }
+      } */
 
-            return $result;
-            Yii::app()->end();
-        }
-    }*/
-
-        public function actionVote()
+    public function actionVote()
     {
         if (Yii::$app->request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -315,7 +314,12 @@ class SiteController extends Controller
         echo '<pre>';
         // print_r(Yii::$app->session);
         //   print_r($_SESSION);
-        echo Yii::$app->session->get('question_id');
+        //echo Yii::$app->session->get('question_id');
+
+            //$d = Yii::$app->user->identity->social_id;
+        //$user = User::::findOne(['social_id' == Yii::$app->user->identity->social_id]);
+
+        //print_r($user); die();
     }
 
     public function actionResult()

@@ -9,6 +9,11 @@
 
 <!--[if IE]><script src="js/html5.js"></script><![endif]-->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script src="js/jquery.mousewheel.js"></script>
+<script src="js/mwheelIntent.js"></script>
+<script src="js/jquery.jscrollpane.min.js"></script>
+
 <script src="js/design.js"></script>
 </head>
 
@@ -17,17 +22,21 @@
 
 <div class="load_video">
 
-	<div class="load_video__logo">
-		<a href="#"><img src="images/logo.png" alt="#"></a>
-	</div><!--.load_video__logo-->
+	<div class="load_video__wrap">
 
-	<video poster="images/bg-main.jpg" preload="none" loop autoplay muted id="bg_video">
+		<div class="load_video__logo">
+			<a href="#"><img src="images/logo.png" alt="#"></a>
+		</div><!--.load_video__logo-->
+		
+		<div class="load_video__skip">пропустити відео</div>
+
+	</div><!--.load_video__wrap-->
+
+	<video poster="images/bg-main.jpg" preload="none" autoplay id="load_video">
 		<source src="video/Office-1.mp4" type="video/mp4">
 		<source src="video/Office-1.webm" type="video/webm">
 		<source src="video/Office-1.webm" type="video/ogg">
 	</video>
-
-	<div class="load_video__skip">пропустити відео</div>
 	
 </div><!--.load_video-->
 
@@ -38,7 +47,7 @@
 		<source src="video/Office-1.webm" type="video/webm">
 		<source src="video/Office-1.webm" type="video/ogg">
 	</video>
-</div>
+</div><!--.bg_video-->
 
 
 <div class="container">
@@ -101,7 +110,7 @@
 
 			<form action="#">
 				<div class="footer__subscribe-in">
-					<input type="text" name="#" placeholder="Введіть Ваш E-mail">
+					<input type="text" name="#" placeholder="Введіть Ваш E-mail" class="inp-error">
 					<input type="submit" value="">
 				</div>
 			</form>
@@ -111,9 +120,9 @@
 
 		<div class="footer__links">
 			<ul>
-				<li><a href="#">Контакти</a></li>
-				<li><a href="#">Умови використання</a></li>
-				<li><a href="#">Правила конфіденційності</a></li>
+				<li><a href="javascript:void(0);" class="footer__contacts">Контакти</a></li>
+				<li><a href="javascript:void(0);" class="footer__conditions">Умови використання</a></li>
+				<li><a href="javascript:void(0);" class="footer__politics">Правила конфіденційності</a></li>
 			</ul>
 		</div><!--.footer__links-->
 
@@ -133,7 +142,7 @@
 		
 		<div class="popup__in">
 			
-			<div class="popup popup_auth">
+			<div class="popup popup_auth" style="display: none;">
 
 				<h3>Авторизуйтесь<br> за допомогою:</h3>	
 
@@ -146,11 +155,13 @@
 				<span class="popup-close">Закрыть</span>
 			</div><!--.popup_auth-->
 
-			<div class="popup popup_police">
+			<div class="popup popup_police" style="display: none;">
 
 				<div class="popup_police__in">
 
 					<h3>Політика конфіденційності</h3>
+
+					<div class="scroller">
 
 					<p>Сайт Chomu.net використовує стандартні технології для збору технічної інформації про вас як відвідувача і може отримувати відомості про ваш IP-адресу, назву вашого браузера і т. д. Відвідуючи сайт Chomu.net, ви даєте згоду на збір і використання цієї інформації сайтом Chomu .net. Дана інформація зберігається у вигляді логів веб-сервера і сервера статистики і використовується для аналізу аудиторії сайту Chomu.net. Особисту інформацію (ім'я, адреса, телефон) Chomu.net не збирає і не використовує.</p>
 
@@ -159,17 +170,21 @@
 					<p>Модифікація Політика конфіденційності: Chomu.net залишає за собою право в будь-який час змінювати, модифікувати або оновлювати Політику Конфіденційності сайту Chomu.net, і ви погоджуєтеся з такими змінами та / або оновленнями.
 					</p>
 
+					</div>
+
 				</div><!--.popup_police__in-->
 
 				<span class="popup-close">Закрыть</span>
 			</div><!--.popup_police-->
 
 
-			<div class="popup popup_terms">
+			<div class="popup popup_terms" style="display: none;">
 
 				<div class="popup_terms__in">
 
 					<h3>Умови використання</h3>
+
+					<div class="scroller">
 
 					<p>1. Ці правила поширюються на сайт Chomu.net.</p>
 					<p>2. Всі виключні майнові і немайнові авторські права на інформацію, що розміщується на сайті Chomu.net належать ГО «ВО Успішна країна» та авторам публікацій, якщо в тексті не вказується інше. Під інформацією розуміються всі матеріали, що розміщуються на сайті - статті, новини, інтерв'ю, фото, відео і т. П.</p>
@@ -177,13 +192,15 @@
 					<p>4. Забороняється будь-яке комерційне використання інформації, відтворення текстів або їх фрагментів з метою комерційної реалізації права доступу до цієї інформації.</p>
 					<p>5. У разі порушення будь-якого пункту цих правил, представники ГО «ВО Успішна країна» залишають за собою право захищати свої права та інтереси шляхом подачі скарг до правоохоронних органів та позовних заяв до судових органів.</p>
 
+					</div>
+
 				</div><!--.popup_terms__in-->
 
 				<span class="popup-close">Закрыть</span>
 			</div><!--.popup_police-->
 
 
-			<div class="popup popup_contacts">
+			<div class="popup popup_contacts" style="display: none;">
 
 				<div class="popup_contacts__in cf">
 

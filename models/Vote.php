@@ -14,6 +14,7 @@ use Yii;
  */
 class Vote extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -39,17 +40,35 @@ class Vote extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => 'User ID',
+            'id'           => 'ID',
+            'user_id'      => 'User ID',
             'questions_id' => 'Type',
-            'vote' => 'Like',
+            'vote'         => 'Like',
         ];
     }
 
-    public static function checkoutUserId($id){
-        if(isset($id) && $id !== null){
+    public static function checkoutUserId($id)
+    {
+        if (isset($id) && $id !== null) {
             $model = self::find()->where(['user_id' => Yii::$app->user->identity->id])->andWhere(['questions_id' => $id])->one();
             return $model;
         } else return false;
+    }
+
+    public static function processVote()
+    {
+        if (!Yii::$app->session->get('question_id')) return false;
+
+        $user = User::findOne(['social_id' == Yii::$app->user->identity->social_id]);
+
+        //print_r(Yii::$app->user->id); die();
+
+        $vote              = new Vote();
+        $vote->user_id     = $user->id;
+        $vote->questions_id = Yii::$app->session->get('question_id');
+        $vote->vote        = 1;
+        $vote->save();
+
+        return true;
     }
 }
