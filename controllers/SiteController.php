@@ -149,9 +149,7 @@ class SiteController extends Controller
 
                     // special redirect with closing popup window
                     //$eauth->redirect(Yii::$app->request->referrer);
-                    echo 'here';
-                    die();
-                    //$eauth->redirect(Yii::$app->getUrlManager()->createAbsoluteUrl('thanks.html'));
+                    $eauth->redirect(Yii::$app->getUrlManager()->createAbsoluteUrl('thanks.html'));
 
                 } else {
                     // close popup window and redirect to cancelUrl
@@ -276,7 +274,9 @@ class SiteController extends Controller
 
     public function actionSession()
     {
-        $session = new Session;
+        //echo Yii::$app->getUrlManager()->createAbsoluteUrl('thanks.html');
+
+        //$session = new Session;
         //       $session->open();
         echo '<pre>';
         // print_r(Yii::$app->session);
@@ -458,9 +458,10 @@ class SiteController extends Controller
 
     public function actionThanks()
     {
-        if (Yii::$app->user->isGuest) {
+        if (\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
+        
         $profile = Yii::$app->user->identity->getProfile()->one();
 
         return $this->render('thanks', [
