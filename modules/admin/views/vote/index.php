@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\models\VoteSearch */
@@ -22,6 +23,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+                'pjax'=>true,
+        'export'           => [
+            'fontAwesome' => true
+        ],
+        'panel'            => [
+            'type' => GridView::TYPE_PRIMARY,
+//            'heading' => $heading,
+        ],
+        'responsive'       => true,
+        'hover'            => true,
+        'toolbar'          => [
+            '{export}',
+            '{toggleData}'
+        ],
+        'containerOptions' => ['style' => 'overflow: auto'],
+        'headerRowOptions' => ['class' => 'kartik-sheet-style'],
+        'filterRowOptions' => ['class' => 'kartik-sheet-style'],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
