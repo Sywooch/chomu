@@ -67,8 +67,15 @@ class Profile extends \yii\db\ActiveRecord
 
         if (!empty($info['photo'])) {
             $prof->photo = $info['photo_big'];
-        }       
+        }
+        if (!empty($info['first_name'])) {
+            $prof->name = $info['first_name'];
+        }
 
-        $prof->save(false);        
+        if (!empty($info['last_name'])) {
+            $prof->last_name = $info['last_name'];
+        }
+
+        $prof->save(false);
     }
 }
