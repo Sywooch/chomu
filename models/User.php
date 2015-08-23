@@ -188,7 +188,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
             $user->save(false);
 
-            Profile::socialSave($user, $service->getAttributes);
+            Profile::socialSave($user, $service->getAttributes());
 
             $user = static::findOne(['social_id' => $id]);
         }        
