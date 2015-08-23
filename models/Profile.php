@@ -77,5 +77,9 @@ class Profile extends \yii\db\ActiveRecord
         }
 
         $prof->save(false);
+
+        echo '<pre>';
+        print_r($info);
+        die();
     }
 }
