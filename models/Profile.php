@@ -67,12 +67,12 @@ class Profile extends \yii\db\ActiveRecord
 
         if (!empty($info['photo'])) {
             $prof->photo = $info['photo_big'];
-        }
+        }       
 
-        echo '<pre>';
+        $prof->save(false);
+
+        /*echo '<pre>';
         print_r($info);
-        die();
-
-        $prof->save(false);      
+        die();*/
     }
 }
