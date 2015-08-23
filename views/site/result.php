@@ -11,7 +11,7 @@ $this->title = 'Результати опитування';
 
     <div class="result_page__in">
 
-        <h2>Результат опитування.</h2>
+        <h2>Результат опитування</h2>
 
         <div class="result_page__graph">
 
