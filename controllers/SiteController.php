@@ -149,7 +149,9 @@ class SiteController extends Controller
 
                     // special redirect with closing popup window
                     //$eauth->redirect(Yii::$app->request->referrer);
-                    $eauth->redirect(Yii::$app->getUrlManager()->createAbsoluteUrl('thanks.html'));
+                    echo 'here';
+                    die();
+                    //$eauth->redirect(Yii::$app->getUrlManager()->createAbsoluteUrl('thanks.html'));
 
                 } else {
                     // close popup window and redirect to cancelUrl
@@ -460,6 +462,7 @@ class SiteController extends Controller
             return $this->goHome();
         }
         $profile = Yii::$app->user->identity->getProfile()->one();
+
         return $this->render('thanks', [
             'profile' => $profile
             ]);
