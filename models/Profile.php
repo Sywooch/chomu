@@ -66,12 +66,12 @@ class Profile extends \yii\db\ActiveRecord
         }
 
         if (!empty($info['photo'])) {
-            $prof->thumb_photo = $info['photo_big'];
+            $prof->photo = $info['photo_big'];
         }
 
-        /*echo '<pre>';
+        echo '<pre>';
         print_r($info);
-        die();*/
+        die();
 
         $prof->save(false);      
     }
