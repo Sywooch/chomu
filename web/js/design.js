@@ -74,10 +74,10 @@ $(document).ready(function () {
 
 
     if ($('.line__progress').length) {
-
+                                
         // Progress1
         $('.line__progress-1').circleProgress({
-            value: 0.37,
+            value: $('.line__progress-1').find('span').text()/100 ,
             thickness: 40,
             startAngle: 4.7,
             size: 260,
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
         // Progress2
         $('.line__progress-2').circleProgress({
-            value: 0.63,
+            value: $('.line__progress-2').find('span').text()/100 ,
             thickness: 40,
             startAngle: 4.7,
             reverse: true,

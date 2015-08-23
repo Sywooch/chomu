@@ -61,12 +61,74 @@ class Vote extends \yii\db\ActiveRecord
 
         $user = User::findOne(['social_id' => Yii::$app->user->identity->social_id]);
 
-        $vote              = new Vote();
-        $vote->user_id     = $user->id;
+        $vote               = new Vote();
+        $vote->user_id      = $user->id;
         $vote->questions_id = Yii::$app->session->get('question_id');
-        $vote->vote        = 1;
+        $vote->vote         = 1;
         $vote->save();
 
         return true;
+    }
+
+    public static function getResult()
+    {
+        $result = [
+            'yes'       => [
+                'count'   => 1,
+                'percent' => 0
+            ],
+            'no'        => [
+                'count'   => 1,
+                'percent' => 0
+            ],
+            'questions' => [
+            /* '2' => [
+              'count',
+              'percent'
+              ], */
+            ]
+        ];
+
+        $votes     = self::find()->all();
+        $questions = Questions::find()->all();
+        //$votes = self::find()->leftJoin($result);
+
+        foreach ($questions as $key => $value) {
+            $result['questions'][$value->id] = [
+                'count'   => '0',
+                'percent' => '0',
+                'group'   => (!empty($value->yes)) ? 'yes' : 'no'
+            ];
+        }
+
+        foreach ($votes as $key => $vote) {
+
+            $result['questions'][$vote->questions_id]['count'] = $result['questions'][$vote->questions_id]['count']
+                + 1;
+
+            if ('yes' == $result['questions'][$vote->questions_id]['group']) {
+                $result['yes']['count'] ++;
+
+                $result['questions'][$vote->questions_id]['count']   = $result['questions'][$vote->questions_id]['count']
+                    + 1;
+                $result['questions'][$vote->questions_id]['percent'] = ($result['questions'][$vote->questions_id]['count']
+                    / $result['yes']['count']) * 100;
+            }
+
+            if ('no' == $result['questions'][$vote->questions_id]['group']) {
+                $result['no']['count'] ++;
+
+                $result['questions'][$vote->questions_id]['count']   = $result['questions'][$vote->questions_id]['count']
+                    + 1;
+                $result['questions'][$vote->questions_id]['percent'] = ($result['questions'][$vote->questions_id]['count']
+                    / $result['no']['count']) * 100;
+            }
+        }
+
+        /*echo '<pre>';
+        print_r($result);
+        die();*/
+
+        return $result;
     }
 }

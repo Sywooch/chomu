@@ -3,6 +3,7 @@
 use yii\helpers\Url;
 use app\models\User;
 use app\models\Vote;
+use app\models\Seo;
 
 $this->title = 'Результати опитування';
 ?>
@@ -20,12 +21,13 @@ $this->title = 'Результати опитування';
                 <h3>Так</h3>
 
                 <div class="line__progress line__progress-1">
-                    <span></span>
+                    <span><?= $result['yes']['percent']; ?></span>
                 </div><!--.line__progress-->
 
                 <div class="cf"></div>
 
-                <a href="javascript:void(0);" class="btn-b-bordered" onclick="resultYes(); return false;">Подробиці</a>
+                <a href="javascript:void(0);" class="btn-b-bordered" onclick="resultYes();
+                        return false;">Подробиці</a>
 
             </div><!--.result_page__left-->
 
@@ -40,7 +42,8 @@ $this->title = 'Результати опитування';
 
                 <div class="cf"></div>
 
-                <a href="javascript:void(0);" class="btn-b-bordered" onclick="resultNo(); return false;">Подробиці</a>
+                <a href="javascript:void(0);" class="btn-b-bordered" onclick="resultNo();
+                        return false;">Подробиці</a>
 
             </div><!--.result_page__right-->
 
@@ -48,10 +51,12 @@ $this->title = 'Результати опитування';
 
         <div class="w_page__bt">
             <h4>Поділитись з друзями</h4>
+            
+            <?php $seo = Seo::find()->where(['id' => 1])->one(); ?>
             <ul>
-                <li class="fb"><a href="#">Facebook</a></li>
-                <li class="ok"><a href="#">Одноклассники</a></li>
-                <li class="vk"><a href="#">ВКонтакте</a></li>
+                <li class="fb"><a href="javascript:void(0);" onclick="Share.facebook('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">>Facebook</a></li>
+                <li class="vk"><a href="javascript:void(0);" onclick="Share.vkontakte('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">ВКонтакте</a></li>
+                <li class="ok"><a href="javascript:void(0);" onclick="Share.odnoklassniki('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $seo->title; ?>')">>Одноклассники</a></li>
             </ul>
         </div><!--.w_page__bt-->
 
@@ -61,194 +66,100 @@ $this->title = 'Результати опитування';
 
 <div class="vote_result vote_yes" style="display:none;">
 
-	<div class="vote_result__in">
+    <div class="vote_result__in">
 
-		<div class="vote_result__head cf">
-			<h3>Результат опитування</h3>
+        <div class="vote_result__head cf">
+            <h3>Результат опитування</h3>
 
-			<h4>Так</h4>
-			<div class="result"><b>37</b>%</div>
+            <h4>Так</h4>
+            <div class="result"><b><?= $result['yes']['percent']; ?></b>%</div>
 
-		</div><!--.vote_result__head-->
+        </div><!--.vote_result__head-->
 
-		<div class="vote_result__list">
+        <div class="vote_result__list">
+            <?php foreach ($questionsYes as $key => $value) { ?>
+                <div class="vote_result__item cf">
+                    <h4><span><?= $key + 1; ?>.</span><?= $value->questions; ?></h4>
 
-			<div class="vote_result__item cf">
+                    <div class="progress">
+                        <div class="progress__in" style="width: <?= $result['questions'][$value->id]['percent']; ?>%;"></div>
+                        <div class="progress__txt"><span class="countto__number"><?= $result['questions'][$value->id]['percent']; ?></span>%</div>
+                    </div><!--.progress-->
 
-				<h4><span>1.</span> Мені не байдуже моє майбутнє</h4>
+                    <div class="smile smile1"></div>
 
-				<div class="progress">
-					<div class="progress__in" style="width: 36%;"></div>
-					<div class="progress__txt"><span class="countto__number">36</span>%</div>
-				</div><!--.progress-->
+                </div><!--.vote_result__item-->
+                <?php
+            }
+            ?>        
 
-				<div class="smile smile1"></div>
+        </div><!--.vote_result__list-->
 
-			</div><!--.vote_result__item-->
+        <div class="w_page__bt">
+            <h4>Поділитись з друзями</h4>
 
-			<div class="vote_result__item cf">
+            <?php $seo = Seo::find()->where(['id' => 1])->one(); ?>
+            <ul>
+                <li class="fb"><a href="javascript:void(0);" onclick="Share.facebook('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">>Facebook</a></li>
+                <li class="vk"><a href="javascript:void(0);" onclick="Share.vkontakte('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">ВКонтакте</a></li>
+                <li class="ok"><a href="javascript:void(0);" onclick="Share.odnoklassniki('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $seo->title; ?>')">>Одноклассники</a></li>
+            </ul>
 
-				<h4><span>2.</span> Тому що маю голос</h4>
+            <a href="javascript:void(0);" class="btn-b-bordered"  onclick="back();
+                    return false;">Назад</a>
 
-				<div class="progress">
-					<div class="progress__in" style="width: 3%;"></div>
-					<div class="progress__txt"><span class="countto__number">3</span>%</div>
-				</div><!--.progress-->
+        </div><!--.w_page__bt-->
 
-				<div class="smile smile2"></div>
-
-			</div><!--.vote_result__item-->
-
-			<div class="vote_result__item cf">
-
-				<h4><span>3.</span> Вiрю, що мiй голос може щось змiнити</h4>
-
-				<div class="progress">
-					<div class="progress__in" style="width: 17%;"></div>
-					<div class="progress__txt"><span class="countto__number">17</span>%</div>
-				</div><!--.progress-->
-
-				<div class="smile smile3"></div>
-
-			</div><!--.vote_result__item-->
-
-			<div class="vote_result__item cf">
-
-				<h4><span>4.</span> Це мій обов’язок</h4>
-
-				<div class="progress">
-					<div class="progress__in" style="width: 2%;"></div>
-					<div class="progress__txt"><span class="countto__number">2</span>%</div>
-				</div><!--.progress-->
-
-				<div class="smile smile4"></div>
-
-			</div><!--.vote_result__item-->
-
-			<div class="vote_result__item cf">
-
-				<h4><span>5.</span> Не хочу, щоб від мого імені віддали голос</h4>
-
-				<div class="progress">
-					<div class="progress__in" style="width: 100%;"></div>
-					<div class="progress__txt"><span class="countto__number">100</span>%</div>
-				</div><!--.progress-->
-
-				<div class="smile smile5"></div>
-
-			</div><!--.vote_result__item-->
-
-		</div><!--.vote_result__list-->
-
-		<div class="w_page__bt">
-			<h4>Поділитись з друзями</h4>
-			<ul>
-				<li class="fb"><a href="#">Facebook</a></li>
-				<li class="ok"><a href="#">Одноклассники</a></li>
-				<li class="vk"><a href="#">ВКонтакте</a></li>
-			</ul>
-
-                        <a href="javascript:void(0);" class="btn-b-bordered"  onclick="back(); return false;">Назад</a>
-
-		</div><!--.w_page__bt-->
-
-	</div><!--.vote_result__in-->
+    </div><!--.vote_result__in-->
 
 </div><!--.vote_result-->
 
 <div class="vote_result vote_no" style="display:none;">
 
-	<div class="vote_result__in">
+    <div class="vote_result__in">
 
-		<div class="vote_result__head cf">
-			<h3>Результат опитування</h3>
+        <div class="vote_result__head cf">
+            <h3>Результат опитування</h3>
 
-			<h4>Ні</h4>
-			<div class="result"><b>37</b>%</div>
+            <h4>Ні</h4>
+            <div class="result"><b><?= $result['no']['percent']; ?></b>%</div>
 
-		</div><!--.vote_result__head-->
+        </div><!--.vote_result__head-->
 
-		<div class="vote_result__list">
+        <div class="vote_result__list">
+            <?php foreach ($questionsNo as $key => $value) { ?>
+                <div class="vote_result__item cf">
 
-			<div class="vote_result__item cf">
+                    <h4><span><?= $key + 1; ?>.</span> <?= $value->questions; ?></h4>
 
-				<h4><span>1.</span> Мені не байдуже моє майбутнє</h4>
+                    <div class="progress">
+                        <div class="progress__in" style="width: <?= $result['questions'][$value->id]['percent']; ?>%;"></div>
+                        <div class="progress__txt"><span class="countto__number"><?= $result['questions'][$value->id]['percent']; ?></span>%</div>
+                    </div><!--.progress-->
 
-				<div class="progress">
-					<div class="progress__in" style="width: 36%;"></div>
-					<div class="progress__txt"><span class="countto__number">36</span>%</div>
-				</div><!--.progress-->
+                    <div class="smile smile6"></div>
 
-				<div class="smile smile6"></div>
+                </div><!--.vote_result__item-->
+                <?php
+            }
+            ?>
+        </div><!--.vote_result__list-->
 
-			</div><!--.vote_result__item-->
+        <div class="w_page__bt">
+            <h4>Поділитись з друзями</h4>
+            
+            <?php $seo = Seo::find()->where(['id' => 1])->one(); ?>
+            <ul>
+                <li class="fb"><a href="javascript:void(0);" onclick="Share.facebook('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">>Facebook</a></li>
+                <li class="vk"><a href="javascript:void(0);" onclick="Share.vkontakte('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">ВКонтакте</a></li>
+                <li class="ok"><a href="javascript:void(0);" onclick="Share.odnoklassniki('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $seo->title; ?>')">>Одноклассники</a></li>
+            </ul>
 
-			<div class="vote_result__item cf">
+            <a href="javascript:void(0);" class="btn-b-bordered"  onclick="back();
+                    return false;">Назад</a>
 
-				<h4><span>2.</span> Тому що маю голос</h4>
+        </div><!--.w_page__bt-->
 
-				<div class="progress">
-					<div class="progress__in" style="width: 3%;"></div>
-					<div class="progress__txt"><span class="countto__number">3</span>%</div>
-				</div><!--.progress-->
-
-				<div class="smile smile7"></div>
-
-			</div><!--.vote_result__item-->
-
-			<div class="vote_result__item cf">
-
-				<h4><span>3.</span> Вiрю, що мiй голос може щось змiнити</h4>
-
-				<div class="progress">
-					<div class="progress__in" style="width: 17%;"></div>
-					<div class="progress__txt"><span class="countto__number">17</span>%</div>
-				</div><!--.progress-->
-
-				<div class="smile smile8"></div>
-
-			</div><!--.vote_result__item-->
-
-			<div class="vote_result__item cf">
-
-				<h4><span>4.</span> Це мій обов’язок</h4>
-
-				<div class="progress">
-					<div class="progress__in" style="width: 2%;"></div>
-					<div class="progress__txt"><span class="countto__number">2</span>%</div>
-				</div><!--.progress-->
-
-				<div class="smile smile9"></div>
-
-			</div><!--.vote_result__item-->
-
-			<div class="vote_result__item cf">
-
-				<h4><span>5.</span> Не хочу, щоб від мого імені віддали голос</h4>
-
-				<div class="progress">
-					<div class="progress__in" style="width: 100%;"></div>
-					<div class="progress__txt"><span class="countto__number">100</span>%</div>
-				</div><!--.progress-->
-
-				<div class="smile smile10"></div>
-
-			</div><!--.vote_result__item-->
-
-		</div><!--.vote_result__list-->
-
-		<div class="w_page__bt">
-			<h4>Поділитись з друзями</h4>
-			<ul>
-				<li class="fb"><a href="#">Facebook</a></li>
-				<li class="ok"><a href="#">Одноклассники</a></li>
-				<li class="vk"><a href="#">ВКонтакте</a></li>
-			</ul>
-
-			<a href="javascript:void(0);" class="btn-b-bordered"  onclick="back(); return false;">Назад</a>
-
-		</div><!--.w_page__bt-->
-
-	</div><!--.vote_result__in-->
+    </div><!--.vote_result__in-->
 
 </div><!--.vote_result-->

@@ -33,6 +33,7 @@ use yii\helpers\Url;
 use yii\web\UploadedFile;
 use app\models\Yes;
 use app\models\No;
+use app\models\Questions;
 
 class SiteController extends Controller
 {
@@ -106,8 +107,8 @@ class SiteController extends Controller
         $yes = new Yes;
         $no  = new No;
 
-        $questionsYes = \app\models\Questions::find()->andWhere(['yes' => 1])->all();
-        $questionsNo  = \app\models\Questions::find()->andWhere(['no' => 1])->all();
+        $questionsYes = Questions::find()->andWhere(['yes' => 1])->all();
+        $questionsNo  = Questions::find()->andWhere(['no' => 1])->all();
 
         return $this->render('index', [
                 'yes'          => $yes,
@@ -143,9 +144,9 @@ class SiteController extends Controller
 
                     $identity = User::findByEAuth($eauth);
                     Yii::$app->getUser()->login($identity);
-                    
+
                     Vote::processVote();
-                    
+
                     // special redirect with closing popup window
                     $eauth->redirect(Yii::$app->request->referrer);
                 } else {
@@ -248,44 +249,6 @@ class SiteController extends Controller
                 'model' => $model,
         ]);
     }
-    /* public function actionNo()
-      {
-
-      if (Yii::$app->request->isAjax) {
-      Yii::$app->response->format = Response::FORMAT_JSON;
-
-      $session = new Session;
-      $session->open();
-      Yii::$app->session->set('q', $_POST['data'][0]['value']);
-      Yii::$app->session->set('no', '1');
-
-      $result = array(
-      'success' => true,
-      );
-
-      return $result;
-      Yii::app()->end();
-      }
-      }
-
-      public function actionYes()
-      {
-      if (Yii::$app->request->isAjax) {
-      Yii::$app->response->format = Response::FORMAT_JSON;
-
-      $session = new Session;
-      $session->open();
-      Yii::$app->session->set('q', $_POST['data'][0]['value']);
-      Yii::$app->session->set('yes', '1');
-
-      $result = array(
-      'success' => true,
-      );
-
-      return $result;
-      Yii::app()->end();
-      }
-      } */
 
     public function actionVote()
     {
@@ -315,10 +278,8 @@ class SiteController extends Controller
         // print_r(Yii::$app->session);
         //   print_r($_SESSION);
         //echo Yii::$app->session->get('question_id');
-
-            //$d = Yii::$app->user->identity->social_id;
+        //$d = Yii::$app->user->identity->social_id;
         //$user = User::findOne(['social_id' => Yii::$app->user->identity->social_id]);
-
         //print_r($user); die();
     }
 
@@ -333,7 +294,16 @@ class SiteController extends Controller
         $this->getMetaTagsDefault(false);
 
         //TODO: get db data Vote + issue
-        return $this->render('result');
+        $questionsYes = Questions::find()->andWhere(['yes' => 1])->all();
+        $questionsNo  = Questions::find()->andWhere(['no' => 1])->all();
+
+        $result = Vote::getResult();
+
+        return $this->render('result', [
+                'questionsYes' => $questionsYes,
+                'questionsNo'  => $questionsNo,
+                'result' => $result
+        ]);
     }
 
     public function actionNews()
