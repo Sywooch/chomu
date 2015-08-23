@@ -57,7 +57,7 @@ $this->title = 'Результати опитування';
 
     </div><!--.result_page__in-->
 
-</div><!--.result_page-->
+</div><!--.result_page--> 
 
 <div class="vote_result vote_yes" style="display:none;">
 
