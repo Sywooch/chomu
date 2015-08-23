@@ -40,7 +40,8 @@ class DefaultController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        //return $this->render('index');
+        return $this->redirect('/admin/questions');
     }
 
     public function SlugHelperUrl($text)

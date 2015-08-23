@@ -86,7 +86,7 @@ $this->title = 'Результати опитування';
                         <div class="progress__txt"><span class="countto__number"><?= $result['questions'][$value->id]['percent']; ?></span>%</div>
                     </div><!--.progress-->
 
-                    <div class="smile smile1"></div>
+                    <div class="smile smile<?= $result['questions'][$value->id]['smile']; ?>"></div>
 
                 </div><!--.vote_result__item-->
                 <?php
@@ -137,7 +137,7 @@ $this->title = 'Результати опитування';
                         <div class="progress__txt"><span class="countto__number"><?= $result['questions'][$value->id]['percent']; ?></span>%</div>
                     </div><!--.progress-->
 
-                    <div class="smile smile6"></div>
+                    <div class="smile smile<?= $result['questions'][$value->id]['smile']; ?>"></div>
 
                 </div><!--.vote_result__item-->
                 <?php

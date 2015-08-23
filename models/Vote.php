@@ -81,15 +81,8 @@ class Vote extends \yii\db\ActiveRecord
         $result['yes']['count'] = Vote::find()->yesOnly()->count();
         $result['no']['count']  = Vote::find()->noOnly()->count();
 
-        //generate questions array
+        //get total count
         foreach ($questions as $key => $value) {
-            $result['questions'][$value->id] = [
-                'count'   => $value->vote,
-                'percent' => '0',
-                'group'   => (!empty($value->yes)) ? 'yes' : 'no',
-                'vote'    => $value->vote
-            ];
-
             if (!empty($value->yes)) {
                 $result['yes']['count'] += $value->vote;
             }
@@ -105,6 +98,26 @@ class Vote extends \yii\db\ActiveRecord
             * 100);
         $result['no']['percent']  = round(($result['no']['count'] / $totalCount)
             * 100);
+
+        //set percent
+        foreach ($questions as $key => $value) {
+              $result['questions'][$value->id] = [
+                'count'   => $value->vote,
+                'vote'    => $value->vote
+            ];
+
+            if (!empty($value->yes)) {
+                $result['questions'][$value->id]['group'] = 'yes';
+                $result['questions'][$value->id]['percent'] = round(($result['questions'][$value->id]['count']
+                    / $result['yes']['count']) * 100);
+            }
+
+            if (!empty($value->no)) {
+                $result['questions'][$value->id]['group'] = 'no';
+                $result['questions'][$value->id]['percent'] = round(($result['questions'][$value->id]['count']
+                    / $result['no']['count']) * 100);
+            }
+        }
 
         //add each vote to array
         foreach ($votes as $key => $vote) {
@@ -123,8 +136,17 @@ class Vote extends \yii\db\ActiveRecord
             }
         }
 
+                //set smile
+        foreach ($questions as $key => $value) {
+            $result['questions'][$value->id]['smile'] = 10 - round($result['questions'][$value->id]['percent']/10);
+            if ( $result['questions'][$value->id]['smile'] < 1)  {
+                $result['questions'][$value->id]['smile'] = 1;
+            }
+        }
+
         /*echo '<pre>';
         print_r($result);
+
         die();*/
 
         return $result;
