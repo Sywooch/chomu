@@ -12,7 +12,7 @@ namespace app\models\eauth;
 class OdnoklassnikiOAuth2Service extends \nodge\eauth\services\OdnoklassnikiOAuth2Service
 {
 
-	protected $scopes = array(self::SCOPE_VALUABLE_ACCESS);
+	/*protected $scopes = array(self::SCOPE_VALUABLE_ACCESS);
 
 	protected function fetchAttributes()
 	{
@@ -42,7 +42,7 @@ class OdnoklassnikiOAuth2Service extends \nodge\eauth\services\OdnoklassnikiOAut
 	 * @param string $message
 	 * @return array
 	 */
-	public function wallPost($link, $message)
+	/*public function wallPost($link, $message)
 	{
 		return $this->makeSignedRequest('', array(
 			'query' => array(
@@ -53,6 +53,6 @@ class OdnoklassnikiOAuth2Service extends \nodge\eauth\services\OdnoklassnikiOAut
 				'comment' => $message,
 			),
 		));
-	}
+	}*/
 
 }

@@ -58,7 +58,7 @@ use app\assets\AppAssetAdmin;
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; Ева <?= date('Y') ?></p>
+            <p class="pull-left">&copy; Chomu.net <?= date('Y') ?></p>
         </div>
     </footer>
 
