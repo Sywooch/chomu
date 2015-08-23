@@ -40,7 +40,7 @@ AppAsset::register($this);
 
     <body <?php
     if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
-        == 'news' && isset($_GET['url']) or Yii::$app->controller->action->id == 'result') {
+        == 'news' && isset($_GET['url'])) {
         echo 'class="bg-news"';
     } if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
         == 'index') {
@@ -48,9 +48,17 @@ AppAsset::register($this);
     }
     ?>>
 
+        <div class="bg_video">
+            <video poster="/web/images/bg-main.jpg" preload="none" loop autoplay muted id="bg_video">
+                <source src="/web/video/Office-1.mp4" type="video/mp4">
+                <source src="/web/video/Office-1.webm" type="video/webm">
+                <source src="/web/video/Office-1.webm" type="video/ogg">
+            </video>
+        </div><!--.bg_video-->
 
         <?php $this->beginBody() ?>
-        <?php Pjax::begin(['id' => 'body-pjax']); ?>
+        <?php Pjax::begin(['id' => 'body-pjax', 'options' => ['class' => 'container']]); ?>
+
         <div class="top">
 
             <div class="top__logo">
@@ -102,6 +110,8 @@ AppAsset::register($this);
 
         <?= $content ?>
 
+        <div class="push"></div>
+
         <script>
             $(document).ready(function () {
                 var url = document.location.pathname;
@@ -121,6 +131,40 @@ AppAsset::register($this);
         </script>
 
         <?php Pjax::end(); ?>
+
+        <div class="footer cf">
+
+            <div class="footer__wrap">
+
+                <div class="footer__subscribe">
+
+                    <form action="#">
+                        <div class="footer__subscribe-in">
+                            <input type="text" name="#" placeholder="Введіть Ваш E-mail">
+                            <input type="submit" value="">
+                        </div>
+                    </form>
+
+                    <p>Слідкуйте за нашими новинами у своєму e-mail</p>
+                </div><!--.footer__subscribe-->
+
+                <div class="footer__links">
+                    <ul>
+                        <li><a href="#">Контакти</a></li>
+                        <li><a href="#">Умови використання</a></li>
+                        <li><a href="#">Правила конфіденційності</a></li>
+                    </ul>
+                </div><!--.footer__links-->
+
+                <div class="cf"></div>
+
+                <div class="footer__txt">
+                    <p>© 2015, «Chomu.net». Всі права захищені. Будь-яке копiювання, публiкацiя, передрук чи наступне поширення інформації дозволяється<br> тільки при прямому, відкритому для пошукових систем, гіперпосиланні в першому абзаці на конкретну новину чи матеріал</p>
+                </div>
+
+            </div><!--.footer__wrap-->
+
+        </div><!--.footer-->
 
         <?php $this->endBody() ?>
 
