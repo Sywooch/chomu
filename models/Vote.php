@@ -3,14 +3,15 @@
 namespace app\models;
 
 use Yii;
+use app\models\VoteQuery;
 
 /**
  * This is the model class for table "{{%vote}}".
  *
  * @property string $id
  * @property integer $user_id
- * @property integer $story_id
- * @property integer $like
+ * @property integer $questions_id
+ * @property integer $vote
  */
 class Vote extends \yii\db\ActiveRecord
 {
@@ -42,8 +43,8 @@ class Vote extends \yii\db\ActiveRecord
         return [
             'id'           => 'ID',
             'user_id'      => 'User ID',
-            'questions_id' => 'Type',
-            'vote'         => 'Like',
+            'questions_id' => 'Question ID',
+            'vote'         => 'Votes',
         ];
     }
 
@@ -74,11 +75,11 @@ class Vote extends \yii\db\ActiveRecord
     {
         $result = [
             'yes'       => [
-                'count'   => 1,
+                'count'   => 0,
                 'percent' => 0
             ],
             'no'        => [
-                'count'   => 1,
+                'count'   => 0,
                 'percent' => 0
             ],
             'questions' => [
@@ -91,7 +92,14 @@ class Vote extends \yii\db\ActiveRecord
 
         $votes     = self::find()->all();
         $questions = Questions::find()->all();
+        $result['yes']['count'] = Vote::find()->yesOnly()->count();
+        $result['no']['count'] = Vote::find()->noOnly()->count();
+        $totalCount = $result['yes']['count'] + $result['no']['count'];
+        $result['yes']['percent'] = ($result['yes']['count'] / $totalCount) * 100;
+        $result['no']['percent'] = ($result['no']['count'] / $totalCount) * 100;
 
+        //print_r($noCount);
+        //die();
         //$votes = self::find()->leftJoin($result);
         //$this->leftJoin('{{promo_categories}}', '{{promo_categories}}.promo_id = {{%promo}}.id');
         //$this->andWhere('{{promo_categories.category_id}} = "'.$ids.'"');
@@ -105,13 +113,7 @@ class Vote extends \yii\db\ActiveRecord
         }
 
         foreach ($votes as $key => $vote) {
-
-            $result['questions'][$vote->questions_id]['count'] = $result['questions'][$vote->questions_id]['count']
-                + 1;
-
             if ('yes' == $result['questions'][$vote->questions_id]['group']) {
-                $result['yes']['count'] ++;
-
                 $result['questions'][$vote->questions_id]['count']   = $result['questions'][$vote->questions_id]['count']
                     + 1;
                 $result['questions'][$vote->questions_id]['percent'] = ($result['questions'][$vote->questions_id]['count']
@@ -119,8 +121,6 @@ class Vote extends \yii\db\ActiveRecord
             }
 
             if ('no' == $result['questions'][$vote->questions_id]['group']) {
-                $result['no']['count'] ++;
-
                 $result['questions'][$vote->questions_id]['count']   = $result['questions'][$vote->questions_id]['count']
                     + 1;
                 $result['questions'][$vote->questions_id]['percent'] = ($result['questions'][$vote->questions_id]['count']
@@ -128,10 +128,19 @@ class Vote extends \yii\db\ActiveRecord
             }
         }
 
-        /* echo '<pre>';
+         /*echo '<pre>';
           print_r($result);
           die(); */
 
         return $result;
+    }
+
+    /**
+     * @inheritdoc
+     * @return QuestionsQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new VoteQuery(get_called_class());
     }
 }

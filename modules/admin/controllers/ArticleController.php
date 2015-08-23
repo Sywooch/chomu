@@ -51,7 +51,7 @@ class ArticleController extends DefaultController
      * @return mixed
      */
     public function actionIndex()
-    {
+    {        
         $searchModel = new SearchArticle();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

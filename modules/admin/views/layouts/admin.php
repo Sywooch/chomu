@@ -32,9 +32,10 @@ use app\assets\AppAssetAdmin;
             ]);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => array_filter([
-                    ['label' => 'Счетчик', 'url' => ['/admin/issue/update/1']],
+                'items' => array_filter([                    
+                    ['label' => 'Вопросы', 'url' => ['/admin/questions']],
                     ['label' => 'Пользователи', 'url' => ['/admin/user']],
+                    ['label' => 'Голоса', 'url' => ['/admin/vote']],
                     ['label' => 'Контент', 'url' => ['/admin/content']],
                     ['label' => 'Новости', 'url' => ['/admin/article']],
                     ['label' => 'Настройки', 'url' => ['/admin/seo']],
