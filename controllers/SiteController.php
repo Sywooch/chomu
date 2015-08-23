@@ -132,7 +132,7 @@ class SiteController extends Controller
 
         $serviceName = Yii::$app->getRequest()->get('service');
 
-        if (isset($serviceName)) {
+        if (isset($serviceName)) {            
             /** @var $eauth \nodge\eauth\ServiceBase */
             $eauth = Yii::$app->get('eauth')->getIdentity($serviceName);
             $eauth->setRedirectUrl(Yii::$app->getUser()->getReturnUrl());

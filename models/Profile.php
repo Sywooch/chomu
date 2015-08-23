@@ -7,6 +7,7 @@ use app\models\User;
 
 class Profile extends \yii\db\ActiveRecord
 {
+
     public static function tableName()
     {
         return '{{%profile}}';
@@ -24,17 +25,17 @@ class Profile extends \yii\db\ActiveRecord
         ];
     }
 
-     public function attributeLabels()
+    public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => 'User ID',
-            'name' => 'Ім`я',
-            'last_name' => 'Прізвище',
-            'phone' => 'Телефон',
-            'age' =>'Вік',
-            'city' => 'Місто',
-            'photo' => 'Фото',
+            'id'          => 'ID',
+            'user_id'     => 'User ID',
+            'name'        => 'Ім`я',
+            'last_name'   => 'Прізвище',
+            'phone'       => 'Телефон',
+            'age'         => 'Вік',
+            'city'        => 'Місто',
+            'photo'       => 'Фото',
             'thumb_photo' => 'Мини фото',
         ];
     }
@@ -46,11 +47,28 @@ class Profile extends \yii\db\ActiveRecord
 
     public function getProfile()
     {
-        return self::find()->where('user_id = :user_id',[':user_id' => Yii::$app->user->identity->id])->one();
+        return self::find()->where('user_id = :user_id', [':user_id' => Yii::$app->user->identity->id])->one();
     }
 
     public static function find()
     {
         return new ProfileQuery(get_called_class());
+    }
+
+    public static function socialSave($user, $info)
+    {
+        $prof          = new Profile();
+        $prof->user_id = $user->id;
+        $prof->name    = $info['name'];
+
+        if (!empty($info['photo_rec'])) {
+            $prof->thumb_photo = $info['photo_rec'];
+        }
+
+        if (!empty($info['photo'])) {
+            $prof->thumb_photo = $info['photo_big'];
+        }
+
+        $prof->save(false);
     }
 }
