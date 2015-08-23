@@ -37,7 +37,7 @@ $this->title = 'Результати опитування';
                 <h3>Ні</h3>
 
                 <div class="line__progress line__progress-2">
-                    <span></span>
+                    <span><?= $result['no']['percent']; ?></span>
                 </div><!--.line__progress-->
 
                 <div class="cf"></div>

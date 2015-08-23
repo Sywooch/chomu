@@ -73,64 +73,59 @@ class Vote extends \yii\db\ActiveRecord
 
     public static function getResult()
     {
-        $result = [
-            'yes'       => [
-                'count'   => 0,
-                'percent' => 0
-            ],
-            'no'        => [
-                'count'   => 0,
-                'percent' => 0
-            ],
-            'questions' => [
-            /* '2' => [
-              'count',
-              'percent'
-              ], */
-            ]
-        ];
+        $result = [];
 
-        $votes     = self::find()->all();
-        $questions = Questions::find()->all();
+        //get from db
+        $votes                  = self::find()->all();
+        $questions              = Questions::find()->all();
         $result['yes']['count'] = Vote::find()->yesOnly()->count();
-        $result['no']['count'] = Vote::find()->noOnly()->count();
-        $totalCount = $result['yes']['count'] + $result['no']['count'];
-        $result['yes']['percent'] = ($result['yes']['count'] / $totalCount) * 100;
-        $result['no']['percent'] = ($result['no']['count'] / $totalCount) * 100;
+        $result['no']['count']  = Vote::find()->noOnly()->count();
 
-        //print_r($noCount);
-        //die();
-        //$votes = self::find()->leftJoin($result);
-        //$this->leftJoin('{{promo_categories}}', '{{promo_categories}}.promo_id = {{%promo}}.id');
-        //$this->andWhere('{{promo_categories.category_id}} = "'.$ids.'"');
-
+        //generate questions array
         foreach ($questions as $key => $value) {
             $result['questions'][$value->id] = [
-                'count'   => '0',
+                'count'   => $value->vote,
                 'percent' => '0',
-                'group'   => (!empty($value->yes)) ? 'yes' : 'no'
+                'group'   => (!empty($value->yes)) ? 'yes' : 'no',
+                'vote'    => $value->vote
             ];
+
+            if (!empty($value->yes)) {
+                $result['yes']['count'] += $value->vote;
+            }
+
+            if (!empty($value->no)) {
+                $result['no']['count'] += $value->vote;
+            }
         }
 
+        //set total values
+        $totalCount               = $result['yes']['count'] + $result['no']['count'];
+        $result['yes']['percent'] = round(($result['yes']['count'] / $totalCount)
+            * 100);
+        $result['no']['percent']  = round(($result['no']['count'] / $totalCount)
+            * 100);
+
+        //add each vote to array
         foreach ($votes as $key => $vote) {
             if ('yes' == $result['questions'][$vote->questions_id]['group']) {
                 $result['questions'][$vote->questions_id]['count']   = $result['questions'][$vote->questions_id]['count']
                     + 1;
-                $result['questions'][$vote->questions_id]['percent'] = ($result['questions'][$vote->questions_id]['count']
-                    / $result['yes']['count']) * 100;
+                $result['questions'][$vote->questions_id]['percent'] = round(($result['questions'][$vote->questions_id]['count']
+                    / $result['yes']['count']) * 100);
             }
 
             if ('no' == $result['questions'][$vote->questions_id]['group']) {
                 $result['questions'][$vote->questions_id]['count']   = $result['questions'][$vote->questions_id]['count']
                     + 1;
-                $result['questions'][$vote->questions_id]['percent'] = ($result['questions'][$vote->questions_id]['count']
-                    / $result['no']['count']) * 100;
+                $result['questions'][$vote->questions_id]['percent'] = round(($result['questions'][$vote->questions_id]['count']
+                    / $result['no']['count']) * 100);
             }
         }
 
-         /*echo '<pre>';
-          print_r($result);
-          die(); */
+        /*echo '<pre>';
+        print_r($result);
+        die();*/
 
         return $result;
     }
