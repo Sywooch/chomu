@@ -135,7 +135,7 @@ class SiteController extends Controller
         if (isset($serviceName)) {
             /** @var $eauth \nodge\eauth\ServiceBase */
             $eauth = Yii::$app->get('eauth')->getIdentity($serviceName);
-            $eauth->setRedirectUrl(Yii::$app->getUrlManager()->createAbsoluteUrl('site/thanks'));
+            $eauth->setRedirectUrl(Yii::$app->getUrlManager()->createAbsoluteUrl('thanks.html'));
             $eauth->setCancelUrl(Yii::$app->getUrlManager()->createAbsoluteUrl('site/login'));
 
             try {

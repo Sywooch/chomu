@@ -13,7 +13,7 @@ $this->title = 'Дякуємо, ваша відповідь зарахована
             <img src="images/img-avatar.png" alt="">
         </div>
 
-        <h2>Дякуємо!<br> Валерій Харченкивський,</h2>
+        <h2>Дякуємо!<br> <?= $profile->name ?> <?= $profile->last_name ?>,</h2>
         <p>ваша відповідь зарахована</p>
 
         <a href="<?= Url::to(['site/result']); ?>" class="btn-result">Переглянути результати</a>
