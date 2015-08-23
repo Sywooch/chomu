@@ -193,6 +193,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             $user = static::findOne(['social_id' => $id]);
         }
 
+        echo '<pre>';
+        print_r($service->getAttributes);
+        die();
+
         $user->profile = $service->getAttributes();
         //        $user->photoSoc = $service->getAttribute('photo');
         self::$role    = $user->role;
