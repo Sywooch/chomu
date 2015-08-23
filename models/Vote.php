@@ -91,7 +91,10 @@ class Vote extends \yii\db\ActiveRecord
 
         $votes     = self::find()->all();
         $questions = Questions::find()->all();
+
         //$votes = self::find()->leftJoin($result);
+        //$this->leftJoin('{{promo_categories}}', '{{promo_categories}}.promo_id = {{%promo}}.id');
+        //$this->andWhere('{{promo_categories.category_id}} = "'.$ids.'"');
 
         foreach ($questions as $key => $value) {
             $result['questions'][$value->id] = [
@@ -125,9 +128,9 @@ class Vote extends \yii\db\ActiveRecord
             }
         }
 
-        /*echo '<pre>';
-        print_r($result);
-        die();*/
+        /* echo '<pre>';
+          print_r($result);
+          die(); */
 
         return $result;
     }
