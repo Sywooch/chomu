@@ -49,8 +49,8 @@ AppAsset::register($this);
     ?>>
 
     <?php
-    if (Yii::$app->user->isGuest && $_SESSION['flag'] !== true) {
-        $_SESSION['flag'] = true;
+    if (Yii::$app->user->isGuest ) {
+        
         ?>
 
         <div class="load_video">
