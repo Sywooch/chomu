@@ -132,10 +132,10 @@ class SiteController extends Controller
 
         $serviceName = Yii::$app->getRequest()->get('service');
 
-        if (isset($serviceName)) {            
+        if (isset($serviceName)) {
             /** @var $eauth \nodge\eauth\ServiceBase */
             $eauth = Yii::$app->get('eauth')->getIdentity($serviceName);
-            $eauth->setRedirectUrl(Yii::$app->getUser()->getReturnUrl());
+            $eauth->setRedirectUrl(Yii::$app->getUrlManager()->createAbsoluteUrl('site/thanks'));
             $eauth->setCancelUrl(Yii::$app->getUrlManager()->createAbsoluteUrl('site/login'));
 
             try {
@@ -302,7 +302,7 @@ class SiteController extends Controller
         return $this->render('result', [
                 'questionsYes' => $questionsYes,
                 'questionsNo'  => $questionsNo,
-                'result' => $result
+                'result'       => $result
         ]);
     }
 
@@ -450,5 +450,10 @@ class SiteController extends Controller
         }
 
         return true;
+    }
+
+    public function actionThanks()
+    {
+        return $this->render('thanks');
     }
 }
