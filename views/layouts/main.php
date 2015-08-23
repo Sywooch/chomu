@@ -132,39 +132,39 @@ AppAsset::register($this);
 
         <?php Pjax::end(); ?>
 
-        <div class="footer cf">
-
-            <div class="footer__wrap">
-
-                <div class="footer__subscribe">
-
-                    <form action="#">
-                        <div class="footer__subscribe-in">
-                            <input type="text" name="#" placeholder="Введіть Ваш E-mail">
-                            <input type="submit" value="">
-                        </div>
-                    </form>
-
-                    <p>Слідкуйте за нашими новинами у своєму e-mail</p>
-                </div><!--.footer__subscribe-->
-
-                <div class="footer__links">
-                    <ul>
-                        <li><a href="#">Контакти</a></li>
-                        <li><a href="#">Умови використання</a></li>
-                        <li><a href="#">Правила конфіденційності</a></li>
-                    </ul>
-                </div><!--.footer__links-->
-
-                <div class="cf"></div>
-
-                <div class="footer__txt">
-                    <p>© 2015, «Chomu.net». Всі права захищені. Будь-яке копiювання, публiкацiя, передрук чи наступне поширення інформації дозволяється<br> тільки при прямому, відкритому для пошукових систем, гіперпосиланні в першому абзаці на конкретну новину чи матеріал</p>
-                </div>
-
-            </div><!--.footer__wrap-->
-
-        </div><!--.footer-->
+<!--        <div class="footer cf">-->
+<!---->
+<!--            <div class="footer__wrap">-->
+<!---->
+<!--                <div class="footer__subscribe">-->
+<!---->
+<!--                    <form action="#">-->
+<!--                        <div class="footer__subscribe-in">-->
+<!--                            <input type="text" name="#" placeholder="Введіть Ваш E-mail">-->
+<!--                            <input type="submit" value="">-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!---->
+<!--                    <p>Слідкуйте за нашими новинами у своєму e-mail</p>-->
+<!--                </div><!--.footer__subscribe--> -->
+<!---->
+<!--                <div class="footer__links">-->
+<!--                    <ul>-->
+<!--                        <li><a href="#">Контакти</a></li>-->
+<!--                        <li><a href="#">Умови використання</a></li>-->
+<!--                        <li><a href="#">Правила конфіденційності</a></li>-->
+<!--                    </ul>-->
+<!--                </div><!--.footer__links--> -->
+<!---->
+<!--                <div class="cf"></div>-->
+<!---->
+<!--                <div class="footer__txt">-->
+<!--                    <p>© 2015, «Chomu.net». Всі права захищені. Будь-яке копiювання, публiкацiя, передрук чи наступне поширення інформації дозволяється<br> тільки при прямому, відкритому для пошукових систем, гіперпосиланні в першому абзаці на конкретну новину чи матеріал</p>-->
+<!--                </div>-->
+<!---->
+<!--            </div><!--.footer__wrap-->-->
+<!---->
+<!--        </div><!--.footer-->-->
 
         <?php $this->endBody() ?>
 
