@@ -135,7 +135,7 @@ class SiteController extends Controller
         if (isset($serviceName)) {
             /** @var $eauth \nodge\eauth\ServiceBase */
             $eauth = Yii::$app->get('eauth')->getIdentity($serviceName);
-            $eauth->setRedirectUrl(Yii::$app->getUrlManager()->createAbsoluteUrl('thanks.html'));
+            $eauth->setRedirectUrl(Yii::$app->getUser()->getReturnUrl());
             $eauth->setCancelUrl(Yii::$app->getUrlManager()->createAbsoluteUrl('site/login'));
 
             try {
@@ -148,7 +148,9 @@ class SiteController extends Controller
                     Vote::processVote();
 
                     // special redirect with closing popup window
-                    $eauth->redirect(Yii::$app->request->referrer);
+                    //$eauth->redirect(Yii::$app->request->referrer);
+                    $eauth->redirect(Yii::$app->getUrlManager()->createAbsoluteUrl('thanks.html'));
+
                 } else {
                     // close popup window and redirect to cancelUrl
                     $eauth->cancel();
@@ -454,6 +456,12 @@ class SiteController extends Controller
 
     public function actionThanks()
     {
-        return $this->render('thanks');
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $profile = Yii::$app->user->identity->getProfile()->one();
+        return $this->render('thanks', [
+            'profile' => $profile
+            ]);
     }
 }
