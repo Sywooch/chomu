@@ -69,10 +69,6 @@ class Profile extends \yii\db\ActiveRecord
             $prof->photo = $info['photo_big'];
         }       
 
-        $prof->save(false);
-
-        echo '<pre>';
-        print_r($info);
-        die();
+        $prof->save(false);        
     }
 }
