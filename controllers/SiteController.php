@@ -144,7 +144,7 @@ class SiteController extends Controller
                     $identity = User::findByEAuth($eauth);
                     Yii::$app->getUser()->login($identity);
                     
-                    //Vote::processVote();
+                    Vote::processVote();
                     
                     // special redirect with closing popup window
                     $eauth->redirect(Yii::$app->request->referrer);
@@ -317,7 +317,7 @@ class SiteController extends Controller
         //echo Yii::$app->session->get('question_id');
 
             //$d = Yii::$app->user->identity->social_id;
-        //$user = User::::findOne(['social_id' == Yii::$app->user->identity->social_id]);
+        //$user = User::findOne(['social_id' => Yii::$app->user->identity->social_id]);
 
         //print_r($user); die();
     }
@@ -331,6 +331,8 @@ class SiteController extends Controller
 
         \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => '']);
         $this->getMetaTagsDefault(false);
+
+        //TODO: get db data Vote + issue
         return $this->render('result');
     }
 

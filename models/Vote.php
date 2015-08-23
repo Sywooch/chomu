@@ -59,9 +59,7 @@ class Vote extends \yii\db\ActiveRecord
     {
         if (!Yii::$app->session->get('question_id')) return false;
 
-        $user = User::findOne(['social_id' == Yii::$app->user->identity->social_id]);
-
-        //print_r(Yii::$app->user->id); die();
+        $user = User::findOne(['social_id' => Yii::$app->user->identity->social_id]);
 
         $vote              = new Vote();
         $vote->user_id     = $user->id;
