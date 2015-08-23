@@ -48,7 +48,31 @@ AppAsset::register($this);
     }
     ?>>
 
-        <div class="bg_video">
+    <?php
+    if (Yii::$app->user->isGuest) {?>
+        <div class="load_video">
+
+            <div class="load_video__wrap">
+
+                <div class="load_video__logo">
+                    <a href="#"><img src="/web/images/logo.png" alt="#"></a>
+                </div><!--.load_video__logo-->
+
+                <div class="load_video__skip">пропустити відео</div>
+
+            </div><!--.load_video__wrap-->
+
+            <video poster="images/bg-main.jpg" preload="none" autoplay id="load_video">
+                <source src="/web/video/Office-1.mp4" type="video/mp4">
+                <source src="/web/video/Office-1.webm" type="video/webm">
+                <source src="/web/video/Office-1.webm" type="video/ogg">
+            </video>
+
+        </div><!--.load_video-->
+    <?php } ?>
+
+
+    <div class="bg_video">
             <video poster="/web/images/bg-main.jpg" preload="none" loop autoplay muted id="bg_video">
                 <source src="/web/video/Office-1.mp4" type="video/mp4">
                 <source src="/web/video/Office-1.webm" type="video/webm">
@@ -132,39 +156,39 @@ AppAsset::register($this);
 
         <?php Pjax::end(); ?>
 
-<!--        <div class="footer cf">-->
-<!---->
-<!--            <div class="footer__wrap">-->
-<!---->
-<!--                <div class="footer__subscribe">-->
-<!---->
-<!--                    <form action="#">-->
-<!--                        <div class="footer__subscribe-in">-->
-<!--                            <input type="text" name="#" placeholder="Введіть Ваш E-mail">-->
-<!--                            <input type="submit" value="">-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!---->
-<!--                    <p>Слідкуйте за нашими новинами у своєму e-mail</p>-->
-<!--                </div><!--.footer__subscribe--> -->
-<!---->
-<!--                <div class="footer__links">-->
-<!--                    <ul>-->
-<!--                        <li><a href="#">Контакти</a></li>-->
-<!--                        <li><a href="#">Умови використання</a></li>-->
-<!--                        <li><a href="#">Правила конфіденційності</a></li>-->
-<!--                    </ul>-->
-<!--                </div><!--.footer__links--> -->
-<!---->
-<!--                <div class="cf"></div>-->
-<!---->
-<!--                <div class="footer__txt">-->
-<!--                    <p>© 2015, «Chomu.net». Всі права захищені. Будь-яке копiювання, публiкацiя, передрук чи наступне поширення інформації дозволяється<br> тільки при прямому, відкритому для пошукових систем, гіперпосиланні в першому абзаці на конкретну новину чи матеріал</p>-->
-<!--                </div>-->
-<!---->
-<!--            </div><!--.footer__wrap-->-->
-<!---->
-<!--        </div><!--.footer-->-->
+        <div class="footer cf">
+
+            <div class="footer__wrap">
+
+                <div class="footer__subscribe">
+
+                    <form action="#">
+                        <div class="footer__subscribe-in">
+                            <input type="text" name="#" placeholder="Введіть Ваш E-mail">
+                            <input type="submit" value="">
+                        </div>
+                    </form>
+
+                    <p>Слідкуйте за нашими новинами у своєму e-mail</p>
+                </div><!--.footer__subscribe-->
+
+                <div class="footer__links">
+                    <ul>
+                        <li><a href="#">Контакти</a></li>
+                        <li><a href="#">Умови використання</a></li>
+                        <li><a href="#">Правила конфіденційності</a></li>
+                    </ul>
+                </div><!--.footer__links-->
+
+                <div class="cf"></div>
+
+                <div class="footer__txt">
+                    <p>© 2015, «Chomu.net». Всі права захищені. Будь-яке копiювання, публiкацiя, передрук чи наступне поширення інформації дозволяється<br> тільки при прямому, відкритому для пошукових систем, гіперпосиланні в першому абзаці на конкретну новину чи матеріал</p>
+                </div>
+
+            </div><!--.footer__wrap-->
+
+        </div><!--.footer-->
 
         <?php $this->endBody() ?>
 
