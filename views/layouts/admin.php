@@ -30,7 +30,7 @@ use app\assets\AppAssetAdmin;
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
-            echo Nav::widget([
+            /*echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => array_filter([
                     ['label' => 'Счетчик', 'url' => ['/admin/issue/update/1']],
@@ -42,7 +42,7 @@ use app\assets\AppAssetAdmin;
                             'url' => ['/site/logout'],
                             'linkOptions' => ['data-method' => 'post']],
                 ]),
-            ]);
+            ]);*/
             NavBar::end();
         ?>
 
@@ -57,7 +57,7 @@ use app\assets\AppAssetAdmin;
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; Ева <?= date('Y') ?></p>
+            <p class="pull-left">&copy; Chomu.net <?= date('Y') ?></p>
         </div>
     </footer>
 
