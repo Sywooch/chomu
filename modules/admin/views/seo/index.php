@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?//= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?php /* $form->field($model, 'email')->textInput(['maxlength' => true])*/ ?>
 
     <?= $form->field($model, 'images')->fileInput() ?>
 

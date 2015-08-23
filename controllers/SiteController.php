@@ -246,7 +246,7 @@ class SiteController extends Controller
         $model = Content::find()->where(['id' => 1])->one();
 
         \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $model->name]);
-        $this->getMetaTagsDefault(false);
+        $this->getMetaTagsDefault();
         return $this->render('about', [
                 'model' => $model,
         ]);
@@ -295,7 +295,7 @@ class SiteController extends Controller
         }
 
         \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => '']);
-        $this->getMetaTagsDefault(false);
+        $this->getMetaTagsDefault();
 
         //TODO: get db data Vote + issue
         $questionsYes = Questions::find()->andWhere(['yes' => 1])->all();
@@ -338,7 +338,7 @@ class SiteController extends Controller
         } else {
 
             \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => '']);
-            $this->getMetaTagsDefault(false);
+            $this->getMetaTagsDefault();
 
             $news = Article::find()->where(['status' => 1]);
             $news = $news->all();
