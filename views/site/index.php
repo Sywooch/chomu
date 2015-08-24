@@ -26,7 +26,7 @@ use app\models\PasswordResetRequestForm;
 $this->title = Seo::find()->where(['id' => 1])->one()->title;
 ?>
 
-<div class="vam block__hide" style="margin-top: 100px;">
+<div class="vam block__hide" >
     <div class="vam__in">
 
         <div class="main_page">
@@ -72,10 +72,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
     </form>
 
 
-    <div class="txt1">
-        Соціологічне дослідження шляхом прямого опитування проводиться Громадською організацією<br>
-        <b>«Всеукраїнське об’єднання "Успішна країна"».</b>
-    </div>
+
 
 </div><!--.vote_page-->
 
@@ -149,3 +146,4 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
     </div><!--.popup_wrap-->
 </div><!--.popup_holder-->
+

@@ -47,7 +47,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	    
-	background: url(../images/bg-main.jpg) center top no-repeat fixed;
+	background: url(/web/images/bg-main.jpg) center top no-repeat fixed;
 	
 	-webkit-background-size: cover;
 	     -o-background-size: cover;
@@ -66,8 +66,8 @@ body {
 
 .h100 .container {
 	overflow: hidden;
-	height: 100%;
-	padding-bottom: 160px;
+	/*height: 100%;*/
+	/*padding-bottom: 160px;*/
 	
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
@@ -111,7 +111,7 @@ body {
 	bottom: 0;
 	left: 0;
 		
-	background: url(../images/bg-video_load.jpg) center top no-repeat;
+	background: url(/web/images/bg-video_load.jpg) center top no-repeat;
 	
 	-webkit-background-size: cover;
 	     -o-background-size: cover;
@@ -169,7 +169,7 @@ body {
 	-webkit-border-radius: 30px;
 	        border-radius: 30px;
 	
-	background: #fff url(../images/ico-video_skip.png) 90% center no-repeat;
+	background: #fff url(/web/images/ico-video_skip.png) 90% center no-repeat;
 	
 	font: normal 18px/44px "Roboto", Arial;
 	color: #0EA5CA;
@@ -179,7 +179,7 @@ body {
 }
 
 .load_video__skip:hover {
-	background: #009fc6 url(../images/ico-video_skip-hover.png) 90% center no-repeat;
+	background: #009fc6 url(/web/images/ico-video_skip-hover.png) 90% center no-repeat;
 	color: #fff;
 }
 
@@ -346,7 +346,7 @@ body {
 	width: 50px;
 	height: 50px;
 
-	background: url(../images/icons-top_social.png) no-repeat;
+	background: url(/web/images/icons-top_social.png) no-repeat;
 
 	display: inline-block;
 	margin: 0 0 0 5px;
@@ -370,7 +370,7 @@ body {
 	     -o-transition: opacity 200ms ease;
 	        transition: opacity 200ms ease;
 	
-	background: url(../images/icons-top_social.png) no-repeat;
+	background: url(/web/images/icons-top_social.png) no-repeat;
 	
 	text-indent: -9999px;
 }
@@ -440,7 +440,7 @@ body {
 	margin: 0 0 25px 0;
 	padding: 0 0 35px 0;
 	
-	background: url(../images/h2-w.png) center bottom no-repeat;
+	background: url(/web/images/h2-w.png) center bottom no-repeat;
 
 	font: bold 80px/100% "Roboto", Arial;
 	color: #FFED48;
@@ -458,7 +458,7 @@ body {
 	height: 230px;
 	margin: 0 auto 40px auto;
 	
-	background: url(../images/img-main_switch.png) center center no-repeat;
+	background: url(/web/images/img-main_switch.png) center center no-repeat;
 }
 
 .main_page__switch-btn {
@@ -584,7 +584,7 @@ body {
 	bottom: 0;
 	left: 0;
 	
-	background: url(../images/bg-news_item.png) center bottom repeat-x;
+	background: url(/web/images/bg-news_item.png) center bottom repeat-x;
 }
 
 .news__item .thumb .layer2 {
@@ -601,7 +601,7 @@ body {
 	     -o-transition: all 250ms ease;
 	        transition: all 250ms ease;
 
-	background: url(../images/bg-news_item-hover.png) center bottom repeat-x;
+	background: url(/web/images/bg-news_item-hover.png) center bottom repeat-x;
 }
 
 .news__item:hover .thumb .layer2 {
@@ -647,7 +647,7 @@ body {
 
 /* News single */
 .bg-news .container {
-	background: #00a0c2 url(../images/bg-news.jpg) center bottom no-repeat;
+	background: #00a0c2 url(/web/images/bg-news.jpg) center bottom no-repeat;
 	
 	-webkit-background-size: cover;
 	     -o-background-size: cover;
@@ -678,7 +678,7 @@ body {
 	border-top: 1px solid rgba(255,255,255,0.5);
 	padding: 35px 130px 0 130px;
 	
-	background: url(../images/bg-news_single-bt.png) center bottom no-repeat;
+	background: url(/web/images/bg-news_single-bt.png) center bottom no-repeat;
 	
 	text-align: center;
 }
@@ -735,7 +735,7 @@ body {
 	-o-transition: all 150ms ease;
 	transition: all 150ms ease;
 	
-	background: url(../images/ico-n_single-prev.png) center center no-repeat;
+	background: url(/web/images/ico-n_single-prev.png) center center no-repeat;
 }
 .news_single__prev:hover span {
 	left: -5px;
@@ -766,7 +766,7 @@ body {
 	-o-transition: all 150ms ease;
 	transition: all 150ms ease;
 	
-	background: url(../images/ico-n_single-next.png) center center no-repeat;
+	background: url(/web/images/ico-n_single-next.png) center center no-repeat;
 }
 .news_single__next:hover span {
 	right: -5px;
@@ -794,7 +794,7 @@ body {
 	border: 0;
 	margin: 0 0 30px 0;
 	
-	background: url(../images/hr-w.png) center center no-repeat;
+	background: url(/web/images/hr-w.png) center center no-repeat;
 }
 
 .news_single__body blockquote {
@@ -802,7 +802,7 @@ body {
 	margin: 0 0 30px 0;
 	padding: 0 0 0 125px;
 	
-	background: url(../images/ico-bqu.png) left top no-repeat;
+	background: url(/web/images/ico-bqu.png) left top no-repeat;
 	
 	font: normal 34px/120% "Roboto", Arial;
 	color: #009FC6;
@@ -849,7 +849,7 @@ body {
 	height: 50px;
 	margin: 0 10px 0 0;
 	
-	background: url(../images/icons-share.png) no-repeat;
+	background: url(/web/images/icons-share.png) no-repeat;
 	
 	vertical-align: middle;
 }
@@ -868,7 +868,7 @@ body {
 	     -o-transition: opacity 300ms ease;
 	        transition: opacity 300ms ease;
 	
-	background: url(../images/icons-share.png) no-repeat;
+	background: url(/web/images/icons-share.png) no-repeat;
 }
 
 .news_single__social ul li a:hover .ico span {opacity: 1;}
@@ -906,7 +906,7 @@ body {
 	margin: 0 0 20px 0;
 	padding: 0 0 40px 0;
 
-	background: url(../images/hr-w.png) center bottom no-repeat;
+	background: url(/web/images/hr-w.png) center bottom no-repeat;
 
 	font: bold 64px/100% "Roboto", Arial;
 	color: #06A2C8;
@@ -940,7 +940,7 @@ body {
 	padding: 10px;
 	margin: 0 65px 25px 65px;
 	
-	background: url(../images/bg-result_circle.png) center center no-repeat;
+	background: url(/web/images/bg-result_circle.png) center center no-repeat;
 }
 
 .line__progress span {
@@ -1012,7 +1012,7 @@ body {
 	margin: 0 75px 0 0;
 	padding: 0 70px 0 0;
 	
-	background: url(../images/ico-w_page-arr.png) right center no-repeat;
+	background: url(/web/images/ico-w_page-arr.png) right center no-repeat;
 	
 	font: normal 28px/100% "Roboto", Arial;
 	color: #06A2C8;
@@ -1034,7 +1034,7 @@ body {
 	height: 50px;
 	margin: 0 2px;
 	
-	background: url(../images/icons-share.png) no-repeat;
+	background: url(/web/images/icons-share.png) no-repeat;
 }
 
 .w_page__bt ul li a {
@@ -1055,7 +1055,7 @@ body {
 	width: 50px;
 	height: 50px;
 	
-	background: url(../images/icons-share.png) no-repeat;
+	background: url(/web/images/icons-share.png) no-repeat;
 	
 	text-indent: -9999px;
 }
@@ -1112,7 +1112,7 @@ body {
 	margin: 0 80px 0 0;
 	padding: 0 105px 0 0;
 	
-	background: url(../images/ico-voteresult.png) right center no-repeat;
+	background: url(/web/images/ico-voteresult.png) right center no-repeat;
 	
 	font: bold 46px/80px "Roboto", Arial;
 	color: #06A2C8;
@@ -1157,16 +1157,16 @@ body {
 	margin: 0 25px 0 0;
 }
 
-.vote_result__item .smile1 {background: url(../images/ico-smile1.png) center center no-repeat;}
-.vote_result__item .smile2 {background: url(../images/ico-smile2.png) center center no-repeat;}
-.vote_result__item .smile3 {background: url(../images/ico-smile3.png) center center no-repeat;}
-.vote_result__item .smile4 {background: url(../images/ico-smile4.png) center center no-repeat;}
-.vote_result__item .smile5 {background: url(../images/ico-smile5.png) center center no-repeat;}
-.vote_result__item .smile6 {background: url(../images/ico-smile6.png) center center no-repeat;}
-.vote_result__item .smile7 {background: url(../images/ico-smile7.png) center center no-repeat;}
-.vote_result__item .smile8 {background: url(../images/ico-smile8.png) center center no-repeat;}
-.vote_result__item .smile9 {background: url(../images/ico-smile9.png) center center no-repeat;}
-.vote_result__item .smile10 {background: url(../images/ico-smile10.png) center center no-repeat;}
+.vote_result__item .smile1 {background: url(/web/images/ico-smile1.png) center center no-repeat;}
+.vote_result__item .smile2 {background: url(/web/images/ico-smile2.png) center center no-repeat;}
+.vote_result__item .smile3 {background: url(/web/images/ico-smile3.png) center center no-repeat;}
+.vote_result__item .smile4 {background: url(/web/images/ico-smile4.png) center center no-repeat;}
+.vote_result__item .smile5 {background: url(/web/images/ico-smile5.png) center center no-repeat;}
+.vote_result__item .smile6 {background: url(/web/images/ico-smile6.png) center center no-repeat;}
+.vote_result__item .smile7 {background: url(/web/images/ico-smile7.png) center center no-repeat;}
+.vote_result__item .smile8 {background: url(/web/images/ico-smile8.png) center center no-repeat;}
+.vote_result__item .smile9 {background: url(/web/images/ico-smile9.png) center center no-repeat;}
+.vote_result__item .smile10 {background: url(/web/images/ico-smile10.png) center center no-repeat;}
 
 .vote_result__item .progress {
 	overflow: hidden;
@@ -1262,7 +1262,7 @@ body {
 	margin: 0 0 50px 0;
 	padding: 0 0 60px 0;
 
-	background: url(../images/h2-w.png) center bottom no-repeat;
+	background: url(/web/images/h2-w.png) center bottom no-repeat;
 
 	font: bold 64px/100% "Roboto", Arial;
 	color: #ffed48;
@@ -1290,7 +1290,7 @@ body {
 	     -o-transition: all 200ms ease;
 	        transition: all 200ms ease;
 	
-	background: #f8eb47 url(../images/ico-auth-btn.png) 40px center no-repeat;
+	background: #f8eb47 url(/web/images/ico-auth-btn.png) 40px center no-repeat;
 	
 	font: normal 36px/100px "Roboto", Arial;
 	color: #009FC6;
@@ -1299,7 +1299,7 @@ body {
 }
 
 .main_auth .btn-auth:hover {
-	background: transparent url(../images/ico-auth-btn-y.png) 40px center no-repeat;
+	background: transparent url(/web/images/ico-auth-btn-y.png) 40px center no-repeat;
 	color: #F8EB47;
 }
 
@@ -1316,7 +1316,7 @@ body {
 	margin: 0 0 20px 0;
 	padding: 0 0 40px 0;
 	
-	background: url(../images/h2-w.png) center bottom no-repeat;
+	background: url(/web/images/h2-w.png) center bottom no-repeat;
 
 	font: bold 64px/100% "Roboto", Arial;
 	color: #FFED48;
@@ -1372,7 +1372,7 @@ body {
 	margin: 0 0 20px 0;
 	padding: 0 0 45px 0;
 	
-	background: url(../images/h2-w.png) center bottom no-repeat;
+	background: url(/web/images/h2-w.png) center bottom no-repeat;
 
 	font: bold 64px/100% "Roboto", Arial;
 	color: #FFED48;
@@ -1382,7 +1382,7 @@ body {
 	margin: 0 0 35px 0;
 	padding: 0 0 230px 0;
 	
-	background: url(../images/img-about.png) center bottom no-repeat;
+	background: url(/web/images/img-about.png) center bottom no-repeat;
 }
 
 .about_page .txt p {
@@ -1547,7 +1547,7 @@ body {
 	border-top-right-radius: 30px;
 	border-bottom-right-radius: 30px;
 	
-	background: transparent url(../images/ico-subscribe-plus.png) center center no-repeat;
+	background: transparent url(/web/images/ico-subscribe-plus.png) center center no-repeat;
 	
 	text-indent: -9999px;
 	
@@ -1664,7 +1664,7 @@ body {
 	height: 50px;
 	border: none;
 	
-	background: url(../images/icons-checkbox.png) no-repeat;
+	background: url(/web/images/icons-checkbox.png) no-repeat;
 }
 
 .inp-vote.checked {
@@ -2248,7 +2248,7 @@ body {
 	margin: 0 0 40px 0;
 	padding: 0 0 40px 0;
 	
-	background: url(../images/hr-w.png) center bottom no-repeat;
+	background: url(/web/images/hr-w.png) center bottom no-repeat;
 
 	font: bold 64px/100% "Roboto", Arial;
 	color: #009FC5;
@@ -2274,7 +2274,7 @@ body {
 	     -o-transition: all 200ms ease;
 	        transition: all 200ms ease;
 	
-	background: url(../images/icons-social_auth.png) no-repeat;
+	background: url(/web/images/icons-social_auth.png) no-repeat;
 	
 	text-indent: -9999px;
 }
@@ -2399,12 +2399,12 @@ body {
 	width: 50px;
 	height: 50px;
 	
-	background: url(../images/ico-pp_close.png) no-repeat;
+	background: url(/web/images/ico-pp_close.png) no-repeat;
 
 	cursor: pointer;
 	text-indent: -9999px;
 }
 
 .popup .popup-close:hover {
-	background: url(../images/ico-pp_close-hover.png) no-repeat;
+	background: url(/web/images/ico-pp_close-hover.png) no-repeat;
 }

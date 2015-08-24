@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     if ($('.scroller').length) {
         $('.scroller').jScrollPane({
-            autoReinitialise: true,
+            autoReinitialise: true
         });
     }
 
@@ -100,9 +100,9 @@ $(document).ready(function () {
             reverse: true,
             size: 260,
             fill: {
-                color: '#ffec68',
+                color: '#ffec68'
             },
-            emptyFill: '#fff',
+            emptyFill: '#fff'
         }).on('circle-animation-progress', function (event, progress, stepValue) {
             var prg = Math.round(String(stepValue) * 100) + '<div class="prc">%</div>';
 
