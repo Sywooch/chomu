@@ -496,7 +496,7 @@ class SiteController extends Controller
                 $message = 'hello your link <a href="http://' . $link . '">' . $link . '</a>';
 
                 Yii::$app->mailer->compose()
-                    ->setFrom('viktor85a@gmail.com')
+                    ->setFrom('chomu.net@gmail.com')
                     ->setTo($email)
                     ->setSubject('Confirmation subscribes')
                     ->setHtmlBody($message)
@@ -505,7 +505,7 @@ class SiteController extends Controller
                 return $this->redirect('Your Action');
             } else {
 
-                var_dump($subscribes->errors);
+                \Yii::$app->getSession()->setFlash('subscribe_message', $subscribes->errors);
             }
         };
 

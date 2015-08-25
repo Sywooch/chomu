@@ -199,8 +199,12 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 
             <form action="<?= Url::to(['site/subscribes']); ?>" id="subscribes" method="get">
                 <div class="footer__subscribe-in">
-                    <input type="text" name="subscribe_email" placeholder="Введіть Ваш E-mail">
-
+                    <input type="email" name="subscribe_email" placeholder="Введіть Ваш E-mail">
+                    <?php if(Yii::$app->session->hasFlash('subscribe_message')): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= Yii::$app->session->getFlash('subscribe_message') ?>
+                        </div>
+                    <?php endif; ?>
                     <input type="submit" value="">
                 </div>
             </form>
