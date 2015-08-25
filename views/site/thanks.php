@@ -10,7 +10,7 @@ $this->title = 'Дякуємо, ваша відповідь зарахована
     <div class="thanks_page__in">
 
         <div class="avatar">
-            <img src="<?= $profile->photo; ?>" alt="">
+            <img src="<?= $profile->thumb_photo; ?>" alt="">
         </div>
 
         <h2>Дякуємо!<br> <?= $profile->name ?> <?= $profile->last_name; ?>,</h2>

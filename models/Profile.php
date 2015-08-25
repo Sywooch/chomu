@@ -81,10 +81,6 @@ class Profile extends \yii\db\ActiveRecord
             $prof->thumb_photo = '/web/images/profile_thumb_photo_default.png';
         }
 
-        if (!$prof->photo) {
-            $prof->photo = '/web/images/profile_thumb_photo_default.png';
-        }
-
         $prof->save(false);
 
         /* echo '<pre>';
