@@ -2275,10 +2275,17 @@ body {
 	        transition: all 200ms ease;
 	
 	background: url(/web/images/icons-social_auth.png) no-repeat;
-	
+    background-position-y: 16px;                                    /*--> add background-position-y*/
 	text-indent: -9999px;
 }
 
+.eauth-service-link:before, .eauth-service-link:after{
+    display: none !important;
+}
+
+.popup_auth ul li a:after{
+
+}
 .popup_auth ul li.fb a {background-position: 0px 0px;}
 .popup_auth ul li.ok a {background-position: -114px 0px;}
 .popup_auth ul li.vk a {background-position: -227px 0px;}
@@ -2407,4 +2414,13 @@ body {
 
 .popup .popup-close:hover {
 	background: url(/web/images/ico-pp_close-hover.png) no-repeat;
+}
+
+
+/****************************************************/
+.eauth-service-id-odnoklassniki > .eauth-service-link {
+    background-position-x: -114px !important;
+}
+.eauth-service-id-vkontakte > .eauth-service-link {
+    background-position-x: -227px !important;
 }
