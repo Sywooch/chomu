@@ -76,10 +76,19 @@ class Profile extends \yii\db\ActiveRecord
             $prof->last_name = $info['last_name'];
         }
 
+        //set default
+        if (!$prof->thumb_photo) {
+            $prof->thumb_photo = '/images/profile_thumb_photo_default';
+        }
+
+        if (!$prof->photo) {
+            $prof->photo = '/images/profile_thumb_photo_default';
+        }
+
         $prof->save(false);
 
-        /*echo '<pre>';
-        print_r($info);
-        die();*/
+        /* echo '<pre>';
+          print_r($info);
+          die(); */
     }
 }
