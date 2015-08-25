@@ -19,14 +19,11 @@ use Yii;
  */
 class Subscribes extends \yii\db\ActiveRecord
 {
-
-
     public static $status = [
-        '' => '',
+        ''  => '',
         '0' => 'Неподтвержден',
         '1' => 'Подтвержден',
     ];
-
 
     public static function tableName()
     {
@@ -42,8 +39,6 @@ class Subscribes extends \yii\db\ActiveRecord
             [['email'], 'required'],
 //            [['email'], 'unique'],
             [['email'], 'email'],
-
-
             [['status'], 'integer'],
         ];
     }
@@ -54,10 +49,9 @@ class Subscribes extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'email' => 'email',
-
+            'id'     => 'ID',
+            'email'  => 'Email',
+            'status' => 'Status',
         ];
     }
-
-
 }

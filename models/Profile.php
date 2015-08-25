@@ -78,11 +78,7 @@ class Profile extends \yii\db\ActiveRecord
 
         //set default
         if (!$prof->thumb_photo) {
-            $prof->thumb_photo = '/images/profile_thumb_photo_default';
-        }
-
-        if (!$prof->photo) {
-            $prof->photo = '/images/profile_thumb_photo_default';
+            $prof->thumb_photo = '/web/images/profile_thumb_photo_default.png';
         }
 
         $prof->save(false);
