@@ -33,47 +33,6 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage(); ?>
 
-<?php
-function subscribes()
-{
-    $email = (\Yii::$app->request->get('subscribe_email'));
-    $confirm = (\Yii::$app->request->get('confirm'));
-    if (isset($email)) {
-        //$email = $_GET["subscribe_email"];
-
-        $key = md5(microtime() + time() + 1235648);
-
-        $subscribes = new Subscribes();
-        $subscribes->email = $email;
-        $subscribes->key = $key;
-        $subscribes->status = 1;
-        if ($subscribes->save()) {
-            var_dump("ok");
-            $link = $_SERVER['SERVER_NAME'] . '/?confirm=' . $key;
-
-            $message = 'hello your link <a href="http://' . $link . '">' . $link . '</a>';
-
-            Yii::$app->mailer->compose()
-                ->setFrom('viktor85a@gmail.com')
-                ->setTo($email)
-                ->setSubject('Confirmation subscribes')
-                ->setHtmlBody($message)
-                ->send();
-        } else {
-
-            var_dump($subscribes->errors);
-        }
-    };
-
-    if (isset($confirm)) {
-        $model = Subscribes::findOne(['key' => $confirm]);
-        $model->status = 2;
-        $model->save();
-    }
-}
-
-subscribes();
-?>
 
 
 <!doctype html>
@@ -203,7 +162,13 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 <script>
     <?php echo file_get_contents(Yii::getAlias('@webroot/web/js/design.js')); ?>
 </script>
-
+<div class="col-lg-12">
+    <?php if(Yii::$app->session->hasFlash('consol_v_error')): ?>
+        <div class="alert alert-danger" role="alert">
+            <?= Yii::$app->session->getFlash('consol_v_error') ?>
+        </div>
+    <?php endif; ?>
+</div>
 <?= $content ?>
 
 <div class="push"></div>
@@ -232,9 +197,9 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 
         <div class="footer__subscribe">
 
-            <form id="subscribes" method="get">
+            <form action="<?= Url::to(['site/subscribes']); ?>" id="subscribes" method="get">
                 <div class="footer__subscribe-in">
-                    <input type="text" name="subscribe_email" placeholder="Введіть Ваш E-mail" class="inp-error">
+                    <input type="text" name="subscribe_email" placeholder="Введіть Ваш E-mail">
 
                     <input type="submit" value="">
                 </div>
@@ -275,13 +240,15 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 
                 <h3>Авторизуйтесь<br> за допомогою:</h3>
 
-                <ul>
-                    <li class="fb"><a href="#">Facebook</a></li>
-                    <li class="ok"><a href="#">Одноклассники</a></li>
-                    <li class="vk"><a href="#">ВКонтакте</a></li>
-                </ul>
+                <?php echo \nodge\eauth\Widget::widget(array('action' => 'site/social-login')); ?>
+<!--                <ul>-->
+<!--                    <li class="fb"><a href="#">Facebook</a></li>-->
+<!--                    <li class="ok"><a href="#">Одноклассники</a></li>-->
+<!--                    <li class="vk"><a href="#">ВКонтакте</a></li>-->
+<!--                </ul>-->
 
-                <span class="popup-close">Закрыть</span>
+                <span class="popup-close" onclick="auth_close();
+                        return false;">Закрыть</span>
             </div>
             <!--.popup_auth-->
 

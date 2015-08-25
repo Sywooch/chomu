@@ -82,9 +82,9 @@ $(document).ready(function () {
             startAngle: 4.7,
             size: 260,
             fill: {
-                color: '#ffec68',
+                color: '#ffec68'
             },
-            emptyFill: '#fff',
+            emptyFill: '#fff'
         }).on('circle-animation-progress', function (event, progress, stepValue) {
             var prg = Math.round(String(stepValue) * 100) + '<div class="prc">%</div>';
 
@@ -184,16 +184,15 @@ function OpenNo() {
 
 function auth_user() {
 
-    $('.main_auth').hide();
+    $('.main_auth').fadeOut();
     $('.popup_holder, .popup_auth').fadeIn();
-    return false;
+
 }
 
 function auth_close() {
-
-    $('.main_auth').show();
     $('.popup_holder, .popup_auth').fadeOut();
-    return false;
+    $('.main_auth').fadeIn();
+
 }
 
 function resultYes() {
