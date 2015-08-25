@@ -52,7 +52,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
 <div class="vote_page vote_yes_this animate" style="display:none;">
 
-    <h2>Скажи чесно! <br>чому так?</h2>
+    <h2>Чому «так»? <br>Назви причину!</h2>
 
     <form type="POST" action="<?= Url::to(['site/vote']); ?>" id="yes-form">
 
@@ -83,7 +83,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
 <div class="vote_page vote_no_this animate" style="display:none;">
 
-    <h2>Скажи чесно! <br>чому ні?</h2>
+    <h2>Чому «ні»? <br/>Назви причину!</h2>
 
     <form type="POST" action="<?= Url::to(['site/vote']); ?>" id="no-form">
 
@@ -109,7 +109,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
 <div class="main_auth animate" style="display:none;">
 
-    <h2>Твій голос буде врахований, <br>як тільки ти авторизуєтесь.</h2>
+    <h2>Допоможи зробити опитування достовірним. <br/>Авторизуйся, щоб ми знали, що ти — не "робот"!</h2>
 
     <a href="javascript:void(0);" class="btn-auth" onclick="auth_user();
             return false;">Авторизуватись</a>
