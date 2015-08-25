@@ -163,7 +163,7 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
     <?php echo file_get_contents(Yii::getAlias('@webroot/web/js/design.js')); ?>
 </script>
 <div class="col-lg-12">
-    <?php if(Yii::$app->session->hasFlash('consol_v_error')): ?>
+    <?php if (Yii::$app->session->hasFlash('consol_v_error')): ?>
         <div class="alert alert-danger" role="alert">
             <?= Yii::$app->session->getFlash('consol_v_error') ?>
         </div>
@@ -200,7 +200,7 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
             <form action="<?= Url::to(['site/subscribes']); ?>" id="subscribes" method="get">
                 <div class="footer__subscribe-in">
                     <input type="email" name="subscribe_email" placeholder="Введіть Ваш E-mail">
-                    <?php if(Yii::$app->session->hasFlash('subscribe_message')): ?>
+                    <?php if (Yii::$app->session->hasFlash('subscribe_message')): ?>
                         <div class="alert alert-danger" role="alert">
                             <?= Yii::$app->session->getFlash('subscribe_message') ?>
                         </div>
@@ -225,7 +225,9 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
         <div class="cf"></div>
 
         <div class="footer__txt">
-            <p>© 2015, «сhomu.net». Всі права захищені. Будь-яке копiювання, публiкацiя, передрук чи наступне поширення інформації дозволяється тільки при прямому, відкритому для пошукових систем, гіперпосиланні у першому абзаці на конкретну новину чи матеріал.</p>
+            <p>© 2015, «сhomu.net». Всі права захищені. Будь-яке копiювання, публiкацiя, передрук чи наступне поширення
+                інформації дозволяється тільки при прямому, відкритому для пошукових систем, гіперпосиланні у першому
+                абзаці на конкретну новину чи матеріал.</p>
         </div>
 
     </div>
@@ -240,17 +242,17 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 
             <div class="popup popup_auth" style="display: none;">
 
-                <h3>Авторизуйтесь<br> за допомогою:</h3>
+                <h3>Авторизуватися:</h3>
 
                 <?php echo \nodge\eauth\Widget::widget(array('action' => 'site/social-login')); ?>
-<!--                <ul>-->
-<!--                    <li class="fb"><a href="#">Facebook</a></li>-->
-<!--                    <li class="ok"><a href="#">Одноклассники</a></li>-->
-<!--                    <li class="vk"><a href="#">ВКонтакте</a></li>-->
-<!--                </ul>-->
+                <!--                <ul>-->
+                <!--                    <li class="fb"><a href="#">Facebook</a></li>-->
+                <!--                    <li class="ok"><a href="#">Одноклассники</a></li>-->
+                <!--                    <li class="vk"><a href="#">ВКонтакте</a></li>-->
+                <!--                </ul>-->
 
                 <span class="popup-close" onclick="auth_close();
-                        return false;">Закрыть</span>
+                        return false;">Закрити</span>
             </div>
             <!--.popup_auth-->
 
@@ -285,7 +287,7 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
                 </div>
                 <!--.popup_police__in-->
 
-                <span class="popup-close">Закрыть</span>
+                <span class="popup-close">Закрити</span>
             </div>
             <!--.popup_police-->
 
@@ -298,34 +300,36 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 
                     <div class="scroller">
 
-                        <p>1. Ці правила поширюються на сайт Chomu.net.</p>
+                        <p>1. Ці правила поширюються на всі сторінки сайту сhomu.net.</p>
 
-                        <p>2. Всі виключні майнові і немайнові авторські права на інформацію, що розміщується на сайті
-                            Chomu.net належать ГО «ВО Успішна країна» та авторам публікацій, якщо в тексті не вказується
-                            інше. Під інформацією розуміються всі матеріали, що розміщуються на сайті - статті, новини,
-                            інтерв'ю, фото, відео і т. П.</p>
+                        <p>2. Всі виключні майнові і немайнові авторські права та інформація, що розміщується на сайті
+                            chomu.net належать ГО «ВО Успішна країна» та авторам публікацій, якщо в тексті не вказано
+                            інше. Під інформацією розуміються всі матеріали, що розміщуються на сайті: статті, новини,
+                            інтерв'ю, фото, відео і т.п.</p>
 
-                        <p>3. Інтернет-виданням дозволяється використовувати інформацію, розміщену на сайті Chomu.net,
-                            тільки за умови посилання і згадки першоджерела у першому абзаці. Для друкованих видань
-                            передрук матеріалів сайту Chomu.net дозволяється при згадці сайту Chomu.net. У теле- і
-                            радіосюжетах дозволяється використовувати інформацію, розміщену на сайті Chomu.net, за умови
-                            усного посилання на першоджерело. Під використанням інформації мається на увазі будь-яке
-                            відтворення, републікування, поширення, переробка, переклад, включення його частин у інші
-                            твори й інші способи, передбачені Законом України «Про авторське право і суміжні права».</p>
+                        <p>3. Інтернет-виданням дозволяється використовувати інформацію, розміщену на сайті сhomu.net,
+                            тільки за умови посилання і згадки першоджерела у першому абзаці.
+                            Для друкованих видань передрук матеріалів сайту сhomu.net дозволяється при згадці сайту
+                            сhomu.net.
+                            У теле- і радіосюжетах дозволяється використання інформації, розміщеної на сайті сhomu.net,
+                            за умови усного посилання на першоджерело.
+                            Під використанням інформації мається на увазі будь-яке відтворення, републікування,
+                            поширення, переробка, переклад наповнення сайту, включення його частин у інші твори та інші
+                            способи, передбачені Законом України «Про авторське право і суміжні права».</p>
 
                         <p>4. Забороняється будь-яке комерційне використання інформації, відтворення текстів або їх
                             фрагментів з метою комерційної реалізації права доступу до цієї інформації.</p>
 
                         <p>5. У разі порушення будь-якого пункту цих правил, представники ГО «ВО Успішна країна»
                             залишають за собою право захищати свої права та інтереси шляхом подачі скарг до
-                            правоохоронних органів та позовних заяв до судових органів.</p>
+                            правоохоронних органів та позовних заяв до судових органів</p>
 
                     </div>
 
                 </div>
                 <!--.popup_terms__in-->
 
-                <span class="popup-close">Закрыть</span>
+                <span class="popup-close">Закрити</span>
             </div>
             <!--.popup_police-->
 
@@ -353,7 +357,7 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
                 </div>
                 <!--.popup_contacts__in-->
 
-                <span class="popup-close">Закрыть</span>
+                <span class="popup-close">Закрити</span>
             </div>
             <!--.popup_contacts-->
 
@@ -385,31 +389,51 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
     }
 
     @keyframes fadein {
-        from { opacity: 0; }
-        to   { opacity: 1; }
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
     /* Firefox < 16 */
     @-moz-keyframes fadein {
-        from { opacity: 0; }
-        to   { opacity: 1; }
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
     /* Safari, Chrome and Opera > 12.1 */
     @-webkit-keyframes fadein {
-        from { opacity: 0; }
-        to   { opacity: 1; }
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
     /* Internet Explorer */
     @-ms-keyframes fadein {
-        from { opacity: 0; }
-        to   { opacity: 1; }
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
     /* Opera < 12.1 */
     @-o-keyframes fadein {
-        from { opacity: 0; }
-        to   { opacity: 1; }
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 </style>
