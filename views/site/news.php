@@ -11,7 +11,7 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
 <div class="news_page animate">
 	
 	<?php if($news) {?>
-	<div class="news__list cf">
+	<div class="news__list scroller cf">
 	<?php foreach($news as $v) {?>
 		<a href="http://<?= Yii::$app->request->getServerName(); ?><?= Url::to(['site/news','url'=> isset($v->url) ? $v->url : null ]); ?>" class="news__item">
 
