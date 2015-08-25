@@ -120,7 +120,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
 </div><!--.main_auth-->
 
-<div class="popup_holder animate" style="display:none;">
+<div class="popup_holder_ animate" style="display:none;">
     <div class="popup_wrap">
 
         <div class="popup__in">

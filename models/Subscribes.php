@@ -40,7 +40,7 @@ class Subscribes extends \yii\db\ActiveRecord
     {
         return [
             [['email'], 'required'],
-            [['email'], 'unique'],
+//            [['email'], 'unique'],
             [['email'], 'email'],
 
 

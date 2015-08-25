@@ -475,4 +475,44 @@ class SiteController extends Controller
             'profile' => $profile
         ]);
     }
+
+    public function actionSubscribes()
+    {
+        $email = (\Yii::$app->request->get('subscribe_email'));
+        $confirm = (\Yii::$app->request->get('confirm'));
+        if (isset($email)) {
+            //$email = $_GET["subscribe_email"];
+
+            $key = md5(microtime() + time() + 1235648);
+
+            $subscribes = new Subscribes();
+            $subscribes->email = $email;
+            $subscribes->key = $key;
+            $subscribes->status = 0;
+            if ($subscribes->save()) {
+                var_dump("ok");
+                $link = $_SERVER['SERVER_NAME'] . '/?confirm=' . $key;
+
+                $message = 'hello your link <a href="http://' . $link . '">' . $link . '</a>';
+
+                Yii::$app->mailer->compose()
+                    ->setFrom('viktor85a@gmail.com')
+                    ->setTo($email)
+                    ->setSubject('Confirmation subscribes')
+                    ->setHtmlBody($message)
+                    ->send();
+                \Yii::$app->getSession()->setFlash('success', 'Your Text Here..');
+                return $this->redirect('Your Action');
+            } else {
+
+                var_dump($subscribes->errors);
+            }
+        };
+
+        if (isset($confirm)) {
+            $model = Subscribes::findOne(['key' => $confirm]);
+            $model->status = 1;
+            $model->save();
+        }
+    }
 }
