@@ -8,7 +8,7 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
 ?>
 <?php if(isset($news) && $news !== null) {?>	
 
-<div class="news_page">
+<div class="news_page animate">
 	
 	<?php if($news) {?>
 	<div class="news__list cf">
@@ -32,10 +32,7 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
 	</div><!--.news__list-->
 	<?php } ?>
 
-	<div class="txt1">
-		Соціологічне дослідження шляхом прямого опитування проводиться Громадською організацією<br>
-<b>«Всеукраїнське об’єднання "Успішна країна"».</b>
-	</div>
+
 
 </div><!--.news_page-->
 
@@ -121,10 +118,7 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
 
 	</div><!--.news_single-->
 
-	<div class="txt1">
-		Соціологічне дослідження шляхом прямого опитування проводиться Громадською організацією<br>
-<b>«Всеукраїнське об’єднання "Успішна країна"».</b>
-	</div>
+
 
 </div><!--.news_page-->
 <?php } ?>

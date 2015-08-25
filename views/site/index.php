@@ -26,10 +26,10 @@ use app\models\PasswordResetRequestForm;
 $this->title = Seo::find()->where(['id' => 1])->one()->title;
 ?>
 
-<div class="vam block__hide" >
-    <div class="vam__in">
+<div class="vam block__hide " >
+    <div class="vam__in animate">
 
-        <div class="main_page">
+        <div class="main_page ">
 
             <div class="txt1">
                 <h2>Чи голосуєш ти?</h2>
@@ -50,7 +50,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
 <!-- vote yes start -->
 
-<div class="vote_page vote_yes_this" style="display:none;">
+<div class="vote_page vote_yes_this animate" style="display:none;">
 
     <h2>Скажи чесно! <br>чому так?</h2>
 
@@ -81,7 +81,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
 <!-- vote no start -->
 
-<div class="vote_page vote_no_this" style="display:none;">
+<div class="vote_page vote_no_this animate" style="display:none;">
 
     <h2>Скажи чесно! <br>чому ні?</h2>
 
@@ -102,16 +102,12 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
     </form>
 
 
-    <div class="txt1">
-        Соціологічне дослідження шляхом прямого опитування проводиться Громадською організацією<br>
-        <b>«Всеукраїнське об’єднання "Успішна країна"».</b>
-    </div>
 
 </div><!--.vote_page-->
 
 <!-- vote no end -->
 
-<div class="main_auth" style="display:none;">
+<div class="main_auth animate" style="display:none;">
 
     <h2>Твій голос буде врахований, <br>як тільки ти авторизуєтесь.</h2>
 
@@ -127,7 +123,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
 </div><!--.main_auth-->
 
-<div class="popup_holder" style="display:none;">
+<div class="popup_holder animate" style="display:none;">
     <div class="popup_wrap">
 
         <div class="popup__in">
