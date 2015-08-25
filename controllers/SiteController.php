@@ -94,46 +94,17 @@ class SiteController extends Controller
         return $this->redirect('/');
     }
 
+
+
     public function actionIndex()
     {
         if (!Yii::$app->user->isGuest) {
             return $this->redirect(['result']);
         }
-        $email = (\Yii::$app->request->get('subscribe_email'));
-
-        if (isset($email)) {
-            //$email = $_GET["subscribe_email"];
-
-            $key = md5(microtime() + time() + 1235648);
-
-            $subscribes = new Subscribes();
-            $subscribes->email = $email;
-            $subscribes->key = $key;
-            $subscribes->status = 1;
-            if ($subscribes->save()) {
-                var_dump("ok");
-                var_dump($_SERVER['SERVER_NAME'] . '/?confirm=' . $key);
-//                $to      = $email;
-//                $subject = 'the subject';
-               $message = 'hello your link ' . $_SERVER['SERVER_NAME'] . '/?confirm='.$key;
-//
-//                mail($to, $subject, $message);
-                // несколько получателей
-                Yii::$app->mailer->compose()
-                    ->setFrom('from@domain.com')
-                    ->setTo($email)
-                    ->setSubject('Message subject')
-                    ->setTextBody($message)
-                    ->setHtmlBody('<b>HTML content</b>')
-                    ->send();
-            } else {
-                $errors = $subscribes->errors;
-                var_dump("error");
-                var_dump($errors);
-            }
 
 
-        };
+
+
         $this->layout = 'main';
         $this->getMetaTagsDefault();
 
