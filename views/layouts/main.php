@@ -75,7 +75,7 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
             </div>
             <!--.load_video__logo-->
 
-            <div class="load_video__skip">пропустити відео</div>
+            <div class="load_video__skip">Пропустити відео</div>
 
         </div>
         <!--.load_video__wrap-->
@@ -145,13 +145,13 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
     <div class="top__menu">
         <ul>
             <?php if (Yii::$app->user->identity) { ?>
-                <li><?php echo Html::a('результати', Url::to(['site/result'])); ?></li>
+                <li><?php echo Html::a('Результати', Url::to(['site/result'])); ?></li>
             <?php } ?>
             <?php if (!Yii::$app->user->identity) { ?>
-                <li><?php echo Html::a('опитування', Url::to('/')); ?></li>
+                <li><?php echo Html::a('Опитування', Url::to('/')); ?></li>
             <?php } ?>
-            <li><?php echo Html::a('новини', Url::to(['site/news'])); ?></li>
-            <li><?php echo Html::a('про проект', Url::to(['site/about'])); ?></li>
+            <li><?php echo Html::a('Новини', Url::to(['site/news'])); ?></li>
+            <li><?php echo Html::a('Про проект', Url::to(['site/about'])); ?></li>
 
         </ul>
     </div>
