@@ -38,9 +38,9 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
             <div class="main_page__switch">
                 <div class="main_page__switch-btn main_page__switch-btnleft main_page__switch-btn--active" onclick="OpenYes();
-                        return false;">Чому я голосую</div>
+                        return false;">Так, я голосую</div>
                 <div class="main_page__switch-btn main_page__switch-btnright" onclick="OpenNo();
-                        return false;">Чому я <u>не</u> голосую</div>
+                        return false;">Ні, я не голосую</div>
             </div><!--.main_page__switch-->
 
         </div><!--.main_page-->
