@@ -46,6 +46,16 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <?php $this->head() ?>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-66281757-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </head>
 
 <body <?php
@@ -75,7 +85,7 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
             </div>
             <!--.load_video__logo-->
 
-            <div class="load_video__skip">Пропустити відео</div>
+            <div class="load_video__skip" onclick="ga('send', 'event', 'Propusk', 'Click');">Пропустити відео</div>
 
         </div>
         <!--.load_video__wrap-->
@@ -116,14 +126,14 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
         <div class="top__social">
             <?php $seo = Seo::find()->where(['id' => 1])->one(); ?>
             <ul>
-                <li class="fb"><a href="javascript:void(0);"
-                                  onclick="Share.facebook('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">>Facebook</a>
+                <li class="fb" onclick="ga('send', 'event', 'Sharefb', 'Click');"><a href="javascript:void(0);"
+                                                                                     onclick="Share.facebook('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>'); alert();">>Facebook</a>
                 </li>
-                <li class="vk"><a href="javascript:void(0);"
-                                  onclick="Share.vkontakte('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">ВКонтакте</a>
+                <li class="vk" onclick="ga('send', 'event', 'Sharevk', 'Click');"><a href="javascript:void(0);"
+                                                                                     onclick="Share.vkontakte('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">ВКонтакте</a>
                 </li>
-                <li class="ok"><a href="javascript:void(0);"
-                                  onclick="Share.odnoklassniki('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $seo->title; ?>')">>Одноклассники</a>
+                <li class="ok" onclick="ga('send', 'event', 'Shareok', 'Click');"><a href="javascript:void(0);"
+                                                                                     onclick="Share.odnoklassniki('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $seo->title; ?>')">>Одноклассники</a>
                 </li>
             </ul>
         </div><!--.top__social-->
@@ -195,27 +205,27 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 
     <div class="footer__wrap">
 
-       <?php Pjax::begin(['id' => 'subscribe-form-pjax']); ?>
-                <div class="footer__subscribe">
-                    <form id="subscribes" method="get" data-pjax="1">
-                        <div class="footer__subscribe-in">
-                            <input type="email" name="subscribe_email" placeholder="Введіть Ваш E-mail">
-                            <input type="submit" value="">
-                        </div>
-                    </form>
-                    <?php if (Yii::$app->session->hasFlash('subscribe_success')): ?>
-                        <p><?= Yii::$app->session->getFlash('subscribe_success') ?></p>
-                    <?php endif; ?>
-                    <?php if (Yii::$app->session->hasFlash('subscribe_error')): ?>
-                        <p><?php echo print_r(Yii::$app->session->getFlash('subscribe_error'), 1); ?></p>
-                    <?php endif; ?>
-                    <?php if (!Yii::$app->session->hasFlash('subscribe_success') and
-                        !Yii::$app->session->hasFlash('subscribe_error')):
-                        ?>
-                        <p>Слідкуйте за нашими новинами у своєму e-mail</p>
-                    <?php endif; ?>
+        <?php Pjax::begin(['id' => 'subscribe-form-pjax']); ?>
+        <div class="footer__subscribe">
+            <form id="subscribes" method="get" data-pjax="1">
+                <div class="footer__subscribe-in">
+                    <input type="email" name="subscribe_email" placeholder="Введіть Ваш E-mail">
+                    <input type="submit" value="">
                 </div>
-                <?php Pjax::end(); ?>
+            </form>
+            <?php if (Yii::$app->session->hasFlash('subscribe_success')): ?>
+                <p><?= Yii::$app->session->getFlash('subscribe_success') ?></p>
+            <?php endif; ?>
+            <?php if (Yii::$app->session->hasFlash('subscribe_error')): ?>
+                <p><?php echo print_r(Yii::$app->session->getFlash('subscribe_error'), 1); ?></p>
+            <?php endif; ?>
+            <?php if (!Yii::$app->session->hasFlash('subscribe_success') and
+                !Yii::$app->session->hasFlash('subscribe_error')):
+                ?>
+                <p>Слідкуйте за нашими новинами у своєму e-mail</p>
+            <?php endif; ?>
+        </div>
+        <?php Pjax::end(); ?>
         <!--.footer__subscribe-->
 
         <div class="footer__links">
@@ -301,9 +311,9 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
                         <p>2. Всі виключні майнові і немайнові авторські права та інформація, що розміщується на сайті chomu.net належать ГО «ВО Успішна країна» та авторам публікацій, якщо в тексті не вказано інше. Під інформацією розуміються всі матеріали, що розміщуються на сайті: статті, новини, інтерв'ю, фото, відео і т.п.</p>
 
                         <p>3. Інтернет-виданням дозволяється використовувати інформацію, розміщену на сайті сhomu.net, тільки за умови посилання і згадки першоджерела у першому абзаці.<br>
-Для друкованих видань передрук матеріалів сайту сhomu.net дозволяється при згадці сайту сhomu.net.<br>
-У теле- і радіосюжетах дозволяється використання інформації, розміщеної на сайті сhomu.net, за умови усного посилання на першоджерело.<br>
-Під використанням інформації мається на увазі будь-яке відтворення, републікування, поширення, переробка, переклад наповнення сайту, включення його частин у інші твори та інші способи, передбачені Законом України «Про авторське право і суміжні права».</p>
+                            Для друкованих видань передрук матеріалів сайту сhomu.net дозволяється при згадці сайту сhomu.net.<br>
+                            У теле- і радіосюжетах дозволяється використання інформації, розміщеної на сайті сhomu.net, за умови усного посилання на першоджерело.<br>
+                            Під використанням інформації мається на увазі будь-яке відтворення, републікування, поширення, переробка, переклад наповнення сайту, включення його частин у інші твори та інші способи, передбачені Законом України «Про авторське право і суміжні права».</p>
 
                         <p>4. Забороняється будь-яке комерційне використання інформації, відтворення текстів або їх фрагментів з метою комерційної реалізації права доступу до цієї інформації.</p>
 

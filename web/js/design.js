@@ -9,7 +9,17 @@ $(document).ready(function () {
             autoReinitialise: true
         });
     }
+//GA
 
+    $('a[data-eauth-service="facebook"]').click(function() {
+        ga('send', 'event', 'Authorizfb', 'Click');
+    });
+    $('a[data-eauth-service="vkontakte"]').click(function() {
+        ga('send', 'event', 'Authorizvk', 'Click');
+    });
+    $('a[data-eauth-service="odnoklassniki"]').click(function() {
+        ga('send', 'event', 'Authorizok', 'Click');
+    });
 
     //Footer link popup
 
