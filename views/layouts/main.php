@@ -336,8 +336,12 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
                     <!--<div class="popup_contacts__left">-->
                         <h3 style="text-align: center">Контакти</h3>
 
-                        <p style="text-align: center"><b>e-mail:</b> <a href="#">kraina@uspishna.org</a><br>
-                            <b>Для ЗМІ:</b> <a href="#">media@uspishna.org</a></p>
+                        <p style="text-align: center">
+                            <b>e-mail:</b> <a href="#">kraina@uspishna.org</a><br>
+                            <b>Для ЗМІ:</b> <a href="#">media@uspishna.org</a><br>
+                            <b>Тел. громад. приймальні:</b> <a href="#"> 38 (044) 232-02-96</a>
+                            
+                            </p>
                     <!--</div>-->
 
                     <!--<div class="popup_contacts__right">-->
