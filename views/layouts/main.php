@@ -275,7 +275,7 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 
                 <div class="popup_police__in">
 
-                    <h3>Політика конфіденційності</h3>
+                    <h3>Правила конфіденційності</h3>
 
                     <div class="scroller">
 
@@ -333,18 +333,18 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 
                 <div class="popup_contacts__in cf">
 
-                    <div class="popup_contacts__left">
+                    <!--<div class="popup_contacts__left">-->
                         <h3>Контакти</h3>
 
                         <p><b>e-mail:</b> <a href="#">kraina@uspishna.org</a><br>
                             <b>Для ЗМІ:</b> <a href="#">media@uspishna.org</a></p>
-                    </div>
+                    <!--</div>-->
 
-                    <div class="popup_contacts__right">
-                        <h3>Центральний офіс</h3>
+                    <!--<div class="popup_contacts__right">-->
+                    <!--    <h3>Центральний офіс</h3>-->
 
-                        <p><b>Адреса:</b> м. Київ, вул. Жилянська, буд. 110<br></p>
-                    </div>
+                    <!--    <p><b>Адреса:</b> м. Київ, вул. Жилянська, буд. 110<br></p>-->
+                    <!--</div>-->
 
                 </div>
                 <!--.popup_contacts__in-->
