@@ -334,9 +334,9 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
                 <div class="popup_contacts__in cf">
 
                     <!--<div class="popup_contacts__left">-->
-                        <h3>Контакти</h3>
+                        <h3 style="text-align: center">Контакти</h3>
 
-                        <p><b>e-mail:</b> <a href="#">kraina@uspishna.org</a><br>
+                        <p style="text-align: center"><b>e-mail:</b> <a href="#">kraina@uspishna.org</a><br>
                             <b>Для ЗМІ:</b> <a href="#">media@uspishna.org</a></p>
                     <!--</div>-->
 
