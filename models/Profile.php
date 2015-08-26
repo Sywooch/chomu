@@ -65,7 +65,11 @@ class Profile extends \yii\db\ActiveRecord
             $prof->thumb_photo = $info['photo_rec'];
         }
 
-        if (!empty($info['photo'])) {
+        if (!empty($info['photo_medium'])) {
+            $prof->thumb_photo = $info['photo_medium'];
+        }
+
+        if (!empty($info['photo_big'])) {
             $prof->photo = $info['photo_big'];
         }
         if (!empty($info['first_name'])) {
