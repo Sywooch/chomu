@@ -10,6 +10,19 @@ $(document).ready(function () {
         });
     }
 
+    //GA
+
+    $('a[data-eauth-service="facebook"]').click(function() {
+        ga('send', 'event', 'Authorizfb', 'Click');
+    });
+    $('a[data-eauth-service="vkontakte"]').click(function() {
+        ga('send', 'event', 'Authorizvk', 'Click');
+    });
+    $('a[data-eauth-service="odnoklassniki"]').click(function() {
+        ga('send', 'event', 'Authorizok', 'Click');
+    });
+
+
 
     //Footer link popup
 
@@ -172,18 +185,20 @@ $(window).load(function () {
 
 
 function OpenYes() {
+    ga('send', 'event', 'Chomutak', 'Click');
     $('.vote_yes_this').show();
     $('.block__hide').hide();
     return false;
 }
 function OpenNo() {
+    ga('send', 'event', 'Chomunet', 'Click');
     $('.vote_no_this').show();
     $('.block__hide').hide();
     return false;
 }
 
 function auth_user() {
-
+    ga('send', 'event', 'Authoriz', 'Click');
     $('.main_auth').fadeOut();
     $('.popup_holder, .popup_auth').fadeIn();
 
