@@ -42,12 +42,10 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
 				<?php
 				$this->registerJs(
 					"var url = 'http://".Yii::$app->request->getServerName()."/news/".htmlspecialchars($new->url).".html';
-
-					    $.getJSON('http://vkontakte.ru/share.php?act=count&index=1&url=' + encodeURI(url) + '&callback=?', function(response) {});
+					    $.getJSON('http://vkontakte.ru/share.php?act=count&index=1&url='
+					        + encodeURI(url) + '&callback=?', function(response) {});
 						$.getJSON('http://ok.ru/dk?st.cmd=extLike&uid=odklcnt0&ref='+ encodeURI(url) + '&callback=?', function(response) {});
-						$.getJSON('https://api.facebook.com/method/links.getStats?urls='+ encodeURI(url) +'&format=json');
 					",
-
 					View::POS_READY
 				);
 				$this->registerJs(
@@ -65,11 +63,6 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
 					var ODKL = {
 								updateCount: function(value, count) {
 						                $('.odn-count_' + ".$new->id.").html(count);
-								    }
-								}
-                    var FB =    {
-                                updateCount: function(value, count) {
-						                $('.fb-count_' + ".$new->id.").html(count);
 								    }
 								}
 					",
@@ -101,15 +94,25 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
 		<div class="news_single__body">
 			<?= $new->content; ?>
 			<div class="news_single__social cf">
-
 				<ul>
-					<li class="fb"><a href="javascript:void(0);" class="icon icon-social icon-fb icon-has-text active" onclick="Share.facebook('http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>','<?= $new->title; ?>','http://<?= Yii::$app->request->getServerName(); ?>/web/upload/article/<?= $new->photo; ?>','<?= $p; ?>')"><span class="ico"></span><span class="icon-inner-text fb-count_<?=$new->id;?>"></span></a></li>
-					<li class="ok"><a href="javascript:void(0);" class="icon icon-social icon-ok icon-has-text active" onclick="Share.odnoklassniki('http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>','<?= $new->pre_content; ?>')"><span class="ico"></span><span class="icon-inner-text odn-count_<?=$new->id;?>"></span></a></li>
-					<li class="vk"><a href="javascript:void(0);" class="icon icon-social icon-vk icon-has-text active vk like l-vk" onclick="Share.vkontakte('http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>','<?= $new->title; ?>','http://<?= Yii::$app->request->getServerName(); ?>/web/upload/article/<?= $new->photo; ?>','<?= $p; ?>')"><span class="ico"></span><span href="http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>" class="icon-inner-text l-count vk-count_<?=$new->id;?>"></span></a></li>
+					<li class="fb" onclick="ga('send', 'event', 'Sharefb', 'Click');"><a href="javascript:void(0);" class="icon icon-social icon-fb icon-has-text active" onclick="Share.facebook('http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>','<?= $new->title; ?>','http://<?= Yii::$app->request->getServerName(); ?>/web/upload/article/<?= $new->photo; ?>','<?= $p; ?>')"><span class="icon-inner-text fb-count_<?=$new->id;?>">0</span></a></li>
+					<li class="ok" onclick="ga('send', 'event', 'Sharevk', 'Click');"><a href="javascript:void(0);" class="icon icon-social icon-ok icon-has-text active" onclick="Share.odnoklassniki('http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>','<?= $new->pre_content; ?>')"><span class="icon-inner-text odn-count_<?=$new->id;?>">0</span></a></li>
+					<li class="vk" onclick="ga('send', 'event', 'Shareok', 'Click');"><a href="javascript:void(0);" class="icon icon-social icon-vk icon-has-text active vk like l-vk" onclick="Share.vkontakte('http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>','<?= $new->title; ?>','http://<?= Yii::$app->request->getServerName(); ?>/web/upload/article/<?= $new->photo; ?>','<?= $p; ?>')"><span href="http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>" class="icon-inner-text l-count vk-count_<?=$new->id;?>">0</span></a></li>
 				</ul>
 			</div><!--.news_single__social-->
 
+			<div class="news_single_relative">
+				<h3>Подібні новини</h3>
 
+				<div class="news_single_relative__list">
+					
+				</div><!--.news_single_relative__list-->
+
+				<div class="news_single_relative__back">
+					<a href="#">Назад</a>
+				</div><!--.news_single_relative__back-->
+
+			</div><!--.news_single_relative-->
 
 		</div><!--.news_single__body-->
 
