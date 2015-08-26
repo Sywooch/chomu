@@ -54,9 +54,9 @@ $this->title = 'Результати опитування';
             
             <?php $seo = Seo::find()->where(['id' => 1])->one(); ?>
             <ul>
-                <li class="fb"><a href="javascript:void(0);" onclick="Share.facebook('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">>Facebook</a></li>
-                <li class="vk"><a href="javascript:void(0);" onclick="Share.vkontakte('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">ВКонтакте</a></li>
-                <li class="ok"><a href="javascript:void(0);" onclick="Share.odnoklassniki('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $seo->title; ?>')">>Одноклассники</a></li>
+                <li class="fb" onclick="ga('send', 'event', 'Sharefb', 'Click');"><a href="javascript:void(0);" onclick="Share.facebook('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">>Facebook</a></li>
+                <li class="vk" onclick="ga('send', 'event', 'Sharevk', 'Click');"><a href="javascript:void(0);" onclick="Share.vkontakte('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">ВКонтакте</a></li>
+                <li class="ok" onclick="ga('send', 'event', 'Shareok', 'Click');"><a href="javascript:void(0);" onclick="Share.odnoklassniki('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $seo->title; ?>')">>Одноклассники</a></li>
             </ul>
         </div><!--.w_page__bt-->
 
