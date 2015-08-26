@@ -57,9 +57,7 @@ class FixController extends Controller
 
         /* $session = new Session;
           $session->open();
-          $session */
-        session_start();
-        $_SESSION['dev_debug'] = true;
+          $session */        
 
         return $this->render('index');
     }
