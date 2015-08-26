@@ -12,13 +12,13 @@ $this->title = 'Результати опитування';
 
     <div class="result_page__in">
 
-        <h2>Результат опитування</h2>
+        <h2>Результати опитування</h2>
 
         <div class="result_page__graph">
 
             <div class="result_page__left">
 
-                <h3>Так</h3>
+                <h3>Я голосую</h3>
 
                 <div class="line__progress line__progress-1">
                     <span><?= $result['yes']['percent']; ?></span>
@@ -27,14 +27,14 @@ $this->title = 'Результати опитування';
                 <div class="cf"></div>
 
                 <a href="javascript:void(0);" class="btn-b-bordered" onclick="resultYes();
-                        return false;">Подробиці</a>
+                        return false;">Детальніше</a>
 
             </div><!--.result_page__left-->
 
 
             <div class="result_page__right">
 
-                <h3>Ні</h3>
+                <h3>Я не голосую</h3>
 
                 <div class="line__progress line__progress-2">
                     <span><?= $result['no']['percent']; ?></span>
@@ -43,14 +43,14 @@ $this->title = 'Результати опитування';
                 <div class="cf"></div>
 
                 <a href="javascript:void(0);" class="btn-b-bordered" onclick="resultNo();
-                        return false;">Подробиці</a>
+                        return false;">Детальніше</a>
 
             </div><!--.result_page__right-->
 
         </div><!--.result_page__graph-->
 
         <div class="w_page__bt">
-            <h4>Поділитись з друзями</h4>
+            <h4>Розказати друзям</h4>
             
             <?php $seo = Seo::find()->where(['id' => 1])->one(); ?>
             <ul>
@@ -69,10 +69,9 @@ $this->title = 'Результати опитування';
     <div class="vote_result__in">
 
         <div class="vote_result__head cf">
-            <h3>Результат опитування</h3>
+            <h3>Результат “Я голосую”</h3>
 
-            <h4>Так</h4>
-            <div class="result"><b><?= $result['yes']['percent']; ?></b>%</div>
+            <div class="result"><b><?= $result['yes']['percent']; ?></b><span>%</span></div>
 
         </div><!--.vote_result__head-->
 
@@ -83,7 +82,7 @@ $this->title = 'Результати опитування';
 
                     <div class="progress">
                         <div class="progress__in" style="width: <?= $result['questions'][$value->id]['percent']; ?>%;"></div>
-                        <div class="progress__txt"><span class="countto__number"><?= $result['questions'][$value->id]['percent']; ?></span>%</div>
+                        <div class="progress__txt"><span class="countto__number"><?= $result['questions'][$value->id]['percent']; ?></span><span class="prc">%</span></div>
                     </div><!--.progress-->
 
                     <div class="smile smile<?= $result['questions'][$value->id]['smile']; ?>"></div>
@@ -96,7 +95,7 @@ $this->title = 'Результати опитування';
         </div><!--.vote_result__list-->
 
         <div class="w_page__bt">
-            <h4>Поділитись з друзями</h4>
+            <h4>Розказати друзям</h4>
 
             <?php $seo = Seo::find()->where(['id' => 1])->one(); ?>
             <ul>
@@ -119,10 +118,9 @@ $this->title = 'Результати опитування';
     <div class="vote_result__in">
 
         <div class="vote_result__head cf">
-            <h3>Результат опитування</h3>
+            <h3>Результат “Я не голосую”</h3>
 
-            <h4>Ні</h4>
-            <div class="result"><b><?= $result['no']['percent']; ?></b>%</div>
+            <div class="result"><b><?= $result['no']['percent']; ?></b><span>%</span></div>
 
         </div><!--.vote_result__head-->
 
@@ -134,7 +132,7 @@ $this->title = 'Результати опитування';
 
                     <div class="progress">
                         <div class="progress__in" style="width: <?= $result['questions'][$value->id]['percent']; ?>%;"></div>
-                        <div class="progress__txt"><span class="countto__number"><?= $result['questions'][$value->id]['percent']; ?></span>%</div>
+                        <div class="progress__txt"><span class="countto__number"><?= $result['questions'][$value->id]['percent']; ?></span><span class="prc">%</span></div>
                     </div><!--.progress-->
 
                     <div class="smile smile<?= $result['questions'][$value->id]['smile']; ?>"></div>
@@ -146,7 +144,7 @@ $this->title = 'Результати опитування';
         </div><!--.vote_result__list-->
 
         <div class="w_page__bt">
-            <h4>Поділитись з друзями</h4>
+            <h4>Розказати друзям</h4>
             
             <?php $seo = Seo::find()->where(['id' => 1])->one(); ?>
             <ul>

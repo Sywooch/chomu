@@ -63,5 +63,5 @@ Share = {
     getCountLink: function(url) {
         var fql = 'SELECT share_count FROM link_stat WHERE url="' + url + '"';
         return Share.countServiceUrl + encodeURIComponent(fql);
-    },
+    }
 };
