@@ -67,7 +67,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
             </ul>
         </div><!--.vote_page__list-->
 
-        <input type="submit" value="Відповісти" class="btn-y-bordered">
+        <input type="submit" value="Відповісти" class="btn-y-bordered" onclick="ga('send', 'event', 'Vidpovisty', 'Click');">
 
     </form>
 
@@ -97,7 +97,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
             </ul>
         </div><!--.vote_page__list-->
 
-        <input type="submit" value="Відповісти" class="btn-y-bordered">
+        <input type="submit" value="Відповісти" class="btn-y-bordered" onclick="ga('send', 'event', 'Vidpovisty', 'Click');">
 
     </form>
 
