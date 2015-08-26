@@ -56,7 +56,6 @@ AppAsset::register($this);
         ga('send', 'pageview');
 
     </script>
-
 </head>
 
 <body <?php
@@ -92,9 +91,9 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
         <!--.load_video__wrap-->
 
         <video poster="images/bg-main.jpg" preload="none" autoplay id="load_video">
-            <source src="/web/video/Office-1.mp4" type="video/mp4">
-            <source src="/web/video/Office-1.webm" type="video/webm">
-            <source src="/web/video/Office-1.webm" type="video/ogg">
+            <source src="/web/video/intro.mp4" type="video/mp4">
+            <source src="/web/video/intro.webm" type="video/webm">
+            <source src="/web/video/intro.ogv" type="video/ogg">
         </video>
 
     </div><!--.load_video-->
@@ -103,9 +102,9 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 
 <div class="bg_video">
     <video poster="/web/images/bg-main.jpg" preload="none" loop autoplay muted id="bg_video">
-        <source src="/web/video/Office-1.mp4" type="video/mp4">
-        <source src="/web/video/Office-1.webm" type="video/webm">
-        <source src="/web/video/Office-1.webm" type="video/ogg">
+        <source src="/web/video/back.mp4" type="video/mp4">
+        <source src="/web/video/back.webm" type="video/webm">
+        <source src="/web/video/back.ogv" type="video/ogg">
     </video>
 </div>
 <!--.bg_video-->
@@ -128,13 +127,13 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
             <?php $seo = Seo::find()->where(['id' => 1])->one(); ?>
             <ul>
                 <li class="fb" onclick="ga('send', 'event', 'Sharefb', 'Click');"><a href="javascript:void(0);"
-                                  onclick="Share.facebook('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>'); alert();">>Facebook</a>
+                                                                                     onclick="Share.facebook('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>'); alert();">>Facebook</a>
                 </li>
                 <li class="vk" onclick="ga('send', 'event', 'Sharevk', 'Click');"><a href="javascript:void(0);"
-                                  onclick="Share.vkontakte('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">ВКонтакте</a>
+                                                                                     onclick="Share.vkontakte('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $this->title; ?>', '<?= 'http://' . Yii::$app->request->getServerName() . '/web/upload/default/' . $seo->images; ?>', '<?= $seo->title; ?>')">ВКонтакте</a>
                 </li>
                 <li class="ok" onclick="ga('send', 'event', 'Shareok', 'Click');"><a href="javascript:void(0);"
-                                  onclick="Share.odnoklassniki('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $seo->title; ?>')">>Одноклассники</a>
+                                                                                     onclick="Share.odnoklassniki('<?= 'http://' . Yii::$app->request->getServerName(); ?>', '<?= $seo->title; ?>')">>Одноклассники</a>
                 </li>
             </ul>
         </div><!--.top__social-->
@@ -206,22 +205,27 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 
     <div class="footer__wrap">
 
+        <?php Pjax::begin(['id' => 'subscribe-form-pjax']); ?>
         <div class="footer__subscribe">
-
-            <form action="<?= Url::to(['site/subscribes']); ?>" id="subscribes" method="get">
+            <form id="subscribes" method="get" data-pjax="1">
                 <div class="footer__subscribe-in">
                     <input type="email" name="subscribe_email" placeholder="Введіть Ваш E-mail">
-                    <?php if (Yii::$app->session->hasFlash('subscribe_message')): ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= Yii::$app->session->getFlash('subscribe_message') ?>
-                        </div>
-                    <?php endif; ?>
                     <input type="submit" value="">
                 </div>
             </form>
-
-            <p>Слідкуйте за нашими новинами у своєму e-mail</p>
+            <?php if (Yii::$app->session->hasFlash('subscribe_success')): ?>
+                <p><?= Yii::$app->session->getFlash('subscribe_success') ?></p>
+            <?php endif; ?>
+            <?php if (Yii::$app->session->hasFlash('subscribe_error')): ?>
+                <p><?php echo print_r(Yii::$app->session->getFlash('subscribe_error'), 1); ?></p>
+            <?php endif; ?>
+            <?php if (!Yii::$app->session->hasFlash('subscribe_success') and
+                !Yii::$app->session->hasFlash('subscribe_error')):
+                ?>
+                <p>Слідкуйте за нашими новинами у своєму e-mail</p>
+            <?php endif; ?>
         </div>
+        <?php Pjax::end(); ?>
         <!--.footer__subscribe-->
 
         <div class="footer__links">
@@ -275,23 +279,14 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 
                     <div class="scroller">
 
-                        <p>Сайт Chomu.net використовує стандартні технології для збору технічної інформації про вас як
-                            відвідувача і може отримувати відомості про ваш IP-адресу, назву вашого браузера і т. д.
-                            Відвідуючи сайт Chomu.net, ви даєте згоду на збір і використання цієї інформації сайтом
-                            Chomu .net. Дана інформація зберігається у вигляді логів веб-сервера і сервера статистики і
-                            використовується для аналізу аудиторії сайту Chomu.net. Особисту інформацію (ім'я, адреса,
-                            телефон) Chomu.net не збирає і не використовує.</p>
+                        <p>1. Сайт сhomu.net використовує стандартні технології для збору технічної інформації про вас як відвідувача і може отримувати відомості про вашу IP-адресу, назву вашого браузера та ін. Відвідуючи сайт сhomu.net, ви даєте згоду на збір і використання цієї інформації сайтом сhomu.net. Дана інформація зберігається у вигляді логів веб-сервера і сервера статистики і використовується для аналізу аудиторії сайту сhomu.net.</p>
 
-                        <p>Ви можете налаштувати ваш браузер так, щоб він повідомляв вас або автоматично відхиляв
-                            тимчасові файли cookies, і це обмежить збір неособистих даних. Якщо ви відхиляєте тимчасові
-                            файли сайту Chomu.net або відмовляєтеся від використання таких тимчасових файлів, ви можете
-                            продовжувати відвідувати сайт Chomu.net, але деякі його можливості будуть для вас
-                            недоступні.</p>
+                        <p>2. Особисту інформацію (ім'я, адреса, телефон) сhomu.net не збирає і не використовує.</p>
 
-                        <p>Модифікація Політика конфіденційності: Chomu.net залишає за собою право в будь-який час
-                            змінювати, модифікувати або оновлювати Політику Конфіденційності сайту Chomu.net, і ви
-                            погоджуєтеся з такими змінами та / або оновленнями.
+                        <p>3. Відвідувач може налаштувати свій браузер так, щоб він повідомляв про тимчасові файли cookies або автоматично відхиляв їх. Це обмежить збір неособистих даних. Якщо відвідувач відхиляє тимчасові файли сайту сhomu.net або відмовляється від використання таких тимчасових файлів, він може продовжувати відвідувати сайт сhomu.net, але деякі можливості сайту будуть недоступними.
                         </p>
+
+                        <p>4. Сайт сhomu.net залишає за собою право у будь-який час змінювати, модифікувати або оновлювати Правила Конфіденційності сайту сhomu.net, і ви погоджуєтесь із такими змінами та/або оновленнями.</p>
 
                     </div>
 
@@ -313,27 +308,16 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
 
                         <p>1. Ці правила поширюються на всі сторінки сайту сhomu.net.</p>
 
-                        <p>2. Всі виключні майнові і немайнові авторські права та інформація, що розміщується на сайті
-                            chomu.net належать ГО «ВО Успішна країна» та авторам публікацій, якщо в тексті не вказано
-                            інше. Під інформацією розуміються всі матеріали, що розміщуються на сайті: статті, новини,
-                            інтерв'ю, фото, відео і т.п.</p>
+                        <p>2. Всі виключні майнові і немайнові авторські права та інформація, що розміщується на сайті chomu.net належать ГО «ВО Успішна країна» та авторам публікацій, якщо в тексті не вказано інше. Під інформацією розуміються всі матеріали, що розміщуються на сайті: статті, новини, інтерв'ю, фото, відео і т.п.</p>
 
-                        <p>3. Інтернет-виданням дозволяється використовувати інформацію, розміщену на сайті сhomu.net,
-                            тільки за умови посилання і згадки першоджерела у першому абзаці.
-                            Для друкованих видань передрук матеріалів сайту сhomu.net дозволяється при згадці сайту
-                            сhomu.net.
-                            У теле- і радіосюжетах дозволяється використання інформації, розміщеної на сайті сhomu.net,
-                            за умови усного посилання на першоджерело.
-                            Під використанням інформації мається на увазі будь-яке відтворення, републікування,
-                            поширення, переробка, переклад наповнення сайту, включення його частин у інші твори та інші
-                            способи, передбачені Законом України «Про авторське право і суміжні права».</p>
+                        <p>3. Інтернет-виданням дозволяється використовувати інформацію, розміщену на сайті сhomu.net, тільки за умови посилання і згадки першоджерела у першому абзаці.<br>
+                            Для друкованих видань передрук матеріалів сайту сhomu.net дозволяється при згадці сайту сhomu.net.<br>
+                            У теле- і радіосюжетах дозволяється використання інформації, розміщеної на сайті сhomu.net, за умови усного посилання на першоджерело.<br>
+                            Під використанням інформації мається на увазі будь-яке відтворення, републікування, поширення, переробка, переклад наповнення сайту, включення його частин у інші твори та інші способи, передбачені Законом України «Про авторське право і суміжні права».</p>
 
-                        <p>4. Забороняється будь-яке комерційне використання інформації, відтворення текстів або їх
-                            фрагментів з метою комерційної реалізації права доступу до цієї інформації.</p>
+                        <p>4. Забороняється будь-яке комерційне використання інформації, відтворення текстів або їх фрагментів з метою комерційної реалізації права доступу до цієї інформації.</p>
 
-                        <p>5. У разі порушення будь-якого пункту цих правил, представники ГО «ВО Успішна країна»
-                            залишають за собою право захищати свої права та інтереси шляхом подачі скарг до
-                            правоохоронних органів та позовних заяв до судових органів</p>
+                        <p>5. У разі порушення будь-якого пункту цих правил, представники ГО «ВО Успішна країна» залишають за собою право захищати свої права та інтереси шляхом подачі скарг до правоохоронних органів та позовних заяв до судових органів.</p>
 
                     </div>
 
@@ -353,16 +337,13 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
                         <h3>Контакти</h3>
 
                         <p><b>e-mail:</b> <a href="#">kraina@uspishna.org</a><br>
-                            <b>Для ЗМІ:</b> <a href="#">media@uspishna.org</a><br>
-                            <b>Тел.</b> громадської пріймальні : <br>
-                            +38 098 387 70 15</p>
+                            <b>Для ЗМІ:</b> <a href="#">media@uspishna.org</a></p>
                     </div>
 
                     <div class="popup_contacts__right">
                         <h3>Центральний офіс</h3>
 
-                        <p><b>Адреса:</b> м. Київ, вул. Жілянська, буд. 110<br>
-                            <b>Тел.:</b> +38 098 387 68 40</p>
+                        <p><b>Адреса:</b> м. Київ, вул. Жилянська, буд. 110<br></p>
                     </div>
 
                 </div>
