@@ -12,22 +12,29 @@ namespace app\models\eauth\fix;
 class FacebookOAuth2Service extends \nodge\eauth\services\FacebookOAuth2Service
 {
 
-	protected $scopes = array(
-		//self::SCOPE_EMAIL,
-		//self::SCOPE_USER_BIRTHDAY,
-		//self::SCOPE_USER_HOMETOWN,
-		//self::SCOPE_USER_LOCATION,
-		self::SCOPE_USER_PHOTOS,
-	);
+    /**
+     * http://developers.facebook.com/docs/reference/api/user/
+     *
+     * @see FacebookOAuth2Service::fetchAttributes()
+     */
+    protected function fetchAttributes()
+    {
+        //$this->attributes = $this->makeSignedRequest('me');
+        $this->attributes = $this->makeSignedRequest('me', array(
+            'query' => array(
+                //'uids' => $tokenData['params']['user_id'],
+                //'fields' => '', // uid, first_name and last_name is always available
+                'fields' => implode(',', [
+                    'id',
+                    'name',
+                    //self::SCOPE_EMAIL,
+                    self::SCOPE_USER_PHOTOS,
+                    //'photos'
+                    ]
+                ),
+            ),
+        ));
 
-	/**
-	 * http://developers.facebook.com/docs/reference/api/user/
-	 *
-	 * @see FacebookOAuth2Service::fetchAttributes()
-	 */
-	protected function fetchAttributes()
-	{
-		$this->attributes = $this->makeSignedRequest('me');
-		return true;
-	}
+        return true;
+    }
 }
