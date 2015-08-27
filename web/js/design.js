@@ -182,18 +182,20 @@ $(window).load(function () {
 
 
 function OpenYes() {
+    ga('send', 'event', 'Chomutak', 'Click');
     $('.vote_yes_this').show();
     $('.block__hide').hide();
     return false;
 }
 function OpenNo() {
+    ga('send', 'event', 'Chomunet', 'Click');
     $('.vote_no_this').show();
     $('.block__hide').hide();
     return false;
 }
 
 function auth_user() {
-
+ga('send', 'event', 'Authoriz', 'Click');
     $('.main_auth').fadeOut();
     $('.popup_holder, .popup_auth').fadeIn();
 
