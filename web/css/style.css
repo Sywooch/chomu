@@ -2447,8 +2447,11 @@ body {
 
 /***************************************************/
 .eauth-service-id-odnoklassniki > .eauth-service-link {
-    background-position-x: -114px !important;
+    background-position: -114px 17px !important;
 }
 .eauth-service-id-vkontakte > .eauth-service-link {
-    background-position-x: -227px !important;
+    background-position-x: -227px 17px!important;
+}
+.eauth-service-id-facebook > .eauth-service-link {
+    background-position-x: 0 17px!important;
 }
