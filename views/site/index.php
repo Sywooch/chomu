@@ -46,7 +46,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
         </div><!--.main_page-->
 
     </div><!--.vam__in-->
-</div><!--.vam-->
+<!--.vam-->
 
 <!-- vote yes start -->
 
@@ -99,7 +99,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
 
 </div><!--.vote_page-->
-
+</div>
 <!-- vote yes end -->
 
 
