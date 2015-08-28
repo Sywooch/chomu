@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             //'user_id',
-            //'questions_id',
+            'questions_id',
             //'vote',
             'custom_answer',
 
