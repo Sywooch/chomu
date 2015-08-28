@@ -58,7 +58,7 @@ class Vote extends \yii\db\ActiveRecord
 
     public static function processVote()
     {
-        if (!Yii::$app->session->get('question_id')) return false;        
+        if (!\Yii::$app->session->get('question_id')) return false;
         
         $user = User::findOne(['social_id' => Yii::$app->user->identity->social_id]);
 
@@ -67,8 +67,8 @@ class Vote extends \yii\db\ActiveRecord
         $vote->questions_id = Yii::$app->session->get('question_id');
         $vote->vote         = 1;
 
-        if (Yii::$app->session->get('answer')) {
-            $vote->custom_answer = Yii::$app->session->get('answer');
+        if (\Yii::$app->session->get('answer')) {
+            $vote->custom_answer = \Yii::$app->session->get('answer');
         }
 
         $vote->save();
