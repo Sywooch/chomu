@@ -67,7 +67,7 @@ class Vote extends \yii\db\ActiveRecord
         $vote->questions_id = Yii::$app->session->get('question_id');
         $vote->vote         = 1;
 
-        if (\Yii::$app->session->get('answer')) {
+        if (\Yii::$app->session->get('answer') and (1000001 == Yii::$app->session->get('question_id') or 1000002 == Yii::$app->session->get('question_id'))) {
             $vote->custom_answer = \Yii::$app->session->get('answer');
         }
 
