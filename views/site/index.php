@@ -67,8 +67,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
         cursor: pointer;
     }
 </style>
-<div class="vam">
-    <div class="vam__in">
+
         <div class="vote_page vote_yes_this animate" style="display:none;">
 
     <h2>Чому «так»? <br>Назви причину!</h2>
@@ -100,16 +99,14 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
 
 </div><!--.vote_page-->
-    </div>
-</div>
+ 
 
 
 <!-- vote yes end -->
 
 
 <!-- vote no start -->
-<div class="vam">
-    <div class="vam__in">
+
 <div class="vote_page vote_no_this animate" style="display:none;">
 
     <h2>Чому «ні»? <br/>Назви причину!</h2>
@@ -139,7 +136,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
 
 </div><!--.vote_page-->
-</div></div>
+
 <!-- vote no end -->
 
 <div class="main_auth main_authnew animate" style="display:none;">
