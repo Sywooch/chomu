@@ -126,11 +126,12 @@ $(document).ready(function () {
         var csrfToken = $('meta[name="csrf-token"]').attr("content");
         var data = $('form#yes-form').serializeArray();
         var id = $('form#yes-form').find('input:checked').attr("id");
+        var answer = $('form#yes-form').find('#custom_yes_answer').val();        
 
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            data: {data: data, id: id, _csrf: csrfToken},
+            data: {data: data, id: id, answer:answer, _csrf: csrfToken},
             url: '/site/vote.html',
             cache: false,
             success: function (html) {
@@ -151,11 +152,12 @@ $(document).ready(function () {
         var csrfToken = $('meta[name="csrf-token"]').attr("content");
         var data = $('form#no-form').serializeArray();
         var id = $('form#no-form').find('input:checked').attr("id");
+        var answer = $('form#no-form').find('#custom_no_answer').val();        
 
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            data: {data: data, id: id, _csrf: csrfToken},
+            data: {data: data, id: id, answer:answer, _csrf: csrfToken},
             url: '/site/vote.html',
             cache: false,
             success: function (html) {

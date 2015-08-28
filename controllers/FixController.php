@@ -57,7 +57,7 @@ class FixController extends Controller
 
         /* $session = new Session;
           $session->open();
-          $session */        
+          $session */
 
         return $this->render('index');
     }
@@ -125,5 +125,21 @@ class FixController extends Controller
         //$d = Yii::$app->user->identity->social_id;
         //$user = User::findOne(['social_id' => Yii::$app->user->identity->social_id]);
         //print_r($user); die();
+    }
+
+    public function actionTestVote()
+    {
+        Vote::processVote();
+            /*$user = User::findOne(['social_id' => Yii::$app->user->identity->social_id]);
+
+        $vote               = new Vote();
+        $vote->user_id      = $user->id;
+        $vote->questions_id = Yii::$app->session->get('question_id');
+        $vote->vote         = 1;
+        $vote->save();
+
+        echo '<pre>';
+        print_r($vote);
+        print_r( $vote->getErrors());*/
     }
 }

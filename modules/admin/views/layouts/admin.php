@@ -36,6 +36,7 @@ use app\assets\AppAssetAdmin;
                     ['label' => 'Вопросы', 'url' => ['/admin/questions']],
                     ['label' => 'Пользователи', 'url' => ['/admin/user']],
                     ['label' => 'Голоса', 'url' => ['/admin/vote']],
+                    ['label' => 'Другие ответы', 'url' => ['/admin/vote/custom-answer']],
                     ['label' => 'Контент', 'url' => ['/admin/content']],
                     ['label' => 'Новости', 'url' => ['/admin/article']],
                     ['label' => 'Подписки', 'url' => ['/admin/subscribes']],

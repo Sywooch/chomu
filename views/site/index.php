@@ -50,6 +50,24 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
 <!-- vote yes start -->
 
+<style>
+    .vote_page__list ul li input[type="text"] {
+        outline: none;
+
+        display: inline-block;
+        width: 500px;
+        border: none;
+
+        background-color: transparent;
+
+        font: normal 26px/140% "Roboto", Arial;
+        color: #fff;
+        vertical-align: middle;
+
+        cursor: pointer;
+    }
+</style>
+
 <div class="vote_page vote_yes_this animate" style="display:none;">
 
     <h2>Чому «так»? <br>Назви причину!</h2>
@@ -63,6 +81,12 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
                     echo '<li><input type="radio" name="vote" class="inp-decorate inp-vote" id="' . $value->id . '" checked="" value="' . $value->questions . '"> <label for="' . $value->id . '">' . $value->questions . '</label></li>';
                 }
                 ?>
+                <li class="myvote">
+                    <input type="radio" name="vote" class="inp-decorate inp-vote" id="1000001">
+                    <label for="vote_page6">
+                        <input type="text" id="custom_yes_answer" name="vote" placeholder="Власний варіант відповіді" value="Власний варіант відповіді">
+                    </label>
+                </li>
 
             </ul>
         </div><!--.vote_page__list-->
@@ -94,6 +118,12 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
                     echo '<li><input type="radio" name="vote" class="inp-decorate inp-vote" id="' . $value->id . '" checked="" value="' . $value->questions . '"> <label for="' . $value->id . '">' . $value->questions . '</label></li>';
                 }
                 ?>
+                <li class="myvote">
+                    <input type="radio" name="vote" class="inp-decorate inp-vote" id="1000002">
+                    <label for="vote_page6">
+                        <input type="text" id="custom_no_answer" name="vote" placeholder="Власний варіант відповіді" value="Власний варіант відповіді">
+                    </label>
+                </li>
             </ul>
         </div><!--.vote_page__list-->
 

@@ -62,6 +62,26 @@ class VoteController extends Controller
     }
 
     /**
+     * Lists all Vote models.
+     * @return mixed
+     */
+    public function actionCustomAnswer()
+    {
+        $searchModel = new VoteSearch();
+
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $dataProvider->query->andWhere(            
+            ['not', ['custom_answer' => null]]
+        );
+
+        return $this->render('customAnswer', [
+                'searchModel'  => $searchModel,
+                'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
      * Displays a single Vote model.
      * @param string $id
      * @return mixed

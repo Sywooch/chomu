@@ -58,14 +58,19 @@ class Vote extends \yii\db\ActiveRecord
 
     public static function processVote()
     {
-        if (!Yii::$app->session->get('question_id')) return false;
-
+        if (!Yii::$app->session->get('question_id')) return false;        
+        
         $user = User::findOne(['social_id' => Yii::$app->user->identity->social_id]);
 
         $vote               = new Vote();
         $vote->user_id      = $user->id;
         $vote->questions_id = Yii::$app->session->get('question_id');
         $vote->vote         = 1;
+
+        if (!empty(Yii::$app->session->get('answer'))) {
+            $vote->custom_answer = Yii::$app->session->get('answer');
+        }
+
         $vote->save();
 
         return true;
@@ -78,6 +83,21 @@ class Vote extends \yii\db\ActiveRecord
         //get from db
         $votes                  = self::find()->all();
         $questions              = Questions::find()->all();
+
+        //add custom questions
+        $customYes = new Questions();
+        $customYes->id = 1000001;
+        $customYes->questions = 'Iншi';
+        $customYes->yes = 1;
+        $questions[] = $customYes;
+
+        $customNo = new Questions();
+        $customNo->id = 1000002;
+        $customNo->questions = 'Iншi';
+        $customNo->no = 1;
+        $questions[] = $customNo;
+
+        //total
         $result['yes']['count'] = Vote::find()->yesOnly()->count();
         $result['no']['count']  = Vote::find()->noOnly()->count();
 

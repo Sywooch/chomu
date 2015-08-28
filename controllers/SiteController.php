@@ -266,6 +266,10 @@ class SiteController extends Controller
             $session->open();
             Yii::$app->session->set('question_id', $_POST['id']);
 
+            if (!empty($_POST['answer'])) {
+                Yii::$app->session->set('answer', strip_tags($_POST['answer']));
+            }
+
             $result = array(
                 'success' => true,
             );
@@ -298,10 +302,21 @@ class SiteController extends Controller
 
         \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => '']);
         $this->getMetaTagsDefault();
-
-        //TODO: get db data Vote + issue
+        
         $questionsYes = Questions::find()->andWhere(['yes' => 1])->all();
         $questionsNo  = Questions::find()->andWhere(['no' => 1])->all();
+
+        $customYes            = new Questions();
+        $customYes->id        = 1000001;
+        $customYes->questions = 'Iншi';
+        $customYes->yes       = 1;
+        $questionsYes[]      = $customYes;
+
+        $customNo            = new Questions();
+        $customNo->id        = 1000002;
+        $customNo->questions = 'Iншi';
+        $customNo->no        = 1;
+        $questionsNo[]       = $customNo;
 
         $result = Vote::getResult();
 
