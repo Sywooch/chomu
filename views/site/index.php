@@ -69,7 +69,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 </style>
 
         <div class="vote_page vote_yes_this animate" style="display:none;">
-
+<div class="vam"><div class="vam__in">
     <h2>Чому «так»? <br>Назви причину!</h2>
 
     <form type="POST" action="<?= Url::to(['site/vote']); ?>" id="yes-form">
@@ -97,7 +97,7 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
 
 
-
+</div></div>
 </div><!--.vote_page-->
  
 
