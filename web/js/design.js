@@ -176,39 +176,39 @@ $(document).ready(function () {
     
     $('.vote_page__list + input[type="submit"]').attr('disabled','disabled');
 
-    $('#custom_yes_answer').keydown(function(){ $('.vote_page__list + input[type="submit"]').removeAttr('disabled');})
+    $('#custom_yes_answer').keydown(function(){ $('#yes-form input[type="submit"]').removeAttr('disabled');})
 
     $.each($('#yes-form  ul  li'), function(){ 
     var elem = $('#yes-form  ul  li').eq($(this).index());
     if(elem.hasClass('myvote') == false ){
         elem.children().change(function(){ 
-            $('.vote_page__list + input[type="submit"]').removeAttr('disabled');
+            $('#yes-form input[type="submit"]').removeAttr('disabled');
             })
     } else {
         elem.children().change(function(){ 
             if($('#custom_yes_answer').val() !== ''){
-            $('.vote_page__list + input[type="submit"]').removeAttr('disabled');
+            $('#yes-form input[type="submit"]').removeAttr('disabled');
             } else {
-                $('.vote_page__list + input[type="submit"]').attr('disabled','disabled');
+                $('#yes-form input[type="submit"]').attr('disabled','disabled');
             }
             })
     }
     })
     
-    $('#custom_no_answer').keydown(function(){ $('.vote_page__list + input[type="submit"]').removeAttr('disabled');})
+    $('#custom_no_answer').keydown(function(){ $('#no-form input[type="submit"]').removeAttr('disabled');})
 
     $.each($('#no-form  ul  li'), function(){ 
     var elem = $('#no-form  ul  li').eq($(this).index());
     if(elem.hasClass('myvote') == false ){
         elem.children().change(function(){ 
-            $('.vote_page__list + input[type="submit"]').removeAttr('disabled');
+            $('#no-form input[type="submit"]').removeAttr('disabled');
             })
     } else {
         elem.children().change(function(){ 
             if($('#custom_no_answer').val() !== ''){
-            $('.vote_page__list + input[type="submit"]').removeAttr('disabled');
+            $('#no-form input[type="submit"]').removeAttr('disabled');
             } else {
-                $('.vote_page__list + input[type="submit"]').attr('disabled','disabled');
+                $('#no-form input[type="submit"]').attr('disabled','disabled');
             }
             })
     }
