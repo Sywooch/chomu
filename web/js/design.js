@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+$('.vote_page__list').find('li').removeClass('checked');
     if ($('.inp-decorate').length) {
         $('.inp-decorate').styler();
     }
