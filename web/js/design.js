@@ -181,13 +181,14 @@ $(document).ready(function () {
 //             $('#yes-form input[type="submit"]').removeAttr('disabled');
 //         }
 //  })
-    
+    $('#custom_yes_answer').keydown(function(){ $('.vote_page__list + input[type="submit"]').removeAttr('disabled');})
     
     $('.vote_page__list').find('div').removeClass('checked');
+    
     $('li.myvote > div > input:radio').change(function() {
                 if ($(this).is(':checked')) {
                 $('li.myvote > div + label > input').val('');
-    $('li.myvote > div + label > input').focus();
+                $('li.myvote > div + label > input').focus();
             }
         });
         $('li.myvote > div + label > input').click(function(){$('li.myvote > div + label > input').val(''); $('li.myvote > div > input:radio').prop('checked', true).trigger('refresh');});
