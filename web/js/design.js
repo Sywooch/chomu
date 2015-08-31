@@ -175,19 +175,9 @@ $(document).ready(function () {
     });
     
     $('.vote_page__list + input[type="submit"]').attr('disabled','disabled');
-//     $.each($('#yes-form  ul  li'), function(){ 
-//         var elem = $('#yes-form  ul  li').eq($(this).index());
-//         if(elem.hasClass('myvote') == false && elem.children().hasClass('checked') == true){
-//             $('#yes-form input[type="submit"]').removeAttr('disabled');
-//         }
-//  })
-    $('#custom_yes_answer').keydown(function(){ $('.vote_page__list + input[type="submit"]').removeAttr('disabled');})
-//     $.each($('#yes-form  ul  li'), function(){ 
-// var elem = $('#yes-form  ul  li').eq($(this).index());
-// if(elem.hasClass('myvote') == false ){
 
-// }
-//  })
+    $('#custom_yes_answer').keydown(function(){ $('.vote_page__list + input[type="submit"]').removeAttr('disabled');})
+
     $.each($('#yes-form  ul  li'), function(){ 
     var elem = $('#yes-form  ul  li').eq($(this).index());
     if(elem.hasClass('myvote') == false ){
@@ -201,12 +191,27 @@ $(document).ready(function () {
             } else {
                 $('.vote_page__list + input[type="submit"]').attr('disabled','disabled');
             }
-            
-            
             })
-    
     }
-        
+    })
+    
+    $('#custom_no_answer').keydown(function(){ $('.vote_page__list + input[type="submit"]').removeAttr('disabled');})
+
+    $.each($('#no-form  ul  li'), function(){ 
+    var elem = $('#no-form  ul  li').eq($(this).index());
+    if(elem.hasClass('myvote') == false ){
+        elem.children().change(function(){ 
+            $('.vote_page__list + input[type="submit"]').removeAttr('disabled');
+            })
+    } else {
+        elem.children().change(function(){ 
+            if($('#custom_no_answer').val() !== ''){
+            $('.vote_page__list + input[type="submit"]').removeAttr('disabled');
+            } else {
+                $('.vote_page__list + input[type="submit"]').attr('disabled','disabled');
+            }
+            })
+    }
     })
     
     $('.vote_page__list').find('div').removeClass('checked');
