@@ -188,15 +188,25 @@ $(document).ready(function () {
 
 // }
 //  })
-$.each($('#yes-form  ul  li'), function(){ 
-var elem = $('#yes-form  ul  li').eq($(this).index());
-if(elem.hasClass('myvote') == false ){elem.children().change(function(){ 
-$('.vote_page__list + input[type="submit"]').removeAttr('disabled');
-})
-}
-
-
- })
+    $.each($('#yes-form  ul  li'), function(){ 
+    var elem = $('#yes-form  ul  li').eq($(this).index());
+    if(elem.hasClass('myvote') == false ){
+        elem.children().change(function(){ 
+            $('.vote_page__list + input[type="submit"]').removeAttr('disabled');
+            })
+    } else {
+        elem.children().change(function(){ 
+            if($('#custom_yes_answer').val() !== ''){
+            $('.vote_page__list + input[type="submit"]').removeAttr('disabled');
+            } else {
+                $('.vote_page__list + input[type="submit"]').attr('disabled','disabled');
+            }
+            }
+            })
+    }
+    }
+        
+    })
     
     $('.vote_page__list').find('div').removeClass('checked');
     
