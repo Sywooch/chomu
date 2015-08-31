@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-$('.vote_page__list').find('div').removeClass('checked');
+
     if ($('.inp-decorate').length) {
         $('.inp-decorate').styler();
     }
@@ -173,7 +173,7 @@ $('.vote_page__list').find('div').removeClass('checked');
 
         return false;
     });
-
+$('.vote_page__list').find('div').removeClass('checked');
 });
 
 $(window).scroll(function () {
@@ -181,6 +181,7 @@ $(window).scroll(function () {
 $(window).resize(function () {
 });
 $(window).load(function () {
+    $('.vote_page__list').find('div').removeClass('checked');
 });
 
 
