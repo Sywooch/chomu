@@ -178,7 +178,7 @@ $(document).ready(function () {
     $.each($('#yes-form  ul  li'), function(){ 
 var elem = $('#yes-form  ul  li').eq($(this).index());
 if(elem.hasClass('myvote') == false && elem.children().hasClass('checked') == true){
-$('.#yes-form input[type="submit"]').removeAttr('disabled');
+$('#yes-form input[type="submit"]').removeAttr('disabled');
 }
  })
     
