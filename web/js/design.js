@@ -182,6 +182,21 @@ $(document).ready(function () {
 //         }
 //  })
     $('#custom_yes_answer').keydown(function(){ $('.vote_page__list + input[type="submit"]').removeAttr('disabled');})
+//     $.each($('#yes-form  ul  li'), function(){ 
+// var elem = $('#yes-form  ul  li').eq($(this).index());
+// if(elem.hasClass('myvote') == false ){
+
+// }
+//  })
+$.each($('#yes-form  ul  li'), function(){ 
+var elem = $('#yes-form  ul  li').eq($(this).index());
+if(elem.hasClass('myvote') == false ){elem.children().change(function(){ 
+$('.vote_page__list + input[type="submit"]').removeAttr('disabled');
+})
+}
+
+
+ })
     
     $('.vote_page__list').find('div').removeClass('checked');
     
