@@ -201,9 +201,10 @@ $(document).ready(function () {
             } else {
                 $('.vote_page__list + input[type="submit"]').attr('disabled','disabled');
             }
-            }
+            
+            
             })
-    }
+    
     }
         
     })
