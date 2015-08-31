@@ -180,6 +180,7 @@ $('li.myvote > div > input:radio').change(function() {
  $('li.myvote > div + label > input').focus();
             }
         });
+        $('li.myvote > div + label > input').click(function(){$('li.myvote > div + label > input').val(''); $('li.myvote > div > input:radio').prop('checked', true).trigger('refresh');});
 });
 
 $(window).scroll(function () {
