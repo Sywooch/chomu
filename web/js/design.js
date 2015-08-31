@@ -174,8 +174,8 @@ $(document).ready(function () {
         return false;
     });
     
-    $('#yes-form + input[type="submit"]').attr('disabled','disabled');
-    $('#no-form + input[type="submit"]').attr('disabled','disabled');
+    $('#yes-form  input[type="submit"]').attr('disabled','disabled');
+    $('#no-form  input[type="submit"]').attr('disabled','disabled');
     
     $('#custom_yes_answer').keydown(function(){ $('#yes-form input[type="submit"]').removeAttr('disabled');})
 
