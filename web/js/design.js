@@ -175,12 +175,12 @@ $(document).ready(function () {
     });
     
     $('.vote_page__list + input[type="submit"]').attr('disabled','disabled');
-    $.each($('#yes-form  ul  li'), function(){ 
-var elem = $('#yes-form  ul  li').eq($(this).index());
-if(elem.hasClass('myvote') == false && elem.children().hasClass('checked') == true){
-$('#yes-form input[type="submit"]').removeAttr('disabled');
-}
- })
+//     $.each($('#yes-form  ul  li'), function(){ 
+//         var elem = $('#yes-form  ul  li').eq($(this).index());
+//         if(elem.hasClass('myvote') == false && elem.children().hasClass('checked') == true){
+//             $('#yes-form input[type="submit"]').removeAttr('disabled');
+//         }
+//  })
     
     
     $('.vote_page__list').find('div').removeClass('checked');
