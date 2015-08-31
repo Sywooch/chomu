@@ -174,6 +174,12 @@ $(document).ready(function () {
         return false;
     });
 $('.vote_page__list').find('div').removeClass('checked');
+$('li.myvote > div > input:radio').change(function() {
+            if ($(this).is(':checked')) {
+                $('li.myvote > div + label > input').val('');
+ $('li.myvote > div + label > input').focus();
+            }
+        });
 });
 
 $(window).scroll(function () {
