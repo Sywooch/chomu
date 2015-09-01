@@ -223,7 +223,12 @@ $(document).ready(function () {
                 $('li.myvote > div + label > input').focus();
             }
         });
-        $('li.myvote > div + label > input').click(function(){$('li.myvote > div + label > input').val(''); $('li.myvote > div > input:radio').prop('checked', true).trigger('refresh');});
+        $('li.myvote > div + label > input').click(function(){
+            $('li.myvote > div + label > input').val(''); 
+            $('.vote_page__list').find('div').removeClass('checked');
+            $('li.myvote > div > input:radio').prop('checked', true).trigger('refresh');
+            
+        });
 });
 
 $(window).scroll(function () {
