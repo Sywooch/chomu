@@ -61,6 +61,16 @@ class Profile extends \yii\db\ActiveRecord
         $prof->user_id = $user->id;
         $prof->name    = $info['name'];
 
+        //common
+        if (!empty($info['first_name'])) {
+            $prof->name = $info['first_name'];
+        }
+
+        if (!empty($info['last_name'])) {
+            $prof->last_name = $info['last_name'];
+        }
+
+        //vk
         if (!empty($info['photo_rec'])) {
             $prof->thumb_photo = $info['photo_rec'];
         }
@@ -72,12 +82,11 @@ class Profile extends \yii\db\ActiveRecord
         if (!empty($info['photo_big'])) {
             $prof->photo = $info['photo_big'];
         }
-        if (!empty($info['first_name'])) {
-            $prof->name = $info['first_name'];
-        }
 
-        if (!empty($info['last_name'])) {
-            $prof->last_name = $info['last_name'];
+
+        //fb
+        if (!empty($info['picture'])) {
+            $prof->thumb_photo = $info['picture']['data']['url'];
         }
 
         //set default
