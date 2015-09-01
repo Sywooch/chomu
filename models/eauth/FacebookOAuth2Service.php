@@ -27,6 +27,7 @@ class FacebookOAuth2Service extends \nodge\eauth\services\FacebookOAuth2Service
                 //'fields' => 'uid',//', first_name, last_name',//, pic_square, pic_big, sex',
                 'fields' => implode(',', [
                     'id',
+                    'name',
                     'first_name',
                     'last_name',
                     self::SCOPE_EMAIL,
