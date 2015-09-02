@@ -76,7 +76,7 @@ if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
     $_SESSION['flag'] = true;
     ?>
 
-    <div class="load_video ">
+    <div class="load_video hidden-tablet hidden-phone">
 
         <div class="load_video__wrap">
 
