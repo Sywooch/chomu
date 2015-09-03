@@ -8,7 +8,7 @@ use kartik\grid\GridView;
 /* @var $searchModel app\modules\admin\models\VoteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Votes');
+$this->title                   = Yii::t('app', 'Votes');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="vote-index">
@@ -20,10 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Create Vote'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'pjax'=>true,
+    <?=
+    GridView::widget([
+        'dataProvider'     => $dataProvider,
+        'filterModel'      => $searchModel,
+        'pjax'             => true,
         'export'           => [
             'fontAwesome' => true
         ],
@@ -40,17 +41,32 @@ $this->params['breadcrumbs'][] = $this->title;
         'containerOptions' => ['style' => 'overflow: auto'],
         'headerRowOptions' => ['class' => 'kartik-sheet-style'],
         'filterRowOptions' => ['class' => 'kartik-sheet-style'],
-        'columns' => [
+        'columns'          => [
             ['class' => 'yii\grid\SerialColumn'],
-
             //'id',
             //'user_id',
-            'questions_id',
+            //'questions_id',
+            [
+                'label'  => 'Question group',
+                //'column' => 'questions_id',
+                'format' => 'raw',
+                'value'  => function ($data) {
+                    $group = '';
+                    if (1000001 == $data->questions_id) {
+                        $group = 'yes';
+                    }
+
+                    if (1000002 == $data->questions_id) {
+                        $group = 'no';
+                    }
+                    return $group;
+                }
+            ],
             //'vote',
             'custom_answer',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]);
+    ?>
 
 </div>
