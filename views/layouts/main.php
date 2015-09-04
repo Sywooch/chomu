@@ -71,10 +71,10 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 }
 ?>>
 
-<!--<?php-->
-<!--if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {-->
-<!--    $_SESSION['flag'] = true;-->
-<!--    ?>-->
+<?php
+//if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
+   // $_SESSION['flag'] = true;
+    ?>
 
 <!--    <div class="load_video hidden-tablet hidden-phone">-->
 
@@ -97,7 +97,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 <!--        </video>-->
 
 <!--    </div><!--.load_video-->-->
-<!--<?php } ?>-->
+<!--<?php// } ?>-->
 
 
 <div class="bg_video">
