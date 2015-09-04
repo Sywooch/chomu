@@ -97,7 +97,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 <!--        </video>-->
 
 <!--    </div><!--.load_video-->-->
-<!--<?php// } ?>-->
+
 
 
 <div class="bg_video">
