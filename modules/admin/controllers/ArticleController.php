@@ -147,7 +147,7 @@ class ArticleController extends DefaultController
             }
             if ($images) {
                 $images[0]->saveAs('web/upload/article/'. Yii::$app->user->identity->id . '_' . time() . '.' . $images[0]->extension);
-                $model->images = Yii::$app->user->identity->id . '_' . time() . '.' . $images[0]->extension;
+                $model->images = Yii::$app->user->identity->id . '_im' . time() . '.' . $images[0]->extension;
                 if($old_images != ''){
                     if(file_exists(__DIR__.'/../../../web/upload/article/'.$old_photo)) {
                         unlink(__DIR__ . '/../../../web/upload/article/' . $old_images);
