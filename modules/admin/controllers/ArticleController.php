@@ -155,7 +155,7 @@ class ArticleController extends DefaultController
                 }
             }else{
                 $model->images = $old_images;
-            }  
+            }
             if($model->photo != '' && !file_exists(__DIR__.'/../../../web/upload/300_174/300_174_'.$model->photo) && file_exists(__DIR__.'/../../../web/upload/article/'.$model->photo)){
                 $thumb = new Imagick(__DIR__.'/../../../web/upload/article/'.$model->photo);
                 $thumb->resizeImage(300, 174,Imagick::FILTER_LANCZOS,1);
