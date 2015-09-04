@@ -95,7 +95,7 @@ class ArticleController extends DefaultController
             }
             if ($images) {
                 $images[0]->saveAs('web/upload/article/'. Yii::$app->user->identity->id . '_' . time() . '.' . $images[0]->extension);
-                $model->images = Yii::$app->user->identity->id . '_' . time() . '.' . $images[0]->extension;
+                $model->images = Yii::$app->user->identity->id . '_im' . time() . '.' . $images[0]->extension;
             }else{
                 Yii::trace($photo->errors);
             }
