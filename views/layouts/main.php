@@ -96,7 +96,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 <!--            <source src="/web/video/intro.ogv" type="video/ogg">-->
 <!--        </video>-->
 
-<!--    </div><!--.load_video-->-->
+<!--    </div><!--.load_video-->
 
 
 
