@@ -2464,7 +2464,7 @@ body {
 .hidden {
 	display: none;
 }
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (max-width: 1023px) {
 	.devices-only {
 		display: block;
 	}
@@ -2602,5 +2602,17 @@ body {
 	}
 	.footer__links {
 		margin-bottom: 20px;
+	}
+	.h100 .container {
+		height: auto;
+		padding-bottom: 80px
+	}
+	.main_page__switch {
+		margin: 0 auto;
+		height: auto;
+		margin-bottom: 120px;
+	}
+	.push {
+		display: none;
 	}
 }
