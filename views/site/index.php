@@ -165,6 +165,8 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
                 <?php echo \nodge\eauth\Widget::widget(array('action' => 'site/social-login')); ?>
 
+
+
                 <span class="popup-close" onclick="auth_close();
                         return false;">Закрити</span>
             </div><!--.popup_auth-->

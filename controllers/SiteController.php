@@ -512,7 +512,7 @@ class SiteController extends Controller
             $subscribes->key    = $key;
             $subscribes->status = 0;
             if ($subscribes->save()) {
-                //var_dump("ok");
+
 
                 $link = $_SERVER['SERVER_NAME'] . '/?confirm=' . $key;
 

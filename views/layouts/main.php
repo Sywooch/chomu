@@ -47,10 +47,17 @@ AppAsset::register($this);
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <?php $this->head() ?>
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-66281757-1', 'auto');
         ga('send', 'pageview');
@@ -73,8 +80,8 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
 <?php
 //if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
-   // $_SESSION['flag'] = true;
-    ?>
+// $_SESSION['flag'] = true;
+?>
 
 <!--    <div class="load_video hidden-tablet hidden-phone">-->
 
@@ -83,12 +90,12 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 <!--            <div class="load_video__logo">-->
 <!--                <a href="#"><img src="/web/images/logo.png" alt="#"></a>-->
 <!--            </div>-->
-            <!--.load_video__logo-->
+<!--.load_video__logo-->
 
 <!--            <div class="load_video__skip" onclick="ga('send', 'event', 'Propusk', 'Click');">Пропустити відео</div>-->
 
 <!--        </div>-->
-        <!--.load_video__wrap-->
+<!--.load_video__wrap-->
 
 <!--        <video poster="images/bg-main.jpg" preload="none" autoplay id="load_video">-->
 <!--            <source src="/web/video/intro.mp4" type="video/mp4">-->
@@ -97,7 +104,6 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 <!--        </video>-->
 
 <!--    </div><!--.load_video-->
-
 
 
 <div class="bg_video">
@@ -220,7 +226,8 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                 <p><?php echo print_r(Yii::$app->session->getFlash('subscribe_error'), 1); ?></p>
             <?php endif; ?>
             <?php if (!Yii::$app->session->hasFlash('subscribe_success') and
-                !Yii::$app->session->hasFlash('subscribe_error')):
+                !Yii::$app->session->hasFlash('subscribe_error')
+            ):
                 ?>
                 <p>Слідкуйте за нашими новинами у своєму e-mail</p>
             <?php endif; ?>
@@ -265,7 +272,14 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                 <!--                    <li class="ok"><a href="#">Одноклассники</a></li>-->
                 <!--                    <li class="vk"><a href="#">ВКонтакте</a></li>-->
                 <!--                </ul>-->
-
+                <div class="email">
+                    <ul class="eauth-list">
+                        <li class="eauth-service eauth-service-id-email">
+                            <a  href="#" style="background-image: url(/web/images/ml.png)" class="nd-btn nd-btn-ml">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <span class="popup-close" onclick="auth_close();
                         return false;">Закрити</span>
             </div>
@@ -279,14 +293,24 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
                     <div class="scroller">
 
-                        <p>1. Сайт сhomu.net використовує стандартні технології для збору технічної інформації про вас як відвідувача і може отримувати відомості про вашу IP-адресу, назву вашого браузера та ін. Відвідуючи сайт сhomu.net, ви даєте згоду на збір і використання цієї інформації сайтом сhomu.net. Дана інформація зберігається у вигляді логів веб-сервера і сервера статистики і використовується для аналізу аудиторії сайту сhomu.net.</p>
+                        <p>1. Сайт сhomu.net використовує стандартні технології для збору технічної інформації про вас
+                            як відвідувача і може отримувати відомості про вашу IP-адресу, назву вашого браузера та ін.
+                            Відвідуючи сайт сhomu.net, ви даєте згоду на збір і використання цієї інформації сайтом
+                            сhomu.net. Дана інформація зберігається у вигляді логів веб-сервера і сервера статистики і
+                            використовується для аналізу аудиторії сайту сhomu.net.</p>
 
                         <p>2. Особисту інформацію (ім'я, адреса, телефон) сhomu.net не збирає і не використовує.</p>
 
-                        <p>3. Відвідувач може налаштувати свій браузер так, щоб він повідомляв про тимчасові файли cookies або автоматично відхиляв їх. Це обмежить збір неособистих даних. Якщо відвідувач відхиляє тимчасові файли сайту сhomu.net або відмовляється від використання таких тимчасових файлів, він може продовжувати відвідувати сайт сhomu.net, але деякі можливості сайту будуть недоступними.
+                        <p>3. Відвідувач може налаштувати свій браузер так, щоб він повідомляв про тимчасові файли
+                            cookies або автоматично відхиляв їх. Це обмежить збір неособистих даних. Якщо відвідувач
+                            відхиляє тимчасові файли сайту сhomu.net або відмовляється від використання таких тимчасових
+                            файлів, він може продовжувати відвідувати сайт сhomu.net, але деякі можливості сайту будуть
+                            недоступними.
                         </p>
 
-                        <p>4. Сайт сhomu.net залишає за собою право у будь-який час змінювати, модифікувати або оновлювати Правила Конфіденційності сайту сhomu.net, і ви погоджуєтесь із такими змінами та/або оновленнями.</p>
+                        <p>4. Сайт сhomu.net залишає за собою право у будь-який час змінювати, модифікувати або
+                            оновлювати Правила Конфіденційності сайту сhomu.net, і ви погоджуєтесь із такими змінами
+                            та/або оновленнями.</p>
 
                     </div>
 
@@ -308,16 +332,27 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
                         <p>1. Ці правила поширюються на всі сторінки сайту сhomu.net.</p>
 
-                        <p>2. Всі виключні майнові і немайнові авторські права та інформація, що розміщується на сайті chomu.net належать ГО «ВО Успішна країна» та авторам публікацій, якщо в тексті не вказано інше. Під інформацією розуміються всі матеріали, що розміщуються на сайті: статті, новини, інтерв'ю, фото, відео і т.п.</p>
+                        <p>2. Всі виключні майнові і немайнові авторські права та інформація, що розміщується на сайті
+                            chomu.net належать ГО «ВО Успішна країна» та авторам публікацій, якщо в тексті не вказано
+                            інше. Під інформацією розуміються всі матеріали, що розміщуються на сайті: статті, новини,
+                            інтерв'ю, фото, відео і т.п.</p>
 
-                        <p>3. Інтернет-виданням дозволяється використовувати інформацію, розміщену на сайті сhomu.net, тільки за умови посилання і згадки першоджерела у першому абзаці.<br>
-                            Для друкованих видань передрук матеріалів сайту сhomu.net дозволяється при згадці сайту сhomu.net.<br>
-                            У теле- і радіосюжетах дозволяється використання інформації, розміщеної на сайті сhomu.net, за умови усного посилання на першоджерело.<br>
-                            Під використанням інформації мається на увазі будь-яке відтворення, републікування, поширення, переробка, переклад наповнення сайту, включення його частин у інші твори та інші способи, передбачені Законом України «Про авторське право і суміжні права».</p>
+                        <p>3. Інтернет-виданням дозволяється використовувати інформацію, розміщену на сайті сhomu.net,
+                            тільки за умови посилання і згадки першоджерела у першому абзаці.<br>
+                            Для друкованих видань передрук матеріалів сайту сhomu.net дозволяється при згадці сайту
+                            сhomu.net.<br>
+                            У теле- і радіосюжетах дозволяється використання інформації, розміщеної на сайті сhomu.net,
+                            за умови усного посилання на першоджерело.<br>
+                            Під використанням інформації мається на увазі будь-яке відтворення, републікування,
+                            поширення, переробка, переклад наповнення сайту, включення його частин у інші твори та інші
+                            способи, передбачені Законом України «Про авторське право і суміжні права».</p>
 
-                        <p>4. Забороняється будь-яке комерційне використання інформації, відтворення текстів або їх фрагментів з метою комерційної реалізації права доступу до цієї інформації.</p>
+                        <p>4. Забороняється будь-яке комерційне використання інформації, відтворення текстів або їх
+                            фрагментів з метою комерційної реалізації права доступу до цієї інформації.</p>
 
-                        <p>5. У разі порушення будь-якого пункту цих правил, представники ГО «ВО Успішна країна» залишають за собою право захищати свої права та інтереси шляхом подачі скарг до правоохоронних органів та позовних заяв до судових органів.</p>
+                        <p>5. У разі порушення будь-якого пункту цих правил, представники ГО «ВО Успішна країна»
+                            залишають за собою право захищати свої права та інтереси шляхом подачі скарг до
+                            правоохоронних органів та позовних заяв до судових органів.</p>
 
                     </div>
 
@@ -334,14 +369,14 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                 <div class="popup_contacts__in cf">
 
                     <!--<div class="popup_contacts__left">-->
-                        <h3 style="text-align: center">Контакти</h3>
+                    <h3 style="text-align: center">Контакти</h3>
 
-                        <p style="text-align: center">
-                            <b>e-mail:</b> <a href="#">kraina@uspishna.org</a><br>
-                            <b>Для ЗМІ:</b> <a href="#">media@uspishna.org</a><br>
-                            <b>Тел. громад. приймальні:</b> <a href="#"> 38 (044) 232-02-96</a>
-                            
-                            </p>
+                    <p style="text-align: center">
+                        <b>e-mail:</b> <a href="#">kraina@uspishna.org</a><br>
+                        <b>Для ЗМІ:</b> <a href="#">media@uspishna.org</a><br>
+                        <b>Тел. громад. приймальні:</b> <a href="#"> 38 (044) 232-02-96</a>
+
+                    </p>
                     <!--</div>-->
 
                     <!--<div class="popup_contacts__right">-->
@@ -432,38 +467,46 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
             opacity: 1;
         }
     }
-    
-    .visible-desktop {
-  display: inherit !important;
-}
-@media (min-width: 768px) and (max-width: 979px) {
-  .hidden-desktop {
-    display: inherit !important;
-  }
-  .visible-desktop {
-    display: none !important ;
-  }
-  .visible-tablet {
-    display: inherit !important;
-  }
-  .hidden-tablet {
-    display: none !important;
-  }
-}
 
-@media (max-width: 767px) {
-  .hidden-desktop {
-    display: inherit !important;
-  }
-  .visible-desktop {
-    display: none !important;
-  }
-  .visible-phone {
-    display: inherit !important;
-  }
-  .hidden-phone {
-    display: none !important;
-  }
-}
+    .visible-desktop {
+        display: inherit !important;
+    }
+
+    @media (min-width: 768px) and (max-width: 979px) {
+        .hidden-desktop {
+            display: inherit !important;
+        }
+
+        .visible-desktop {
+            display: none !important;
+        }
+
+        .visible-tablet {
+            display: inherit !important;
+        }
+
+        .hidden-tablet {
+            display: none !important;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .hidden-desktop {
+            display: inherit !important;
+        }
+
+        .visible-desktop {
+            display: none !important;
+        }
+
+        .visible-phone {
+            display: inherit !important;
+        }
+
+        .hidden-phone {
+            display: none !important;
+        }
+    }
+
 
 </style>
