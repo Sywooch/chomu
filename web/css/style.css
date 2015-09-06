@@ -2683,7 +2683,7 @@ body {
 		font-size: 54px;
 	}
 	.result_page__graph .btn-b-bordered{
-		/*margin-top: 30px;*/
+		margin-top: 30px;
 	}
 	.result_page__graph .line__progress {
 		margin: 0;
