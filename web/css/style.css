@@ -1428,7 +1428,7 @@ body {
 }
 
 .thanks_page__in {
-	width: 885px;
+	max-width: 885px;
 	margin: 0 auto 30px auto;
 	padding: 60px 0;
 	
@@ -2667,5 +2667,13 @@ body {
 	}
 	.bg_video {
 		display: none;
+	}
+	.thanks_page {
+		padding-bottom: 170px;
+	}
+	.result_page__in {
+		padding-left: 20px;
+		padding-right: 20px;
+		box-sizing: border-box;
 	}
 }
