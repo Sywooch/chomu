@@ -2695,14 +2695,14 @@ body {
 		margin: 10px 30px;
 	}
 	.w_page__bt{
-		margin-left: -20px;
-	    margin-right: -20px;
 	    border-radius: 0 0px 4px 4px;
 	    padding: 40px 60px;
 	}
 
 	.vote_result__head h3 {
-		margin-right: 25px;
+		margin-right: 10px;
+	    max-width: 470px;
+	    margin-top: 0px;
 	}
 
 	.vote_result__item h4 {
@@ -2710,6 +2710,10 @@ body {
 	}
 	.vote_result__item .progress {
 		width: 240px;
+	}
+
+	.vote_result {
+		padding-bottom: 200px
 	}
 
 }
