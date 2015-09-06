@@ -2701,4 +2701,15 @@ body {
 	    padding: 40px 60px;
 	}
 
+	.vote_result__head h3 {
+		margin-right: 25px;
+	}
+
+	.vote_result__item h4 {
+		max-width: 300px;
+	}
+	.vote_result__item .progress {
+		width: 240px;
+	}
+
 }
