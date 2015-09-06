@@ -125,7 +125,11 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
     </div>
     <!--.top__logo-->
 
-
+    <div class="devices-only top__mobiletoggle">
+        <div class="pal"></div>
+        <div class="pal"></div>
+        <div class="pal"></div>
+    </div>
     <?php
     if (Yii::$app->user->isGuest) {
         ?>
@@ -172,6 +176,22 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
         </ul>
     </div>
     <!--.top__menu-->
+    
+    <div class="mobile__menuwrap" hidden>
+        <div class="mobile__menu">
+            <ul>
+                <?php if (Yii::$app->user->identity) { ?>
+                    <li><?php echo Html::a('Результати', Url::to(['site/result'])); ?></li>
+                <?php } ?>
+                <?php if (!Yii::$app->user->identity) { ?>
+                    <li><?php echo Html::a('Опитування', Url::to('/')); ?></li>
+                <?php } ?>
+                <li><?php echo Html::a('Новини', Url::to(['site/news'])); ?></li>
+                <li><?php echo Html::a('Про проект', Url::to(['site/about'])); ?></li>
+
+            </ul>
+        </div>
+    </div>
 
 </div>
 <!--.top-->

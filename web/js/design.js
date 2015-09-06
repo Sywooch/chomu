@@ -6,9 +6,17 @@ $(document).ready(function () {
     }
 
     if ($('.scroller').length) {
-        $('.scroller').jScrollPane({
-            autoReinitialise: true
-        });
+        if ($(window).width() < 1023) {
+            $('.scroller:not(.scroller-desktop)').jScrollPane({
+                autoReinitialise: true
+            });
+        }
+        else {
+            $('.scroller').jScrollPane({
+                autoReinitialise: true
+            });
+        }
+        
     }
 //GA
 
@@ -218,17 +226,18 @@ $(document).ready(function () {
     $('.vote_page__list').find('div').removeClass('checked');
     
     $('li.myvote > div > input:radio').change(function() {
-                if ($(this).is(':checked')) {
-                $('li.myvote > div + label > input').val('');
-                $('li.myvote > div + label > input').focus();
-            }
-        });
-        $('li.myvote > div + label > input').click(function(){
-            $('li.myvote > div + label > input').val(''); 
-            $('.vote_page__list').find('div').removeClass('checked');
-            $('li.myvote > div > input:radio').prop('checked', true).trigger('refresh');
-            
-        });
+            if ($(this).is(':checked')) {
+            $('li.myvote > div + label > input').val('');
+            $('li.myvote > div + label > input').focus();
+        }
+    });
+    $('li.myvote > div + label > input').click(function(){
+        $('li.myvote > div + label > input').val(''); 
+        $('.vote_page__list').find('div').removeClass('checked');
+        $('li.myvote > div > input:radio').prop('checked', true).trigger('refresh');
+        
+    });
+    $(".top__mobiletoggle").click(toggleMenu);
 });
 
 $(window).scroll(function () {
@@ -239,6 +248,11 @@ $(window).load(function () {
     $('.vote_page__list').find('div').removeClass('checked');
 });
 
+function toggleMenu() {
+    $(".top__mobiletoggle").toggleClass('is-active');
+    $(".mobile__menuwrap").toggle(400);
+    $(window).scrollTop(0);
+}
 
 function OpenYes() {
     ga('send', 'event', 'Chomutak', 'Click');
