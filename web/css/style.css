@@ -2694,13 +2694,11 @@ body {
 	.result_page__left, .result_page__right {
 		margin: 10px 30px;
 	}
-	.result_page__graph + .w_page__bt {
-		margin-left: -20px;
-		margin-right: -20px;
-	}
+	
 	.w_page__bt{
 	    border-radius: 0 0px 4px 4px;
 	    padding: 40px 60px 40px 30px;
+
 	}
 
 	.vote_result__head h3 {
@@ -2711,7 +2709,7 @@ body {
 	}
 
 	.w_page__bt h4 {
-		margin-right: 
+		margin-right: 10px;
 	}
 
 	.vote_result__item h4 {
@@ -2723,6 +2721,10 @@ body {
 
 	.vote_result {
 		padding-bottom: 200px
+	}
+	.result_page__graph + .w_page__bt {
+		margin-left: -20px;
+		margin-right: -20px;
 	}
 
 }
