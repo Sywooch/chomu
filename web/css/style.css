@@ -2665,4 +2665,7 @@ body {
 	.scroller-desktop {
 		overflow: auto;
 	}
+	.bg_video {
+		display: none;
+	}
 }
