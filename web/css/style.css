@@ -2700,7 +2700,7 @@ body {
 	}
 	.w_page__bt{
 	    border-radius: 0 0px 4px 4px;
-	    padding: 40px 60px;
+	    padding: 40px 60px 40px 30px;
 	}
 
 	.vote_result__head h3 {
@@ -2708,6 +2708,10 @@ body {
 	    max-width: 470px;
 	    margin-top: 0px;
 	    font-size: 60px;
+	}
+
+	.w_page__bt h4 {
+		margin-right: 
 	}
 
 	.vote_result__item h4 {
