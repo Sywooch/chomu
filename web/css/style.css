@@ -2694,6 +2694,10 @@ body {
 	.result_page__left, .result_page__right {
 		margin: 10px 30px;
 	}
+	.result_page__graph + .w_page__bt {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
 	.w_page__bt{
 	    border-radius: 0 0px 4px 4px;
 	    padding: 40px 60px;
@@ -2703,6 +2707,7 @@ body {
 		margin-right: 10px;
 	    max-width: 470px;
 	    margin-top: 0px;
+	    font-size: 60px;
 	}
 
 	.vote_result__item h4 {
