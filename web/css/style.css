@@ -2258,7 +2258,8 @@ body {
 .popup {
 	z-index: 1;
 	position: relative;
-	width: 885px;
+	width: 100%;
+	max-width: 885px;
 	margin: 25px auto;
 	padding: 100px 0;
 	
@@ -2269,7 +2270,7 @@ body {
 }
 
 .popup_auth {
-	width: 885px;
+	max-width: 885px;
 	
 	text-align: center;
 }
@@ -2605,7 +2606,10 @@ body {
 	}
 	.h100 .container {
 		height: auto;
-		padding-bottom: 80px
+		padding-bottom: 160px
+	}
+	.main_page {
+		margin-top: 220px;
 	}
 	.main_page__switch {
 		margin: 0 auto;
@@ -2614,5 +2618,25 @@ body {
 	}
 	.push {
 		display: none;
+	}
+	.vote_page__list ul li .jq-radio {
+		transform: scale(0.8);
+	    margin-right: 10px;
+	    margin-left: 20px;
+	}
+	.main_auth h2 {
+		font-size: 61px;
+	}
+	.main_authnew p {
+		font-size: 20px;
+	}
+	.main_auth .btn-auth {
+		transform: scale(0.6);
+	    margin-bottom: 0px;
+	    margin-top: -20px;
+	}
+	.popup_wrap {
+		padding: 0 20px;
+    	box-sizing: border-box;
 	}
 }
