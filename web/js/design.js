@@ -6,9 +6,17 @@ $(document).ready(function () {
     }
 
     if ($('.scroller').length) {
-        $('.scroller').jScrollPane({
-            autoReinitialise: true
-        });
+        if ($(window).width() < 1023) {
+            $('.scroller:not(.scroller-desktop)').jScrollPane({
+                autoReinitialise: true
+            });
+        }
+        else {
+            $('.scroller').jScrollPane({
+                autoReinitialise: true
+            });
+        }
+        
     }
 //GA
 

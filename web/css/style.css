@@ -2639,4 +2639,30 @@ body {
 		padding: 0 20px;
     	box-sizing: border-box;
 	}
+	.about_page .txt  br{
+		display: none;
+	}
+	.about_page .txt  strong{
+		display: block;
+		margin: 20px 10px;
+	}
+	.about_page {
+		padding-bottom: 190px;
+	}
+	.news__item {
+		width: 229px;
+	}
+	.news__item .info h4 {
+		font-size: 22px;
+	}
+	.news__item .thumb {
+		max-height: 265px;
+	}
+	.news__item:nth-child(3n) {margin-right: 0}
+	.news_page {
+		padding-bottom: 160px;
+	}
+	.scroller-desktop {
+		overflow: auto;
+	}
 }
