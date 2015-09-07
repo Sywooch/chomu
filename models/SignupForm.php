@@ -13,6 +13,7 @@ class SignupForm extends Model
     //public $username;
     public $email;
     public $password;
+    public $repeatpassword;
     //public $verifyCode;
     public $name;
     //public $last_name;
@@ -42,6 +43,9 @@ class SignupForm extends Model
             ['name', 'required', 'message' => 'Це поле є обов’язковим для заповнення'],
             ['name', 'string', 'max' => 255],
 
+            array('password', 'required', 'message' => 'Це поле є обов’язковим для заповнення'),
+            array('repeatpassword', 'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match"),
+
             /*['last_name', 'required', 'message' => 'Це поле є обов’язковим для заповнення'],
             ['last_name', 'string', 'max' => 255],*/
 
@@ -51,8 +55,8 @@ class SignupForm extends Model
 
             ['verifyCode', 'captcha', 'captchaAction' => '/site/captcha', 'message' => 'Неправильний код перевірки.'],*/
             
-            ['rules', 'required', 'message' => 'Це поле є обов’язковим для заповнення'],
-            [['rules'], 'integer', 'min' => 1, 'tooSmall'=>'Ви повинні прийняти правила'],
+//            ['rules', 'required', 'message' => 'Це поле є обов’язковим для заповнення'],
+//            [['rules'], 'integer', 'min' => 1, 'tooSmall'=>'Ви повинні прийняти правила'],
         ];
     }
  
@@ -64,6 +68,7 @@ class SignupForm extends Model
             'email' => 'Електронна адреса',
             'name' => 'Ім’я та фамілія',
             'rules' => 'Не заперечую проти використання своїх данних',
+            'repeatpassword' => 'repeatpassword'
             //'last_name' => 'Прізвище',
             //'phone' => 'Телефон',
             //'verifyCode' => 'Перевірка на людину',
@@ -92,10 +97,22 @@ class SignupForm extends Model
                 $profile->user_id = $user->id;
                 $profile->name = $this->name;
                 $profile->save();
-                Yii::$app->mailer->compose('confirmEmail', ['user' => $user, 'password' => $generatePassword, 'name' => $this->name])
-                    ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
+
+//                Yii::$app->mailer->compose()
+//                    ->setFrom([Yii::$app->params['welcomeEmail'] => Yii::$app->name])
+//                    ->setTo($this->email)
+//                    ->setSubject('Email confirmation for ' . Yii::$app->name)
+//                    ->setTextBody('Plain text content')
+//                    ->setHtmlBody('<b>HTML content</b>')
+//                    ->send();
+                $link = 'test';
+                $message = 'hello your link <a href="http://' . $link . '">' . $link . '</a>';
+
+                Yii::$app->mailer->compose()
+                    ->setFrom('chomu.net@gmail.com')
                     ->setTo($this->email)
-                    ->setSubject('Email confirmation for ' . Yii::$app->name)
+                    ->setSubject('Confirmation subscribes')
+                    ->setHtmlBody($message)
                     ->send();
             }
  

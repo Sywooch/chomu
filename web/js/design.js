@@ -16,17 +16,17 @@ $(document).ready(function () {
                 autoReinitialise: true
             });
         }
-        
+
     }
 //GA
 
-    $('a[data-eauth-service="facebook"]').click(function() {
+    $('a[data-eauth-service="facebook"]').click(function () {
         ga('send', 'event', 'Authorizfb', 'Click');
     });
-    $('a[data-eauth-service="vkontakte"]').click(function() {
+    $('a[data-eauth-service="vkontakte"]').click(function () {
         ga('send', 'event', 'Authorizvk', 'Click');
     });
-    $('a[data-eauth-service="odnoklassniki"]').click(function() {
+    $('a[data-eauth-service="odnoklassniki"]').click(function () {
         ga('send', 'event', 'Authorizok', 'Click');
     });
 
@@ -54,6 +54,14 @@ $(document).ready(function () {
         $('.popup_police').fadeIn(250);
     });
 
+
+    $('.nd-btn-ml').click(function () {
+        $('.popup').hide();
+
+
+        $('.popup_holder').show();
+        $('.popup_email-signup').fadeIn(250);
+    });
 
     $('.popup-close').click(function () {
         $('.popup').fadeOut(250);
@@ -93,10 +101,10 @@ $(document).ready(function () {
 
 
     if ($('.line__progress').length) {
-                                
+
         // Progress1
         $('.line__progress-1').circleProgress({
-            value: $('.line__progress-1').find('span').text()/100 ,
+            value: $('.line__progress-1').find('span').text() / 100,
             thickness: 40,
             startAngle: 4.7,
             size: 260,
@@ -113,7 +121,7 @@ $(document).ready(function () {
 
         // Progress2
         $('.line__progress-2').circleProgress({
-            value: $('.line__progress-2').find('span').text()/100 ,
+            value: $('.line__progress-2').find('span').text() / 100,
             thickness: 40,
             startAngle: 4.7,
             reverse: true,
@@ -130,17 +138,39 @@ $(document).ready(function () {
 
     }
 
+    $('form#signup').submit(function () {
+        var msg = $('#formx').serialize();
+        $.ajax({
+            type: 'POST',
+            url: 'signup.html',
+            data: msg,
+            success: function (data) {
+                console.log(data);
+                welcome();
+            },
+            error: function (xhr, str) {
+                alert('Возникла ошибка: ' + xhr.responseCode);
+            }
+        });
+        return false;
+    });
+    function welcome() {
+        $('.popup').hide();
+        $('.popup_holder').show();
+        $('.popup_email-send').fadeIn(250);
+    }
+
     $('form#yes-form').submit(function () {
 
         var csrfToken = $('meta[name="csrf-token"]').attr("content");
         var data = $('form#yes-form').serializeArray();
         var id = $('form#yes-form').find('input:checked').attr("id");
-        var answer = $('form#yes-form').find('#custom_yes_answer').val();        
+        var answer = $('form#yes-form').find('#custom_yes_answer').val();
 
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            data: {data: data, id: id, answer:answer, _csrf: csrfToken},
+            data: {data: data, id: id, answer: answer, _csrf: csrfToken},
             url: '/site/vote.html',
             cache: false,
             success: function (html) {
@@ -161,12 +191,12 @@ $(document).ready(function () {
         var csrfToken = $('meta[name="csrf-token"]').attr("content");
         var data = $('form#no-form').serializeArray();
         var id = $('form#no-form').find('input:checked').attr("id");
-        var answer = $('form#no-form').find('#custom_no_answer').val();        
+        var answer = $('form#no-form').find('#custom_no_answer').val();
 
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            data: {data: data, id: id, answer:answer, _csrf: csrfToken},
+            data: {data: data, id: id, answer: answer, _csrf: csrfToken},
             url: '/site/vote.html',
             cache: false,
             success: function (html) {
@@ -181,61 +211,65 @@ $(document).ready(function () {
 
         return false;
     });
-    
-    $('#yes-form  input[type="submit"]').attr('disabled','disabled');
-    $('#no-form  input[type="submit"]').attr('disabled','disabled');
-    
-    $('#custom_yes_answer').keydown(function(){ $('#yes-form input[type="submit"]').removeAttr('disabled');})
 
-    $.each($('#yes-form  ul  li'), function(){ 
-    var elem = $('#yes-form  ul  li').eq($(this).index());
-    if(elem.hasClass('myvote') == false ){
-        elem.children().change(function(){ 
-            $('#yes-form input[type="submit"]').removeAttr('disabled');
-            })
-    } else {
-        elem.children().change(function(){ 
-            if($('#custom_yes_answer').val() !== ''){
-            $('#yes-form input[type="submit"]').removeAttr('disabled');
-            } else {
-                $('#yes-form input[type="submit"]').attr('disabled','disabled');
-            }
-            })
-    }
-    })
-    
-    $('#custom_no_answer').keydown(function(){ $('#no-form input[type="submit"]').removeAttr('disabled');})
+    $('#yes-form  input[type="submit"]').attr('disabled', 'disabled');
+    $('#no-form  input[type="submit"]').attr('disabled', 'disabled');
 
-    $.each($('#no-form  ul  li'), function(){ 
-    var elem = $('#no-form  ul  li').eq($(this).index());
-    if(elem.hasClass('myvote') == false ){
-        elem.children().change(function(){ 
-            $('#no-form input[type="submit"]').removeAttr('disabled');
-            })
-    } else {
-        elem.children().change(function(){ 
-            if($('#custom_no_answer').val() !== ''){
-            $('#no-form input[type="submit"]').removeAttr('disabled');
-            } else {
-                $('#no-form input[type="submit"]').attr('disabled','disabled');
-            }
-            })
-    }
+    $('#custom_yes_answer').keydown(function () {
+        $('#yes-form input[type="submit"]').removeAttr('disabled');
     })
-    
+
+    $.each($('#yes-form  ul  li'), function () {
+        var elem = $('#yes-form  ul  li').eq($(this).index());
+        if (elem.hasClass('myvote') == false) {
+            elem.children().change(function () {
+                $('#yes-form input[type="submit"]').removeAttr('disabled');
+            })
+        } else {
+            elem.children().change(function () {
+                if ($('#custom_yes_answer').val() !== '') {
+                    $('#yes-form input[type="submit"]').removeAttr('disabled');
+                } else {
+                    $('#yes-form input[type="submit"]').attr('disabled', 'disabled');
+                }
+            })
+        }
+    })
+
+    $('#custom_no_answer').keydown(function () {
+        $('#no-form input[type="submit"]').removeAttr('disabled');
+    })
+
+    $.each($('#no-form  ul  li'), function () {
+        var elem = $('#no-form  ul  li').eq($(this).index());
+        if (elem.hasClass('myvote') == false) {
+            elem.children().change(function () {
+                $('#no-form input[type="submit"]').removeAttr('disabled');
+            })
+        } else {
+            elem.children().change(function () {
+                if ($('#custom_no_answer').val() !== '') {
+                    $('#no-form input[type="submit"]').removeAttr('disabled');
+                } else {
+                    $('#no-form input[type="submit"]').attr('disabled', 'disabled');
+                }
+            })
+        }
+    })
+
     $('.vote_page__list').find('div').removeClass('checked');
-    
-    $('li.myvote > div > input:radio').change(function() {
-            if ($(this).is(':checked')) {
+
+    $('li.myvote > div > input:radio').change(function () {
+        if ($(this).is(':checked')) {
             $('li.myvote > div + label > input').val('');
             $('li.myvote > div + label > input').focus();
         }
     });
-    $('li.myvote > div + label > input').click(function(){
-        $('li.myvote > div + label > input').val(''); 
+    $('li.myvote > div + label > input').click(function () {
+        $('li.myvote > div + label > input').val('');
         $('.vote_page__list').find('div').removeClass('checked');
         $('li.myvote > div > input:radio').prop('checked', true).trigger('refresh');
-        
+
     });
     $(".top__mobiletoggle").click(toggleMenu);
 });
@@ -268,7 +302,7 @@ function OpenNo() {
 }
 
 function auth_user() {
-ga('send', 'event', 'Authoriz', 'Click');
+    ga('send', 'event', 'Authoriz', 'Click');
     $('.main_auth').fadeOut();
     $('.popup_holder, .popup_auth').fadeIn();
 

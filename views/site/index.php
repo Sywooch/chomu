@@ -164,15 +164,40 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
                 <h3>Обери профіль <br/>для авторизації:</h3>
 
                 <?php echo \nodge\eauth\Widget::widget(array('action' => 'site/social-login')); ?>
-
-
-
                 <span class="popup-close" onclick="auth_close();
                         return false;">Закрити</span>
             </div><!--.popup_auth-->
+
+            <div class="popup popup_email-signup" style="display: none;">
+
+                <div class="popup_email-signup__in">
+
+                   <span class="popup-close" onclick="auth_close();
+                        return false;">Закрити</span>
+                    <div class="nd-popup-head">
+                        Авторизація<br/>через емейл
+                    </div>
+
+                    <?php if(isset($signupModel)):?>
+                    <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+
+                    <?= $form->field($signupModel, 'name') ?>
+
+                    <?= $form->field($signupModel, 'email') ?>
+                    <?= $form->field($signupModel, 'password')->passwordInput() ?>
+
+                    <div class="form-group">
+                        <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    </div>
+                    <?php ActiveForm::end(); ?>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
 
         <div class="popup_layer"></div>
 
     </div><!--.popup_wrap-->
 </div><!--.popup_holder-->
+
+

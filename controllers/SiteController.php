@@ -98,10 +98,6 @@ class SiteController extends Controller
         if (!Yii::$app->user->isGuest) {
             return $this->redirect(['result']);
         }
-
-
-
-
         $this->layout = 'main';
         $this->getMetaTagsDefault();
 
@@ -114,11 +110,28 @@ class SiteController extends Controller
         $questionsYes = Questions::find()->andWhere(['yes' => 1])->all();
         $questionsNo  = Questions::find()->andWhere(['no' => 1])->all();
 
+        $signupModel = new SignupForm();
+        if (Yii::$app->request->isAjax && $signupModel->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($signupModel);
+        }
+        if ($signupModel->load(Yii::$app->request->post())) {
+            if ($user = $signupModel->signup()) {
+                $session = new Session;
+                $session->open();
+                Yii::$app->session->set('email_user', $user->email);
+                Yii::$app->session->set('email_confirm_token', $user->email_confirm_token);
+                Yii::$app->session->set('block', 'true');
+                return $this->redirect('/');
+            }
+        }
+//        print_r($signupModel);
         return $this->render('index', [
                 'yes'          => $yes,
                 'no'           => $no,
                 'questionsYes' => $questionsYes,
-                'questionsNo'  => $questionsNo
+                'questionsNo'  => $questionsNo,
+            'signupModel' => $signupModel
         ]);
     }
 
@@ -209,8 +222,10 @@ class SiteController extends Controller
         return $this->redirect(Yii::$app->request->referrer);
     }
 
+
     public function actionSignup()
     {
+        $this->layout = false;
         $model = new SignupForm();
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -226,8 +241,22 @@ class SiteController extends Controller
                 return $this->redirect('/');
             }
         }
+    print_r($model->getErrors());
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
     }
 
+    public function actionTest()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return true;
+        }
+
+    }
     public function actionToken()
     {
         $model = new TokenForm();

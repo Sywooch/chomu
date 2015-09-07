@@ -176,7 +176,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
         </ul>
     </div>
     <!--.top__menu-->
-    
+
     <div class="mobile__menuwrap" hidden>
         <div class="mobile__menu">
             <ul>
@@ -304,6 +304,47 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                         return false;">Закрити</span>
             </div>
             <!--.popup_auth-->
+
+            <div class="popup popup_email-signup" style="display: none;">
+
+                <div class="popup_email-signup__in">
+
+                   <span class="popup-close" onclick="auth_close();
+                        return false;">Закрити</span>
+                    <div class="nd-popup-head">
+                        Авторизація<br/>через емейл
+                    </div>
+
+<?php $signupModel = new SignupForm();?>
+                    <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+
+                    <?= $form->field($signupModel, 'name') ?>
+
+                    <?= $form->field($signupModel, 'email') ?>
+                    <?= $form->field($signupModel, 'password')->passwordInput() ?>
+
+                    <div class="form-group">
+                        <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    </div>
+                    <?php ActiveForm::end(); ?>
+
+                </div>
+            </div>
+
+            <div class="popup popup_email-send" style="display: none;">
+
+                <div class="popup_email-send__in">
+
+                    <span class="popup-close" onclick="auth_close();
+                        return false;">Закрити</span>
+                    <div class="nd-popup-head">
+                        На вашу електронну пошту<br/>надіслано підтвердження
+                    </div>
+                </div>
+            </div>
+
+
+            <!--.popup_auth_email_start-->
 
             <div class="popup popup_police" style="display: none;">
 
