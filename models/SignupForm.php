@@ -4,7 +4,7 @@ namespace app\models;
 use yii\base\Model;
 use Yii;
 use yii\web\Session;
-
+use yii\swiftmailer;
 /**
  * Signup form
  */
@@ -98,25 +98,36 @@ class SignupForm extends Model
                 $profile->name = $this->name;
                 $profile->save();
 
-                $transport = Swift_SmtpTransport::newInstance('smtp.example.org', 25)
-                    ->setUsername('username')
-                    ->setPassword('password');
+                $mailer =  new \yii\swiftmailer\Mailer;
 
 
-                Yii::$app->mailer->compose()
-                    ->createTransport([
-                        'class' => 'Swift_SmtpTransport',
-                        'host' => 'smtp.gmail.com',
-                        'username' => 'welcome@chomu.net',
-                        'password' => 'mailmechomu',
-                        'port' => '25',
-                        'encryption' => 'TLS'])
-                    ->setFrom([Yii::$app->params['welcomeEmail'] => Yii::$app->name])
+                $mailer->compose()
+                    ->setFrom(['welcome@chomu.net' => 'welcome@chomu.net'])
                     ->setTo($this->email)
                     ->setSubject('Email confirmation for ' . Yii::$app->name)
                     ->setTextBody('Plain text content')
                     ->setHtmlBody('<b>HTML content</b>')
                     ->send();
+
+//                $transport = Swift_SmtpTransport::newInstance('smtp.example.org', 25)
+//                    ->setUsername('username')
+//                    ->setPassword('password');
+//
+//
+//                Yii::$app->mailer->compose()
+//                    ->createTransport([
+//                        'class' => 'Swift_SmtpTransport',
+//                        'host' => 'smtp.gmail.com',
+//                        'username' => 'welcome@chomu.net',
+//                        'password' => 'mailmechomu',
+//                        'port' => '25',
+//                        'encryption' => 'TLS'])
+//                    ->setFrom([Yii::$app->params['welcomeEmail'] => Yii::$app->name])
+//                    ->setTo($this->email)
+//                    ->setSubject('Email confirmation for ' . Yii::$app->name)
+//                    ->setTextBody('Plain text content')
+//                    ->setHtmlBody('<b>HTML content</b>')
+//                    ->send();
 //                $link = 'test';
 //                $message = 'hello your link <a href="http://' . $link . '">' . $link . '</a>';
 //
