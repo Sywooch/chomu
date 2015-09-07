@@ -104,7 +104,9 @@ class SignupForm extends Model
 
 
                 Yii::$app->mailer->compose()
-                    ->createTransport(['host' => 'smtp.gmail.com',
+                    ->createTransport([
+                        'class' => 'Swift_SmtpTransport',
+                        'host' => 'smtp.gmail.com',
                         'username' => 'welcome@chomu.net',
                         'password' => 'mailmechomu',
                         'port' => '25',
