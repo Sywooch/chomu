@@ -117,7 +117,21 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
 <?php $this->beginBody() ?>
 <?php Pjax::begin(['id' => 'body-pjax', 'options' => ['class' => 'container']]); ?>
+<div class="mobile__menuwrap" hidden>
+    <div class="mobile__menu">
+        <ul>
+            <?php if (Yii::$app->user->identity) { ?>
+                <li><?php echo Html::a('Результати', Url::to(['site/result'])); ?></li>
+            <?php } ?>
+            <?php if (!Yii::$app->user->identity) { ?>
+                <li><?php echo Html::a('Опитування', Url::to('/')); ?></li>
+            <?php } ?>
+            <li><?php echo Html::a('Новини', Url::to(['site/news'])); ?></li>
+            <li><?php echo Html::a('Про проект', Url::to(['site/about'])); ?></li>
 
+        </ul>
+    </div>
+</div>
 <div class="top">
 
     <div class="top__logo">
@@ -177,21 +191,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
     </div>
     <!--.top__menu-->
 
-    <div class="mobile__menuwrap" hidden>
-        <div class="mobile__menu">
-            <ul>
-                <?php if (Yii::$app->user->identity) { ?>
-                    <li><?php echo Html::a('Результати', Url::to(['site/result'])); ?></li>
-                <?php } ?>
-                <?php if (!Yii::$app->user->identity) { ?>
-                    <li><?php echo Html::a('Опитування', Url::to('/')); ?></li>
-                <?php } ?>
-                <li><?php echo Html::a('Новини', Url::to(['site/news'])); ?></li>
-                <li><?php echo Html::a('Про проект', Url::to(['site/about'])); ?></li>
-
-            </ul>
-        </div>
-    </div>
+    
 
 </div>
 <!--.top-->

@@ -2227,7 +2227,7 @@ body {
 }
 
 .popup_holder {
-	z-index: 105;
+	z-index: 600;
 
 	position: fixed;
 	top: 0;
@@ -2941,7 +2941,7 @@ body {
 	z-index: 1000;
 }
 .top {
-	z-index: 0;
+	z-index: 500;
     position: relative;
 }
 
