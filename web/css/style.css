@@ -905,7 +905,7 @@ body {
 
 /* Result page */
 .result_page {
-	padding: 120px 0 0 0;
+	padding: 60px 0 0 0;
 }
 
 .result_page h2 {
@@ -1089,7 +1089,7 @@ body {
 
 /* Vote result */
 .vote_result {
-	padding: 120px 0 0 0;
+	padding: 60px 0 0 0;
 }
 
 .vote_result__in {
