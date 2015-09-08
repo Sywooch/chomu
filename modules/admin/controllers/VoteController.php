@@ -75,6 +75,10 @@ class VoteController extends Controller
             ['not', ['custom_answer' => null]]
         );
 
+        $dataProvider->sort = [
+            'defaultOrder' => ['questions_id' => SORT_DESC]
+        ];
+
         return $this->render('customAnswer', [
                 'searchModel'  => $searchModel,
                 'dataProvider' => $dataProvider,

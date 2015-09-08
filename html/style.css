@@ -899,7 +899,7 @@ body {
 
 /* Result page */
 .result_page {
-	padding: 200px 0 0 0;
+	padding: 120px 0 0 0;
 }
 
 .result_page h2 {
@@ -1080,7 +1080,7 @@ body {
 
 /* Vote result */
 .vote_result {
-	padding: 200px 0 0 0;
+	padding: 120px 0 0 0;
 }
 
 .vote_result__in {
@@ -1253,7 +1253,7 @@ body {
 /* Main auth */
 .main_auth {
 	margin: 0 0 35px 0;
-	padding: 200px 0 0 0;
+	padding: 120px 0 0 0;
 	
 	text-align: center;
 }
@@ -1394,7 +1394,7 @@ body {
 
 /* Thanks page */
 .thanks_page {
-	padding: 200px 0 0 0;
+	padding: 120px 0 0 0;
 	
 	text-align: center;
 }

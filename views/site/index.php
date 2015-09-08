@@ -164,13 +164,16 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
                 <h3>Обери профіль <br/>для авторизації:</h3>
 
                 <?php echo \nodge\eauth\Widget::widget(array('action' => 'site/social-login')); ?>
-
                 <span class="popup-close" onclick="auth_close();
                         return false;">Закрити</span>
             </div><!--.popup_auth-->
+
+
         </div>
 
         <div class="popup_layer"></div>
 
     </div><!--.popup_wrap-->
 </div><!--.popup_holder-->
+
+

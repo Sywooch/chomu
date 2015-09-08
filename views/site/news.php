@@ -11,7 +11,7 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
     <div class="news_page animate">
 
         <?php if($news) {?>
-            <div class="news__list scroller cf">
+            <div class="news__list scroller scroller-desktop cf">
                 <?php foreach($news as $v) {?>
                     <a href="http://<?= Yii::$app->request->getServerName(); ?><?= Url::to(['site/news','url'=> isset($v->url) ? $v->url : null ]); ?>" class="news__item">
 
@@ -81,7 +81,7 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
 
         <div class="news_single cf">
 
-            <div class="news_single__top">
+            <div class="news_single__top" style="background: url(<?=Url::to('/web/upload/article/').$new->images;?>) center center no-repeat">
 
                 <img src="<?=Url::to('/web/upload/article/').$new->images;?>" alt="#">
 
@@ -103,7 +103,14 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
                 <div class="news_single__social cf">
 
                     <ul>
-                        <li class="fb" onclick="ga('send', 'event', 'Sharefb', 'Click');"><a href="javascript:void(0);" class="icon icon-social icon-fb icon-has-text active" onclick="Share.facebook('http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>','<?= $new->title; ?>','http://<?= Yii::$app->request->getServerName(); ?>/web/upload/article/<?= $new->photo; ?>','<?= $p; ?>')"><span class="icon-inner-text fb-count_<?=$new->id;?>">0</span></a></li>
+                        <li class="fb" onclick="ga('send', 'event', 'Sharefb', 'Click');">
+                            <a href="javascript:void(0);" class="icon icon-social icon-fb icon-has-text active" onclick="Share.facebook('http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>','<?= $new->title; ?>','http://<?= Yii::$app->request->getServerName(); ?>/web/upload/article/<?= $new->photo; ?>','<?= $p; ?>')">
+
+                                <span class="icon-inner-text fb-count_<?=$new->id;?>">
+                                    0
+                                </span>
+                            </a>
+                        </li>
                         <li class="ok" onclick="ga('send', 'event', 'Sharevk', 'Click');"><a href="javascript:void(0);" class="icon icon-social icon-ok icon-has-text active" onclick="Share.odnoklassniki('http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>','<?= $new->pre_content; ?>')"><span class="icon-inner-text odn-count_<?=$new->id;?>">0</span></a></li>
                         <li class="vk" onclick="ga('send', 'event', 'Shareok', 'Click');"><a href="javascript:void(0);" class="icon icon-social icon-vk icon-has-text active vk like l-vk" onclick="Share.vkontakte('http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>','<?= $new->title; ?>','http://<?= Yii::$app->request->getServerName(); ?>/web/upload/article/<?= $new->photo; ?>','<?= $p; ?>')"><span href="http://<?=Yii::$app->request->getServerName();?><?=Url::to(['site/news','url'=> $new->url]);?>" class="icon-inner-text l-count vk-count_<?=$new->id;?>">0</span></a></li>
                     </ul>
