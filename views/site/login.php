@@ -27,14 +27,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'email')->textInput(['placeholder' => $model->getAttributeLabel( 'email' )]) ?>
 
-            <?= $form->field($model, 'password')->passwordInput(['placeholder' => $model->getAttributeLabel( 'password' )]) ?>
+            <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль']) ?>
             <div class="pass-reminder"><a href="/reset.html">Забули пароль?</a></div>
 
             <!--<?= $form->field($model, 'rememberMe', [
                 'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
             ])->checkbox() ?>-->
 
-            <?= Html::submitButton('Login', ['class' => 'popup__yellow-btn', 'name' => 'login-button']) ?>
+            <?= Html::submitButton('Логiн', ['class' => 'popup__yellow-btn', 'name' => 'login-button']) ?>
 
 
             <?php ActiveForm::end(); ?>
