@@ -3204,6 +3204,9 @@ body {
 		top: 185px;
     	right: 90px;
 	}
+	.result_page, .vote_result {
+		padding-top: 110px;	
+	}
 }
 
 .email {
