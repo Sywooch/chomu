@@ -148,8 +148,6 @@ $(document).ready(function () {
             url: 'signup.html',
             data: msg,
             success: function (data) {
-                console.log(data);
-                console.log('msg: ' + msg);
                 welcome(data);
             },
             error: function (xhr, str) {
@@ -159,12 +157,7 @@ $(document).ready(function () {
         return false;
     });
 
-    function send(){
-        var msg = $('#signup').serialize();
-        console.log('msg');
-        console.log(msg);
-        console.log('msg');
-    }
+
 
     function welcome(data) {
         $('.popup').hide();

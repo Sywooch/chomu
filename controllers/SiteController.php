@@ -251,7 +251,7 @@ class SiteController extends Controller
 
         return $this->render('send', [
             'model' => $model,
-           // 'token' => $user->email_confirm_token
+
         ]);
 
     }
@@ -275,13 +275,13 @@ class SiteController extends Controller
     public function send($email, $token)
     {
 
-$home = 'http://chomu.dev.skykillers.com/';
+
         Yii::$app->mailer->compose()
             ->setFrom('welcome@chomu.net')
             ->setTo($email)
             ->setSubject('Email confirmation for ' . Yii::$app->name)
             ->setTextBody('Plain text content')
-            ->setHtmlBody('<b>HTML content</b>' . $home . "/confirm.html/" . $token)
+            ->setHtmlBody("<b>HTML content</b>/confirm.html/ dfgdsg" . $token)
             ->send();
 
     }
