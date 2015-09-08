@@ -265,8 +265,10 @@ class SiteController extends Controller
         $user = User::find()
             ->andFilterWhere($where)
             ->one();
-        $user->role = 1;
-        $user->save();
+        if(!empty($user->id)) {
+            $user->role = 1;
+            $user->save();
+        }
 
 
         return $this->redirect('/login.html');
@@ -283,6 +285,7 @@ class SiteController extends Controller
             ->setTextBody('Plain text content')
             ->setHtmlBody("<b>HTML content</b>/confirm.html/ dfgdsg" . $token)
             ->send();
+        unset($_POST);
 
     }
 
