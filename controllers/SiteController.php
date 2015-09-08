@@ -206,7 +206,7 @@ class SiteController extends Controller
                 return $this->redirect('/admin/index');
                 //return $this->redirect(Yii::$app->request->referrer);
             } else {
-                return $this->redirect(Yii::$app->request->referrer);
+                return $this->redirect('/result.html');
             }
         } /* else {
           return $this->redirect('@web/');
@@ -279,7 +279,7 @@ class SiteController extends Controller
 
 $html = "«Дякуємо за участь у нашому опитуванні! <br>"
         .    "Для завершення реєстрації, перейдіть, будь-ласка, по посиланню .  <br>"
-        .   "<a href='http://chomu.dev.skykillers.com/confirm.html?token=$token'>http://chomu.dev.skykillers.com/confirm.html&token=$token</a> <br>"
+        .   "<a href='http://chomu.dev.skykillers.com/confirm.html?token=$token'>http://chomu.dev.skykillers.com/confirm.html?token=$token</a> <br>"
         .   "З повагою, <br>"
         .   "chomu.net»";
         Yii::$app->mailer->compose()
