@@ -905,7 +905,7 @@ body {
 
 /* Result page */
 .result_page {
-	padding: 200px 0 0 0;
+	padding: 120px 0 0 0;
 }
 
 .result_page h2 {
@@ -1089,7 +1089,7 @@ body {
 
 /* Vote result */
 .vote_result {
-	padding: 200px 0 0 0;
+	padding: 120px 0 0 0;
 }
 
 .vote_result__in {
@@ -1426,7 +1426,7 @@ body {
 
 /* Thanks page */
 .thanks_page {
-	padding: 200px 0 0 0;
+	padding: 120px 0 0 0;
 	
 	text-align: center;
 }
@@ -2737,6 +2737,9 @@ body {
 	.container {
 		min-height: 0;
 	}
+	.result_page,.vote_result {
+		padding-top: 110px;
+	}
 
 }
 .eauth{
@@ -2955,7 +2958,7 @@ body {
 }
 
 .main_page {
-	margin-top: -50px;
+	/*margin-top: -50px;*/
 }
 
 @media screen and (max-width: 767px) {
@@ -3060,7 +3063,7 @@ body {
 	.news_single__info .date {
 		margin-right: 0;
 	}
-	.news_single__info h2 {
+	.news_single__info h2, .result_page h2 {
 		font-size: 28px;
 		line-height: 36px;
 	}
@@ -3112,8 +3115,19 @@ body {
 	    background-position-x: 10px;
 	    background-size: 25px;
 	}
-	.popup_auth h3, .popup_terms h3, .popup_police h3 {
+	.popup_auth h3, .popup_terms h3, .popup_police h3, .thanks_page h2, .vote_result__head h3 {
 		font-size: 28px;
+	}
+	.thanks_page p {
+		font-size: 16px;
+	}
+	.thanks_page .btn-result {
+		font-size: 19px;
+	    max-width: 90%;
+	    box-sizing: border-box;
+	    padding: 0 10px;
+	    height: 50px;
+	    line-height: 50px;
 	}
 	.popup_auth ul li {
 		width: 50px;
@@ -3164,6 +3178,40 @@ body {
 	}
 	.popup_terms__in, .popup_police__in {
 		margin: 0 15px;
+	}
+	.result_page__left, .result_page__right {
+		transform: scale(0.65);
+    	transform-origin: left top;
+	}
+	.result_page__right {
+		margin-top: -70px;
+    	margin-bottom: -100px;
+	}
+	.w_page__bt h4{
+		margin-bottom: 20px;
+	}
+	.vote_result__list{
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.vote_result__item .progress {
+		width: 180px;
+	}
+	.vote_result__item h4 {
+		margin-bottom: 10px;
+	}
+	.vote_result__list + .w_page__bt{
+		padding-bottom: 80px;
+	}
+	.w_page__bt .btn-b-bordered {
+		top: 185px;
+    	right: 90px;
+	}
+	.result_page, .vote_result {
+		padding-top: 110px;	
+	}
+	.is-active + .top__usr {
+		display: none;
 	}
 }
 
