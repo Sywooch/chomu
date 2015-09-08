@@ -249,7 +249,7 @@ class SiteController extends Controller
 
         return $this->render('send', [
             'model' => $model,
-            'token' => $user->email_confirm_token
+           // 'token' => $user->email_confirm_token
         ]);
 
     }
