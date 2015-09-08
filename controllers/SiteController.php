@@ -472,13 +472,17 @@ class SiteController extends Controller
                     'email' => $model->email,
                 ]);
                 if ($user) {
-                    $password_hash = $user->generate_password();
-                    $user->setPassword($password_hash);
+//                    $password_hash = $user->generate_password();
+//                    $user->setPassword($password_hash);
+                    $token = $user->generatePasswordResetToken();
+                    $user->password_reset_token = $token;
                     if ($user->save()) {
-                        Yii::$app->mailer->compose('passwordResetToken', ['password_hash' => $password_hash])
-                            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
+                        Yii::$app->mailer->compose()
+                            ->setFrom(['afanasjev-v@yandex.ru' => Yii::$app->name])
                             ->setTo($model->email)
                             ->setSubject('Відновлення пароля для ' . Yii::$app->name)
+                            ->setTextBody('Plain text content')
+                            ->setHtmlBody("Для восстановления пароля перейдите по ссылке: <a href='$token'>$token</a>")
                             ->send();
                     }
                 }

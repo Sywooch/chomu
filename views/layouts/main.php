@@ -323,7 +323,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                         <input type="hidden" id="rules" name="rules" value="1"/>
                         <label for="agreement" class="checkbox"><span></span>я згоден(а) з <a href="#">Правилами конфіденційності</a> та <a href="#">Умовами використання</a></label>
                         <input type="submit" value="Зареєструватись" class="popup__yellow-btn" />
-                        <button class="popup__yellow-btn">Вже зареєстрований</button>
+                        <button class="popup__yellow-btn" id="registered">Вже зареєстрований</button>
                     </form>
                 </div>
             </div>

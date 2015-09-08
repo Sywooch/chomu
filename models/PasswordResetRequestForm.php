@@ -40,13 +40,16 @@ class PasswordResetRequestForm extends Model
             'email' => $this->email,
         ]);
         if ($user) {
-            $password_hash = $user->generate_password();
-            $user->setPassword($password_hash);
+//            $password_hash = $user->generate_password();
+//            $user->setPassword($password_hash);
+            $token = $user->generatePasswordResetToken();
+            $user->password_reset_token = $token;
             if ($user->save()) {
                 return Yii::$app->mailer->compose('passwordResetToken', ['password_hash' => $password_hash])
                     ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
                     ->setTo($user->email)
                     ->setSubject('Відновлення пароля для ' . Yii::$app->name)
+                    ->setHtmlBody("Для восстановления пароля перейдите по ссылке: <a href='$token'>$token</a>")
                     ->send();
             }
         }

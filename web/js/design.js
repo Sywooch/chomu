@@ -278,6 +278,10 @@ $(document).ready(function () {
 
     });
     $(".top__mobiletoggle").click(toggleMenu);
+
+    $('#registered').click(function(){
+        window.location.href = "/login.html";
+    });
 });
 
 $(window).scroll(function () {
