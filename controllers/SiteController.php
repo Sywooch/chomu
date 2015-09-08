@@ -257,16 +257,17 @@ class SiteController extends Controller
     }
 
     public function actionConfirm(){
-//        $this->layout = false;
-//        $get = Yii::$app->request->get();
-//
-//        $token = $get['token'];
-//        $user = User::find()
-//            ->where('email_confirm_token > :email_confirm_token', [':email_confirm_token' => $token])
-//            ->one();
-//
-//        Yii::$app->user->loginByAccessToken($token);
-//        return $this->redirect('/result.html');
+        $this->layout = false;
+        $get = Yii::$app->request->get();
+
+        $token = $get['token'];
+        $user = User::find()
+            ->where('email_confirm_token > :email_confirm_token', [':email_confirm_token' => $token])
+            ->one();
+        $user->role = 1;
+        $user->save();
+
+        return $this->redirect('/result.html');
     }
 
     public function send($email, $token)
