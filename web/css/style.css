@@ -2787,7 +2787,7 @@ body {
 }
 
 .popup-form {
-    padding: 28px 20px;
+    padding: 28px 30px;
 }
 
 .popup-form input {
@@ -3076,3 +3076,17 @@ body {
 .control-label {
 	display: none;
 }
+
+#email-signin .pass-reminder{
+	text-align: right;
+	margin-top: 0px;
+}
+
+#email-signin {
+	padding: 60px 0 30px;
+	max-width: 650px;
+}
+#email-signin .popup__yellow-btn{
+	margin-top: 20px;
+}
+

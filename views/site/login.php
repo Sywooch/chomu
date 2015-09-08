@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div id="email-signup" class="popup popup_email-signup " style="">
+<div id="email-signin" class="popup popup_email-signin " style="">
     <div class="popup-inside"> 
         <button class="popup__close"></button>
         <div class="site-login tcenter">
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
             ])->checkbox() ?>-->
 
-            <?= Html::submitButton('Login', ['class' => 'popup__yellow-btn', 'name' => 'login-button']) ?>
+            <?= Html::submitButton('Увійти', ['class' => 'popup__yellow-btn', 'name' => 'login-button']) ?>
 
 
             <?php ActiveForm::end(); ?>
