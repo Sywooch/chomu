@@ -6,11 +6,11 @@
 
 <?php if (empty($model->errors)):?>
     <script>
-        function popapClose(){
+        function popapClose_(){
             $('.popup').fadeOut(250);
             $('.popup_holder').fadeOut(250);
             $('body').removeClass('hold');
-            window.location = "/";
+            $(location).attr('href','/');
         }
 
         var msg1 = "email=<?php echo $post['email']; ?>";
@@ -20,11 +20,11 @@
             url: 'send.html',
             data: msg1,
             success: function (data) {
-                popapClose();
+                popapClose_();
             },
             error: function (xhr, str) {
                 alert('Возникла ошибка: ' + xhr.responseCode);
-                popapClose();
+                popapClose_();
             }
         });
     </script>
