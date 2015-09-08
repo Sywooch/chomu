@@ -3207,6 +3207,9 @@ body {
 	.result_page, .vote_result {
 		padding-top: 110px;	
 	}
+	.is-active + .top__usr {
+		display: none;
+	}
 }
 
 .email {
