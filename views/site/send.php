@@ -10,7 +10,7 @@
             $('.popup').fadeOut(250);
             $('.popup_holder').fadeOut(250);
             $('body').removeClass('hold');
-            window.location.replace("/");
+//            window.location.replace("/");
         }
 
         var msg1 = "email=<?php echo $post['email']; ?>";
