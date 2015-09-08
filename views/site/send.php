@@ -6,6 +6,12 @@
 
 <?php if (empty($model->errors)):?>
     <script>
+        function popapClose(){
+            $('.popup').fadeOut(250);
+            $('.popup_holder').fadeOut(250);
+            $('body').removeClass('hold');
+        }
+
         var msg1 = "email=<?php echo $post['email']; ?>";
 //var msg1 = 'email=test&token=token';
         $.ajax({
