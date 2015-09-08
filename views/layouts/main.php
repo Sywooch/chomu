@@ -72,32 +72,32 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 ?>>
 
 <?php
-if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
-    $_SESSION['flag'] = true;
+//if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
+   // $_SESSION['flag'] = true;
     ?>
 
-    <div class="load_video hidden-tablet hidden-phone">
+<!--    <div class="load_video hidden-tablet hidden-phone">-->
 
-        <div class="load_video__wrap">
+<!--        <div class="load_video__wrap">-->
 
-            <div class="load_video__logo">
-                <a href="#"><img src="/web/images/logo.png" alt="#"></a>
-            </div>
+<!--            <div class="load_video__logo">-->
+<!--                <a href="#"><img src="/web/images/logo.png" alt="#"></a>-->
+<!--            </div>-->
             <!--.load_video__logo-->
 
-            <div class="load_video__skip" onclick="ga('send', 'event', 'Propusk', 'Click');">Пропустити відео</div>
+<!--            <div class="load_video__skip" onclick="ga('send', 'event', 'Propusk', 'Click');">Пропустити відео</div>-->
 
-        </div>
+<!--        </div>-->
         <!--.load_video__wrap-->
 
-        <video poster="images/bg-main.jpg" preload="none" autoplay id="load_video">
-            <source src="/web/video/intro.mp4" type="video/mp4">
-            <source src="/web/video/intro.webm" type="video/webm">
-            <source src="/web/video/intro.ogv" type="video/ogg">
-        </video>
+<!--        <video poster="images/bg-main.jpg" preload="none" autoplay id="load_video">-->
+<!--            <source src="/web/video/intro.mp4" type="video/mp4">-->
+<!--            <source src="/web/video/intro.webm" type="video/webm">-->
+<!--            <source src="/web/video/intro.ogv" type="video/ogg">-->
+<!--        </video>-->
 
-    </div><!--.load_video-->
-<?php } ?>
+<!--    </div><!--.load_video-->
+
 
 
 <div class="bg_video">

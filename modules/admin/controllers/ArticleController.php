@@ -95,7 +95,7 @@ class ArticleController extends DefaultController
             }
             if ($images) {
                 $images[0]->saveAs('web/upload/article/'. Yii::$app->user->identity->id . '_' . time() . '.' . $images[0]->extension);
-                $model->images = Yii::$app->user->identity->id . '_' . time() . '.' . $images[0]->extension;
+                $model->images = Yii::$app->user->identity->id . '_im' . time() . '.' . $images[0]->extension;
             }else{
                 Yii::trace($photo->errors);
             }
@@ -134,8 +134,10 @@ class ArticleController extends DefaultController
             if ($photo) {
                 $photo[0]->saveAs('web/upload/article/'. Yii::$app->user->identity->id . '_' . time() . '.' . $photo[0]->extension);
                 $model->photo = Yii::$app->user->identity->id . '_' . time() . '.' . $photo[0]->extension;
-                if($old_photo != ''){
-                    unlink(__DIR__.'/../../../web/upload/article/'.$old_photo);
+
+                if(isset($old_photo)){
+                    if(file_exists(__DIR__.'/../../../web/upload/article/'.$old_photo)){
+                    unlink(__DIR__.'/../../../web/upload/article/'.$old_photo);}
                     if(file_exists(__DIR__.'/../../../web/upload/300_174/300_174_'.$old_photo)){
                         unlink(__DIR__.'/../../../web/upload/300_174/300_174_'.$old_photo);
                     }
@@ -144,10 +146,12 @@ class ArticleController extends DefaultController
                 $model->photo = $old_photo;
             }
             if ($images) {
-                $images[0]->saveAs('web/upload/article/'. Yii::$app->user->identity->id . '_' . time() . '.' . $images[0]->extension);
-                $model->images = Yii::$app->user->identity->id . '_' . time() . '.' . $images[0]->extension;
+                $images[0]->saveAs('web/upload/article/'. Yii::$app->user->identity->id . '_im' . time() . '.' . $images[0]->extension);
+                $model->images = Yii::$app->user->identity->id . '_im' . time() . '.' . $images[0]->extension;
                 if($old_images != ''){
-                    unlink(__DIR__.'/../../../web/upload/article/'.$old_images);
+                    if(file_exists(__DIR__.'/../../../web/upload/article/'.$old_images)) {
+                        unlink(__DIR__ . '/../../../web/upload/article/' . $old_images);
+                    }
                 }
             }else{
                 $model->images = $old_images;
