@@ -13,7 +13,7 @@ var msg1 = "email=test&token=token";
             url: 'send.html',
             data: msg1,
             success: function (data) {
-               console.log(data);
+               alert(data);
             },
             error: function (xhr, str) {
                 alert('Возникла ошибка: ' + xhr.responseCode);

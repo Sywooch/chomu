@@ -265,7 +265,7 @@ class SiteController extends Controller
             ->setTextBody('Plain text content')
             ->setHtmlBody('<b>HTML content</b>' . $post['email'])
             ->send();
-        return $post;
+        return true;
     }
 
     public function actionToken()
