@@ -6,12 +6,12 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\LoginForm */
 
-$this->title = 'Login';
+$this->title = 'Логiн';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div id="email-signin" class="popup popup_email-signin " style="">
     <div class="popup-inside"> 
-        <button class="popup__close"></button>
+        <button class="popup__close" onclick="window.location.href = '/'"></button>
         <div class="site-login tcenter">
             <div class="nd-popup-head"><?= Html::encode($this->title) ?></div>
 

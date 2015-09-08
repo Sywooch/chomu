@@ -318,7 +318,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                     <form class="popup-form tcenter" id="signup" >
                         <input id="email" name="email" type="email" placeholder="Емейл" required/>
 
-                        <input id="name" name= "name" type="text" placeholder="Ім'я" pattern="^[A-Za-z0-9_]{2,255}$" title="Минимум 2 символа" required/>
+                        <input id="name" name= "name" type="text" placeholder="Ім'я" pattern="^[A-Za-zА-Яа-я0-9_]{2,255}$" title="Минимум 2 символа" required/>
 
                         <input id="password" name= "password" type="password" placeholder="Пароль" pattern="^[A-Za-z0-9_]{6,15}$" title="Минимум 6 символов" required/>
 
@@ -329,7 +329,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
                         <input type="submit" value="Зареєструватись" class="popup__yellow-btn" />
 
-                        <button class="popup__yellow-btn">Вже зареєстрований</button>
+                        <button class="popup__yellow-btn" id="registered">Вже зареєстрований</button>
                         <div class="pass-reminder"><a href="/reset.html">Забули пароль?</a></div>
 
                     </form>
