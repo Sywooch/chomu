@@ -266,7 +266,7 @@ class SiteController extends Controller
             ->one();
 
         Yii::$app->user->loginByAccessToken($token);
-        return $this->redirect('/');
+        return $this->redirect('/result.html');
     }
 
     public function send($email, $token)
