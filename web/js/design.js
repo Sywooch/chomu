@@ -63,10 +63,13 @@ $(document).ready(function () {
         $('.popup_email-signup').fadeIn(250);
     });
 
-    $('.popup-close').click(function () {
+    function popapClose(){
         $('.popup').fadeOut(250);
         $('.popup_holder').fadeOut(250);
         $('body').removeClass('hold');
+    }
+    $('.popup-close').click(function () {
+        popapClose();
     });
 
     // Skip video
