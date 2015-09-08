@@ -6,7 +6,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\LoginForm */
 
-$this->title = 'Login';
+$this->title = 'Логiн';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div id="email-signup" class="popup popup_email-signup " style="">
