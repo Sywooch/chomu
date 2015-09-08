@@ -6,14 +6,14 @@
 
 <?php if (empty($model->errors)):?>
     <script>
-        var msg1 = "email=<?php echo $post['email']; ?>";
-
+//        var msg1 = "email=<?php //echo $post['email']; ?>//";
+var msg1 = "email=test&token=token";
         $.ajax({
             type: 'POST',
             url: 'send.html',
             data: msg1,
-            success: function () {
-               alert('success');
+            success: function (data) {
+               console.log(data);
             },
             error: function (xhr, str) {
                 alert('Возникла ошибка: ' + xhr.responseCode);
