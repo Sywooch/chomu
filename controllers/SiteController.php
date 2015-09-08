@@ -484,9 +484,11 @@ class SiteController extends Controller
 //            return ActiveForm::validate($model);
 //        }
         //if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-        $post = Yii::$app->request->get();
+        $post = Yii::$app->request->post();
+if(isset($post["PasswordResetRequestForm"]["email"])){
+    $model->email = $post["PasswordResetRequestForm"]["email"];
+}
 
-            $model->email = $post["PasswordResetRequestForm"]["email"];
             if (isset($model)) {
                 $user = User::findOne([
                     'status' => User::STATUS_ACTIVE,
