@@ -32,6 +32,7 @@ use app\assets\AppAsset;
 use yii\helpers\VarDumper;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
+use yii\web\IdentityInterface;
 use app\models\Yes;
 use app\models\No;
 use app\models\Questions;
