@@ -316,18 +316,38 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                     </div>
 
                     <form class="popup-form tcenter" id="signup" >
-                        <input id="email" name="email" type="email" placeholder="Емейл" />
-                        <input id="name" name= "name" type="text" placeholder="Ім'я" />
-                        <input id="password" name= "password" type="password" placeholder="Пароль" />
+                        <input id="email" name="email" type="email" placeholder="Емейл" required/>
+
+                        <input id="name" name= "name" type="text" placeholder="Ім'я" pattern="^[A-Za-z0-9_]{2,255}$" title="Минимум 2 символа" required/>
+
+                        <input id="password" name= "password" type="password" placeholder="Пароль" pattern="^[A-Za-z0-9_]{6,15}$" title="Минимум 6 символов" required/>
+
                         <input id="repeatpassword" name= "repeatpassword" type="password" placeholder="Підтвердження пароля" />
-                        <input type="checkbox" id="rules" name="rules"/>
+
+                        <input type="checkbox" id="rules" name="rules" checked required title="must checked"/>
                         <label for="rules" class="checkbox"><span></span>я згоден(а) з <a href="#">Правилами конфіденційності</a> та <a href="#">Умовами використання</a></label>
+
                         <input type="submit" value="Зареєструватись" class="popup__yellow-btn" />
 
                         <button class="popup__yellow-btn">Вже зареєстрований</button>
                         <div class="pass-reminder"><a href="/reset.html">Забули пароль?</a></div>
 
                     </form>
+                    <script type="text/javascript">
+                        window.onload = function () {
+                            document.getElementById("password").onchange = validatePassword;
+                            document.getElementById("repeatpassword").onchange = validatePassword;
+                        }
+                        function validatePassword(){
+                            var pass2=document.getElementById("repeatpassword").value;
+                            var pass1=document.getElementById("password").value;
+                            if(pass1!=pass2)
+                                document.getElementById("repeatpassword").setCustomValidity("Пароли не совпадают");
+                            else
+                                document.getElementById("repeatpassword").setCustomValidity('');
+
+                        }
+                    </script>
                 </div>
             </div>
 
