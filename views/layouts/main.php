@@ -337,6 +337,38 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                 </div>
             </div>
 
+            <div class="popup popup_pass-reset" style="display: none;">
+
+                <div class="popup_pass-reset__in" id="test">
+                    <div class="nd-popup-head">
+                        Відновлення<br/>пароля
+                    </div>
+                    <form class="popup-form">
+                        <input type="text" placeholder="Емейл" />
+
+                        <input type="submit" value="Надіслати" class="popup__yellow-btn" />
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="popup popup_pass-recovery" style="display: none;">
+
+                <div class="popup_pass-recovery__in" id="test">
+                    <div class="nd-popup-head">
+                        Відновлення<br/>пароля
+                    </div>
+                    <form class="popup-form">
+                       
+                        <input type="text" placeholder="Новий пароль" />
+                        <input type="text" placeholder="Підтвердьте новий пароля" />
+
+                        <input type="submit" value="Підтвердити" class="popup__yellow-btn" />
+                    </form>
+
+                </div>
+            </div>
+
 
             <!--.popup_auth_email_start-->
 

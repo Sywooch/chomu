@@ -9,7 +9,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div id="pass-recovery" class="nd-popup">
     <div class="popup-inside">
-        <button class="popup__close"></button>
         <div class="nd-popup-head">
             <?= Html::encode($this->title) ?>
         </div>
