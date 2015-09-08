@@ -278,9 +278,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
+
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('findIdentityByAccessToken is not implemented.');
+        return static::findOne(['email_confirm_token' => $token]);
+//        throw new NotSupportedException('findIdentityByAccessToken is not implemented.');
     }
 
     /**
