@@ -2953,3 +2953,59 @@ body {
 .popup_email-signup {
 	padding-bottom: 20px
 }
+
+@media screen and (max-width: 767px) {
+	.top__logo img {
+		width: 130px;
+		height: auto;
+	}
+	.top__social {
+		display: none;
+	}
+
+	.top {
+		width: 100%;
+		padding: 0;
+	}
+	.top__mobiletoggle {
+		margin-top: 20px;
+	}
+	.footer__subscribe-in input[type="email"] {
+		max-width: 250px;
+		box-sizing: border-box;
+		margin-bottom: 20px
+	}
+	.about_page {
+		padding-top: 20px;
+	}
+	.about_page h2 {
+		font-size: 32px;
+		background-size: 19%;
+	}
+	.about_page strong {
+		font-size: 18px;
+		font-weight: 600;
+		margin-bottom: 0px !important;
+	}
+	.about_page .txt, .about_page .txt p{
+		font-size: 16px;/* Приближение из-за подстановки шрифтов */
+		font-weight: 400;
+		line-height: 24px;
+	}
+	.footer__subscribe p {
+		margin: 0;
+		padding: 0 20px;
+	}
+	.footer__links ul li  {
+		display: block;
+		margin-left: 0;
+		margin-top: 10px;
+	}
+	.footer__txt p{
+		font-size: 12px;/* Приближение из-за подстановки шрифтов */
+		font-weight: 300;
+		line-height: 20px;
+		padding: 0 20px
+	}
+	
+}
