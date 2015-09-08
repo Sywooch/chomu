@@ -7,8 +7,8 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Request password reset';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div id="pass-recovery" class="nd-popup">
-    <div class="popup-inside">
+<div id="pass-recovery" class="popup popup_pass-recovery">
+    <div class="popup-inside popup_pass-recovery__in">
         <div class="nd-popup-head">
             <?= Html::encode($this->title) ?>
         </div>

@@ -3066,3 +3066,9 @@ body {
 .email {
 	vertical-align: middle;
 }
+
+#pass-recovery {
+    padding: 50px 20px 0;
+    margin: 45px auto;
+    max-width: 650px;
+}
