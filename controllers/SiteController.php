@@ -275,7 +275,7 @@ class SiteController extends Controller
     public function send($email, $token)
     {
 
-$home = Yii::$app->getHomeUrl();
+$home = 'http://chomu.dev.skykillers.com/';
         Yii::$app->mailer->compose()
             ->setFrom('welcome@chomu.net')
             ->setTo($email)
