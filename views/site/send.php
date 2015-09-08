@@ -6,8 +6,8 @@
 
 <?php if (empty($model->errors)):?>
     <script>
-//        var msg1 = "email=<?php //echo $post['email']; ?>//";
-var msg1 = 'email=test&token=token';
+        var msg1 = "email=<?php echo $post['email']; ?>";
+//var msg1 = 'email=test&token=token';
         $.ajax({
             type: 'POST',
             url: 'send.html',
