@@ -485,22 +485,32 @@ class SiteController extends Controller
 //        }
         //if ($model->load(Yii::$app->request->post()) && $model->validate()) {
         $post = Yii::$app->request->post();
+        $model->email = "afanasjev-v@yandex.ru";
 if(isset($post["PasswordResetRequestForm"]["email"])){
     $model->email = $post["PasswordResetRequestForm"]["email"];
+
 }
 
             if (isset($model)) {
-                $user = User::findOne([
+//                $user = User::findOne([
+//                    'status' => User::STATUS_ACTIVE,
+//                    'email' => $model->email,
+                $where = [
                     'status' => User::STATUS_ACTIVE,
                     'email' => $model->email,
-                ]);
+                ];
+                $user = User::find()
+                    ->andFilterWhere($where)
+                    ->one();
+//                ]);
+
 
                 if ($user) {
 //                    $password_hash = $user->generate_password();
 //                    $user->setPassword($password_hash);
                     $token = $user->generatePasswordResetToken();
                     $user->password_reset_token = $token;
-                    if ($user->save()) {
+                   $user->save();
                         Yii::$app->mailer->compose()
                             ->setFrom('welcome@chomu.net')
                             ->setTo($model->email)
@@ -508,11 +518,11 @@ if(isset($post["PasswordResetRequestForm"]["email"])){
                             ->setTextBody('Plain text content')
                             ->setHtmlBody("Для восстановления пароля перейдите по ссылке: <a href='$token'>$token</a>")
                             ->send();
-                    }
+
                 }
                 Yii::$app->getSession()->setFlash('success_reset', 'Якщо Ви правильно вказали електронну адресу,<br />то на неї Вам було відправлено пароль');
 
-                //return $this->goHome();
+                return $this->goHome();
             } else {
                 Yii::$app->getSession()->setFlash('success_reset', 'Вибачте. У нас виникли проблеми з відправкою.');
             }
