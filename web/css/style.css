@@ -258,13 +258,15 @@ body {
 
 /* Top */
 .top {
-	position: absolute;
+	/*position: absolute;*/
 	top: 20px;
 	right: 0;
 	left: 0;
 
+
 	max-width: 980px;
 	margin: 0 auto;
+	margin-top: 20px;
 }
 
 .top__logo {
@@ -427,7 +429,8 @@ body {
 
 /* Main page */
 .main_page {
-	margin: 180px 0 0 0;
+	/*margin: 180px 0 0 0;*/
+	margin: 0;
 	padding: 0 0 20px 0;
 
 	text-align: center;
@@ -541,7 +544,8 @@ body {
 	max-width: 980px;
 	margin: 0 auto;
 	
-	padding: 160px 0 0 0;
+	/*padding: 160px 0 0 0;*/
+	padding: 50px 0 0 0;
 }
 
 .news__list {
@@ -1277,7 +1281,7 @@ body {
 /* Main auth */
 .main_auth {
 	margin: 0 0 35px 0;
-	padding: 200px 0 0 0;
+	padding: 70px 0 0 0;
 	
 	text-align: center;
 }
@@ -1335,7 +1339,7 @@ body {
 /* Vote page */
 .vote_page {
 	margin: 0 0 35px 0;
-	padding: 150px 0 20px 0;
+	padding: 50px 0 20px 0;
 	
 	text-align: center;
 }
@@ -1392,7 +1396,7 @@ body {
 /* About page */
 .about_page {
 	padding: 180px 0 20px 0;
-	
+	padding-top: 60px;
 	text-align: center;
 }
 
@@ -2223,7 +2227,7 @@ body {
 }
 
 .popup_holder {
-	z-index: 105;
+	z-index: 600;
 
 	position: fixed;
 	top: 0;
@@ -2487,6 +2491,7 @@ body {
 	}
 	.top {
 		padding: 0 20px;
+		height: 120px;
 	}
 	.top__mobiletoggle .pal {
 		background-color:  #009fc6;
@@ -2609,7 +2614,7 @@ body {
 		padding-bottom: 160px
 	}
 	.main_page {
-		margin-top: 220px;
+		margin-top: 60px;
 	}
 	.main_page__switch {
 		margin: 0 auto;
@@ -2647,7 +2652,7 @@ body {
 		margin: 20px 10px;
 	}
 	.about_page {
-		padding-bottom: 190px;
+		/*padding-bottom: 190px;*/
 	}
 	.news__item {
 		width: 229px;
@@ -2660,7 +2665,7 @@ body {
 	}
 	.news__item:nth-child(3n) {margin-right: 0}
 	.news_page {
-		padding-bottom: 160px;
+		/*padding-bottom: 160px;*/
 	}
 	.scroller-desktop {
 		overflow: auto;
@@ -2726,6 +2731,12 @@ body {
 		margin-left: -20px;
 		margin-right: -20px;
 	}
+	#body-pjax {
+		padding-bottom: 200px;
+	}
+	.container {
+		min-height: 0;
+	}
 
 }
 .eauth{
@@ -2765,7 +2776,7 @@ body {
     width: 50px;
     height: 50px;
     border: none;
-    background: url(images/close-btn.png) center no-repeat;
+    background: url(/web/images/ico-pp_close.png) center no-repeat;
     cursor: pointer;
     top: 30px;
     right: 30px;
@@ -2776,7 +2787,7 @@ body {
 }
 
 .popup-form {
-    padding-top: 28px;
+    padding: 28px 20px;
 }
 
 .popup-form input {
@@ -2857,7 +2868,7 @@ body {
     margin-right: 15px;
     vertical-align: middle;
     height: 28px;
-    background: url(/images/checkbox.png) left top no-repeat;
+    background: url(/web/images/checkbox.png) left top no-repeat;
     cursor: pointer;
     content: "";
 }
@@ -2883,10 +2894,11 @@ body {
 }
 
 .pass-reminder {
-    text-align: right;
+    /*text-align: right;
     display: block;
     margin: 10px 0 35px 40px;
-    width: 100%;
+    width: 100%;*/
+    margin-top: 20px;
 }
 
 .pass-reminder a {
@@ -2903,4 +2915,97 @@ body {
 #pass-recovery-finish .popup__yellow-btn,
 #pass-recovery .popup__yellow-btn {
     margin: 40px 0
+}
+
+.nd-popup-head {
+	font-family:  "Roboto";
+	color:  #009fc5;
+	font-size: 64px;/* Приближение из-за подстановки шрифтов */
+	font-weight: 900;
+	line-height: 66px;/* Приближение из-за подстановки шрифтов */
+	text-align: center;
+}
+.popup-form input {
+    display: block;
+    width: 100%;
+    border: 2px solid #e1e1e1;
+    border-radius: 2px;
+    height: 55px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    padding: 0 20px;
+    color: #009fc5;
+    box-sizing: border-box;
+}
+#email-login {
+	z-index: 1000;
+}
+.top {
+	z-index: 500;
+    position: relative;
+}
+
+
+.tcenter {
+	text-align: center;
+}
+
+.popup_email-signup {
+	padding-bottom: 20px
+}
+
+@media screen and (max-width: 767px) {
+	.top__logo img {
+		width: 130px;
+		height: auto;
+	}
+	.top__social {
+		display: none;
+	}
+
+	.top {
+		width: 100%;
+		padding: 0;
+	}
+	.top__mobiletoggle {
+		margin-top: 20px;
+	}
+	.footer__subscribe-in input[type="email"] {
+		max-width: 250px;
+		box-sizing: border-box;
+		margin-bottom: 20px
+	}
+	.about_page {
+		padding-top: 20px;
+	}
+	.about_page h2 {
+		font-size: 32px;
+		background-size: 19%;
+	}
+	.about_page strong {
+		font-size: 18px;
+		font-weight: 600;
+		margin-bottom: 0px !important;
+	}
+	.about_page .txt, .about_page .txt p{
+		font-size: 16px;/* Приближение из-за подстановки шрифтов */
+		font-weight: 400;
+		line-height: 24px;
+	}
+	.footer__subscribe p {
+		margin: 0;
+		padding: 0 20px;
+	}
+	.footer__links ul li  {
+		display: block;
+		margin-left: 0;
+		margin-top: 10px;
+	}
+	.footer__txt p{
+		font-size: 12px;/* Приближение из-за подстановки шрифтов */
+		font-weight: 300;
+		line-height: 20px;
+		padding: 0 20px
+	}
+	
 }

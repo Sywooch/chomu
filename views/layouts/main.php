@@ -117,7 +117,21 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
 <?php $this->beginBody() ?>
 <?php Pjax::begin(['id' => 'body-pjax', 'options' => ['class' => 'container']]); ?>
+<div class="mobile__menuwrap" hidden>
+    <div class="mobile__menu">
+        <ul>
+            <?php if (Yii::$app->user->identity) { ?>
+                <li><?php echo Html::a('Результати', Url::to(['site/result'])); ?></li>
+            <?php } ?>
+            <?php if (!Yii::$app->user->identity) { ?>
+                <li><?php echo Html::a('Опитування', Url::to('/')); ?></li>
+            <?php } ?>
+            <li><?php echo Html::a('Новини', Url::to(['site/news'])); ?></li>
+            <li><?php echo Html::a('Про проект', Url::to(['site/about'])); ?></li>
 
+        </ul>
+    </div>
+</div>
 <div class="top">
 
     <div class="top__logo">
@@ -177,21 +191,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
     </div>
     <!--.top__menu-->
 
-    <div class="mobile__menuwrap" hidden>
-        <div class="mobile__menu">
-            <ul>
-                <?php if (Yii::$app->user->identity) { ?>
-                    <li><?php echo Html::a('Результати', Url::to(['site/result'])); ?></li>
-                <?php } ?>
-                <?php if (!Yii::$app->user->identity) { ?>
-                    <li><?php echo Html::a('Опитування', Url::to('/')); ?></li>
-                <?php } ?>
-                <li><?php echo Html::a('Новини', Url::to(['site/news'])); ?></li>
-                <li><?php echo Html::a('Про проект', Url::to(['site/about'])); ?></li>
-
-            </ul>
-        </div>
-    </div>
+    
 
 </div>
 <!--.top-->
@@ -315,15 +315,18 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                         Авторизація<br/>через емейл
                     </div>
 
-                    <form class="popup-form" id="signup" >
+                    <form class="popup-form tcenter" id="signup" >
                         <input id="email" name="email" type="email" placeholder="Емейл" />
                         <input id="name" name= "name" type="text" placeholder="Ім'я" />
                         <input id="password" name= "password" type="text" placeholder="Пароль" />
                         <input id="repeatpassword" name= "repeatpassword" type="text" placeholder="Підтвердження пароля" />
-                        <input type="hidden" id="rules" name="rules" value="1"/>
-                        <label for="agreement" class="checkbox"><span></span>я згоден(а) з <a href="#">Правилами конфіденційності</a> та <a href="#">Умовами використання</a></label>
+                        <input type="checkbox" id="rules" name="rules"/>
+                        <label for="rules" class="checkbox"><span></span>я згоден(а) з <a href="#">Правилами конфіденційності</a> та <a href="#">Умовами використання</a></label>
                         <input type="submit" value="Зареєструватись" class="popup__yellow-btn" />
-                        <button class="popup__yellow-btn" id="registered">Вже зареєстрований</button>
+
+                        <button class="popup__yellow-btn">Вже зареєстрований</button>
+                        <div class="pass-reminder"><a href="/reset.html">Забули пароль?</a></div>
+
                     </form>
                 </div>
             </div>
@@ -332,6 +335,38 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
                 <div class="popup_email-send__in" id="test">
 
+
+                </div>
+            </div>
+
+            <div class="popup popup_pass-reset" style="display: none;">
+
+                <div class="popup_pass-reset__in" id="test">
+                    <div class="nd-popup-head">
+                        Відновлення<br/>пароля
+                    </div>
+                    <form class="popup-form">
+                        <input type="text" placeholder="Емейл" />
+
+                        <input type="submit" value="Надіслати" class="popup__yellow-btn" />
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="popup popup_pass-recovery" style="display: none;">
+
+                <div class="popup_pass-recovery__in" id="test">
+                    <div class="nd-popup-head">
+                        Відновлення<br/>пароля
+                    </div>
+                    <form class="popup-form">
+                       
+                        <input type="text" placeholder="Новий пароль" />
+                        <input type="text" placeholder="Підтвердьте новий пароля" />
+
+                        <input type="submit" value="Підтвердити" class="popup__yellow-btn" />
+                    </form>
 
                 </div>
             </div>
