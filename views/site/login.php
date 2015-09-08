@@ -47,4 +47,34 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<?php if (Yii::$app->session->hasFlash('success')): ?>
+    <div id="email-signup__success" class="nd-popup">
+        <div class="popup-inside">
+            <button class="popup__close"></button>
+            <div class="nd-popup-head">
+                Реєстрація<br/>пройшла успішно. <br/><br/>
+                Ваш голос прийнято!
+            </div>
 
+        </div>
+    </div>
+    <style>
+        #email-signup__success{
+
+            position: fixed;
+            display: block;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 90px auto;
+            padding: 110px 110px;
+            z-index: 99;
+        }
+    </style>
+    <script>
+        $(window).ready(function(){
+            $('#email-signup__success').fadeOut(4000);
+        });
+    </script>
+<?php endif; ?>

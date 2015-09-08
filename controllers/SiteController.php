@@ -212,6 +212,15 @@ class SiteController extends Controller
           return $this->redirect('@web/');
 
           } */
+        $confirm = false;
+        $get = Yii::$app->request->get();
+        if(isset($get['confirmation'])){
+            $confirm = $get['confirmation'];
+        }
+
+        if ($confirm == true) {
+            Yii::$app->getSession()->setFlash('success', 'Спасибо! Ваш Email успешно подтверждён.');
+        }
         return $this->render('login', [
             'model' => $model,
         ]);
@@ -256,32 +265,37 @@ class SiteController extends Controller
 
     }
 
-    public function actionConfirm(){
+    public function actionConfirm()
+    {
         $this->layout = false;
         $get = Yii::$app->request->get();
-
-        $token = $get['token'];
-        $where = ['email_confirm_token' => $token];
-        $user = User::find()
-            ->andFilterWhere($where)
-            ->one();
-        if(!empty($user->id)) {
-            $user->role = 1;
-            $user->save();
+        $confirm = false;
+        if (!empty($get)) {
+            $token = $get['token'];
+            $where = ['email_confirm_token' => $token];
+            $user = User::find()
+                ->andFilterWhere($where)
+                ->one();
+            if (!empty($user->id)) {
+                $user->role = 1;
+                if ($user->save()) {
+                    $confirm = true;
+                }
+            }
         }
 
 
-        return $this->redirect('/login.html');
+        return $this->redirect('/login.html?confirmation=' . $confirm);
     }
 
     public function send($email, $token)
     {
 
-$html = "«Дякуємо за участь у нашому опитуванні! <br>"
-        .    "Для завершення реєстрації, перейдіть, будь-ласка, по посиланню .  <br>"
-        .   "<a href='http://chomu.dev.skykillers.com/confirm.html?token=$token'>http://chomu.dev.skykillers.com/confirm.html?token=$token</a> <br>"
-        .   "З повагою, <br>"
-        .   "chomu.net»";
+        $html = "«Дякуємо за участь у нашому опитуванні! <br>"
+            . "Для завершення реєстрації, перейдіть, будь-ласка, по посиланню .  <br>"
+            . "<a href='http://chomu.dev.skykillers.com/confirm.html?token=$token'>http://chomu.dev.skykillers.com/confirm.html?token=$token</a> <br>"
+            . "З повагою, <br>"
+            . "chomu.net»";
         Yii::$app->mailer->compose()
             ->setFrom('welcome@chomu.net')
             ->setTo($email)

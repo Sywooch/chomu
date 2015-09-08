@@ -30,3 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    window.onload = function () {
+        alert();
+    }
+</script>
