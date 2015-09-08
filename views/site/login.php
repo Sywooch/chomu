@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div id="email-signup" class="popup popup_email-signup " style="">
     <div class="popup-inside"> 
-        <button class="popup__close"></button>
+        <button class="popup__close" onclick="window.location.href = '/'"></button>
         <div class="site-login tcenter">
             <div class="nd-popup-head"><?= Html::encode($this->title) ?></div>
 
