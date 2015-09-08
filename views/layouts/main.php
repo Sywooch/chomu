@@ -318,8 +318,8 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                     <form class="popup-form tcenter" id="signup" >
                         <input id="email" name="email" type="email" placeholder="Емейл" />
                         <input id="name" name= "name" type="text" placeholder="Ім'я" />
-                        <input id="password" name= "password" type="text" placeholder="Пароль" />
-                        <input id="repeatpassword" name= "repeatpassword" type="text" placeholder="Підтвердження пароля" />
+                        <input id="password" name= "password" type="password" placeholder="Пароль" />
+                        <input id="repeatpassword" name= "repeatpassword" type="password" placeholder="Підтвердження пароля" />
                         <input type="checkbox" id="rules" name="rules"/>
                         <label for="rules" class="checkbox"><span></span>я згоден(а) з <a href="#">Правилами конфіденційності</a> та <a href="#">Умовами використання</a></label>
                         <input type="submit" value="Зареєструватись" class="popup__yellow-btn" />
