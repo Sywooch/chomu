@@ -329,7 +329,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
                         <input type="submit" value="Зареєструватись" class="popup__yellow-btn" />
 
-                        <button class="popup__yellow-btn">Вже зареєстрований</button>
+                        <button class="popup__yellow-btn" id="registered">Вже зареєстрований</button>
                         <div class="pass-reminder"><a href="/reset.html">Забули пароль?</a></div>
 
                     </form>
