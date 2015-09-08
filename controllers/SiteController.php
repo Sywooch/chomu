@@ -277,13 +277,17 @@ class SiteController extends Controller
     public function send($email, $token)
     {
 
-
+$html = "«Дякуємо за участь у нашому опитуванні! <br>"
+        .    "Для завершення реєстрації, перейдіть, будь-ласка, по посиланню .  <br>"
+        .   "<a href='http://chomu.dev.skykillers.com/confirm.html&token=$token'>http://chomu.dev.skykillers.com/confirm.html&token=$token</a> <br>"
+        .   "З повагою, <br>"
+        .   "chomu.net»";
         Yii::$app->mailer->compose()
             ->setFrom('welcome@chomu.net')
             ->setTo($email)
-            ->setSubject('Email confirmation for ' . Yii::$app->name)
+            ->setSubject('Вітаємо на chomu.net!')
             ->setTextBody('Plain text content')
-            ->setHtmlBody("<b>HTML content</b>/confirm.html/ dfgdsg" . $token)
+            ->setHtmlBody($html)
             ->send();
 
 
