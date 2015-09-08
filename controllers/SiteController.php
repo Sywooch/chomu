@@ -255,10 +255,23 @@ class SiteController extends Controller
 
     }
 
+    public function actionConfirm(){
+        $this->layout = false;
+        $get = Yii::$app->request->get();
+        $user = new User();
+        $token = $get['token'];
+        $user = User::find()
+            ->where('token > :token', [':token' => $token])
+            ->one();
+        $name = $user->email;
+        Yii::$app->user->login($name, 0);
+
+    }
+
     public function send($email, $token)
     {
 
-       
+
         Yii::$app->mailer->compose()
 
             ->setFrom('welcome@chomu.net')
