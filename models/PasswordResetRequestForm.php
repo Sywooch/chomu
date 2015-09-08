@@ -45,7 +45,7 @@ class PasswordResetRequestForm extends Model
             $token = $user->generatePasswordResetToken();
             $user->password_reset_token = $token;
             if ($user->save()) {
-                return Yii::$app->mailer->compose('passwordResetToken', ['password_hash' => $password_hash])
+                return Yii::$app->mailer->compose()
                     ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
                     ->setTo($user->email)
                     ->setSubject('Відновлення пароля для ' . Yii::$app->name)

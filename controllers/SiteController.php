@@ -479,16 +479,20 @@ class SiteController extends Controller
     public function actionReset()
     {
         $model = new PasswordResetRequestForm();
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+//        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+//            Yii::$app->response->format = Response::FORMAT_JSON;
+//            return ActiveForm::validate($model);
+//        }
+        //if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        $post = Yii::$app->request->get();
+
+            $model->email = $post["PasswordResetRequestForm"]["email"];
             if (isset($model)) {
                 $user = User::findOne([
                     'status' => User::STATUS_ACTIVE,
                     'email' => $model->email,
                 ]);
+
                 if ($user) {
 //                    $password_hash = $user->generate_password();
 //                    $user->setPassword($password_hash);
@@ -496,7 +500,7 @@ class SiteController extends Controller
                     $user->password_reset_token = $token;
                     if ($user->save()) {
                         Yii::$app->mailer->compose()
-                            ->setFrom(['afanasjev-v@yandex.ru' => Yii::$app->name])
+                            ->setFrom('reset@chomu.net')
                             ->setTo($model->email)
                             ->setSubject('Відновлення пароля для ' . Yii::$app->name)
                             ->setTextBody('Plain text content')
@@ -506,14 +510,19 @@ class SiteController extends Controller
                 }
                 Yii::$app->getSession()->setFlash('success_reset', 'Якщо Ви правильно вказали електронну адресу,<br />то на неї Вам було відправлено пароль');
 
-                return $this->goHome();
+                //return $this->goHome();
             } else {
                 Yii::$app->getSession()->setFlash('success_reset', 'Вибачте. У нас виникли проблеми з відправкою.');
             }
-        }
-
+       // }
+        $user = User::findOne([
+            'status' => User::STATUS_ACTIVE,
+            'email' => $model->email,
+        ]);
         return $this->render('requestPasswordResetToken', [
             'model' => $model,
+//            'user' => $token,
+//            'post' => $post
         ]);
     }
 
