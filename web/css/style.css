@@ -2954,6 +2954,10 @@ body {
 	padding-bottom: 20px
 }
 
+.main_page {
+	margin-top: -50px;
+}
+
 @media screen and (max-width: 767px) {
 	.top__logo img {
 		width: 130px;
@@ -2978,9 +2982,16 @@ body {
 	.about_page {
 		padding-top: 20px;
 	}
-	.about_page h2, .main_page .txt1 h2 {
+	.about_page h2, .main_page .txt1 h2, .main_auth h2{
 		font-size: 32px;
 		background-size: 19%;
+	}
+	.vote_page h2 {
+		font-size: 38px;
+		background-size: 15%;
+	}
+	.main_auth h2 {
+		padding-bottom: 40px;
 	}
 	.about_page strong {
 		font-size: 18px;
@@ -3061,6 +3072,99 @@ body {
 		max-width: 100%;
 		margin: 20px 0;
 	}
+	.main_page {
+		margin-top: 0px;
+	}
+	.top {
+		height: 90px;
+	}
+	.main_page__switch {
+		margin-bottom: 0;
+	}
+	.vote_page__list ul li .jq-radio {
+	    transform: scale(0.65);
+	    margin-right: 0;
+	    margin-left: 0;
+	}
+	.vote_page__list ul li label, .vote_page__list ul li input[type="text"] {
+		font-size: 18px !important;
+		max-width: 220px;
+	}
+	.vote_page__list {
+		width: auto;
+	}
+	.main_auth {
+		padding-top: 0;
+	}
+	.vote_page__list ul li {
+		margin-bottom: 0;
+	}
+	.main_auth .btn-auth {
+
+		margin: 10px 0;
+		transform: none;
+	    padding: 0;
+	    height: 50px;
+	    line-height: 50px;
+	    font-size: 20px;
+	    padding-right: 20px;
+	    padding-left: 50px;
+	    background-position-x: 10px;
+	    background-size: 25px;
+	}
+	.popup_auth h3, .popup_terms h3, .popup_police h3 {
+		font-size: 28px;
+	}
+	.popup_auth ul li {
+		width: 50px;
+	}
+	.popup_auth ul li a {
+		transform: scale(0.6);
+    	transform-origin: left;
+	}
+	.eauth-service-id-email {
+		transform: scale(1.08);
+	}
+	.eauth-service-id-email a {
+		height: 50px !important;
+		margin-left: -2px;
+	}
+	.popup_auth {
+		padding: 80px 0 20px;
+	}
+	.nd-popup-head {
+		font-size: 38px;
+		line-height: 43px;
+	}
+	.popup_email-signup .popup__yellow-btn{
+		width: 100%;
+		margin: 0;
+	}
+	body {
+		max-width: 100%;
+	}
+	.popup-form .popup__yellow-btn {
+		font-size: 19px;
+		height: 50px;
+	}
+	.popup-form input {
+		font-size: 15px;
+	}
+	.popup-form .popup__yellow-btn {
+		max-width: 100%;
+	}
+	#pass-recovery {
+		box-sizing: border-box;
+	}
+	#pass-recovery .popup__yellow-btn {
+		margin: 10px 0;
+	}
+	.popup_contacts__in {
+		margin: 0 30px;
+	}
+	.popup_terms__in, .popup_police__in {
+		margin: 0 15px;
+	}
 }
 
 .email {
@@ -3095,9 +3199,7 @@ body {
 	margin-top: 45px;
 }
 
-.main_page {
-	margin-top: -50px;
-}
+
 
 .eauth {
 	vertical-align: middle;
