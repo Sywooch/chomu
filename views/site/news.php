@@ -81,7 +81,7 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
 
         <div class="news_single cf">
 
-            <div class="news_single__top">
+            <div class="news_single__top" style="background: url(<?=Url::to('/web/upload/article/').$new->images;?>) center center no-repeat">
 
                 <img src="<?=Url::to('/web/upload/article/').$new->images;?>" alt="#">
 
