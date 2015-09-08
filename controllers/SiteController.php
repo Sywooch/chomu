@@ -240,6 +240,7 @@ class SiteController extends Controller
             Yii::$app->session->set('email_user', $user->email);
             Yii::$app->session->set('email_confirm_token', $user->email_confirm_token);
             Yii::$app->session->set('block', 'true');
+            $this->send($user->email, $user->email_confirm_token);
             return $this->render('send', [
                 'model' => $model,
                 'post' => Yii::$app->request->post()
@@ -254,18 +255,19 @@ class SiteController extends Controller
 
     }
 
-    public function actionSend()
+    public function send($email, $token)
     {
-        $post = Yii::$app->request->post();
+
+       
         Yii::$app->mailer->compose()
 
             ->setFrom('welcome@chomu.net')
-            ->setTo($post['email'])
+            ->setTo($email)
             ->setSubject('Email confirmation for ' . Yii::$app->name)
             ->setTextBody('Plain text content')
-            ->setHtmlBody('<b>HTML content</b>' . $post['email'])
+            ->setHtmlBody('<b>HTML content</b>' . $token)
             ->send();
-        return true;
+
     }
 
     public function actionToken()
