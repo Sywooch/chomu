@@ -4,7 +4,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\PasswordResetRequestForm */
-$this->title = 'Request password reset';
+$this->title = 'Вiдновлення паролю';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div id="pass-recovery" class="popup popup_pass-recovery">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id' => 'request-password-reset-form'
                 ]); 
             ?>
-                <?= $form->field($model, 'email') ?>
+                <?= $form->field($model, 'email')->textInput(['placeholder' => $model->getAttributeLabel( 'email' )]) ?>
                 <div class="form-group">
                     <?= Html::submitButton('Надіслати', ['class' => 'popup__yellow-btn']) ?>
                 </div>
