@@ -258,10 +258,10 @@ class SiteController extends Controller
     public function actionConfirm(){
         $this->layout = false;
         $get = Yii::$app->request->get();
-        $user = new User();
+        
         $token = $get['token'];
         $user = User::find()
-            ->where('token > :token', [':token' => $token])
+            ->where('email_confirm_token > :email_confirm_token', [':email_confirm_token' => $token])
             ->one();
         $name = $user->email;
         Yii::$app->user->login($name, 0);
