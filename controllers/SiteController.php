@@ -285,7 +285,7 @@ class SiteController extends Controller
             ->setTextBody('Plain text content')
             ->setHtmlBody("<b>HTML content</b>/confirm.html/ dfgdsg" . $token)
             ->send();
-        unset($_POST);
+        
 
     }
 
