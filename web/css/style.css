@@ -2857,7 +2857,7 @@ body {
     margin-right: 15px;
     vertical-align: middle;
     height: 28px;
-    background: url(images/checkbox.png) left top no-repeat;
+    background: url(/images/checkbox.png) left top no-repeat;
     cursor: pointer;
     content: "";
 }

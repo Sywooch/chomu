@@ -35,6 +35,7 @@ use yii\web\UploadedFile;
 use app\models\Yes;
 use app\models\No;
 use app\models\Questions;
+use yii\swiftmailer;
 
 class SiteController extends Controller
 {
@@ -44,30 +45,30 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only'  => ['logout', 'signup'],
+                'only' => ['logout', 'signup'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
-                        'allow'   => true,
-                        'roles'   => ['?'],
+                        'allow' => true,
+                        'roles' => ['?'],
                     ],
                     [
                         'actions' => ['logout'],
-                        'allow'   => true,
-                        'roles'   => ['@'],
+                        'allow' => true,
+                        'roles' => ['@'],
                     ],
                 ],
             ],
-            'verbs'  => [
-                'class'   => VerbFilter::className(),
+            'verbs' => [
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
                 ],
             ],
-            'eauth'  => [
+            'eauth' => [
                 // required to disable csrf validation on OpenID requests
                 'class' => \nodge\eauth\openid\ControllerBehavior::className(),
-                'only'  => array('login'),
+                'only' => array('login'),
             ],
         ];
     }
@@ -79,11 +80,11 @@ class SiteController extends Controller
               'class' => 'yii\web\ErrorAction',
               ], */
             'captcha' => [
-                'class'           => 'yii\captcha\CaptchaAction',
+                'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-                'transparent'     => true,
-                'minLength'       => 3,
-                'maxLength'       => 4
+                'transparent' => true,
+                'minLength' => 3,
+                'maxLength' => 4
             ],
         ];
     }
@@ -105,10 +106,10 @@ class SiteController extends Controller
         //var_dump(Yii::$app->session->get('q'));
 
         $yes = new Yes;
-        $no  = new No;
+        $no = new No;
 
         $questionsYes = Questions::find()->andWhere(['yes' => 1])->all();
-        $questionsNo  = Questions::find()->andWhere(['no' => 1])->all();
+        $questionsNo = Questions::find()->andWhere(['no' => 1])->all();
 
         $signupModel = new SignupForm();
         if (Yii::$app->request->isAjax && $signupModel->load(Yii::$app->request->post())) {
@@ -127,10 +128,10 @@ class SiteController extends Controller
         }
 //        print_r($signupModel);
         return $this->render('index', [
-                'yes'          => $yes,
-                'no'           => $no,
-                'questionsYes' => $questionsYes,
-                'questionsNo'  => $questionsNo,
+            'yes' => $yes,
+            'no' => $no,
+            'questionsYes' => $questionsYes,
+            'questionsNo' => $questionsNo,
             'signupModel' => $signupModel
         ]);
     }
@@ -194,7 +195,7 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        $us    = new User();
+        $us = new User();
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
@@ -211,7 +212,7 @@ class SiteController extends Controller
 
           } */
         return $this->render('login', [
-                'model' => $model,
+            'model' => $model,
         ]);
     }
 
@@ -227,40 +228,50 @@ class SiteController extends Controller
     {
         $this->layout = false;
         $model = new SignupForm();
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                $session = new Session;
-                $session->open();
-                Yii::$app->session->set('email_user', $user->email);
-                Yii::$app->session->set('email_confirm_token', $user->email_confirm_token);
-                Yii::$app->session->set('block', 'true');
-                return $this->redirect('/');
-            }
-        }
-    print_r($model->getErrors());
 
-        return $this->render('signup', [
+        $post = Yii::$app->request->post();
+        $model->email = $post['email'];
+        $model->password = $post['password'];
+        $model->name = $post['name'];
+
+        if ($user = $model->signup()) {
+            $session = new Session;
+            $session->open();
+            Yii::$app->session->set('email_user', $user->email);
+            Yii::$app->session->set('email_confirm_token', $user->email_confirm_token);
+            Yii::$app->session->set('block', 'true');
+            return $this->render('send', [
+                'model' => $model,
+                'post' => Yii::$app->request->post()
+            ]);
+        }
+
+
+        return $this->render('send', [
             'model' => $model,
+            'post' => $post['email']
         ]);
+
     }
 
-    public function actionTest()
+    public function actionSend()
     {
-        if (Yii::$app->request->isAjax) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
+        $post = Yii::$app->request->post();
+        Yii::$app->mailer->compose()
 
-            return true;
-        }
-
+            ->setFrom('welcome@chomu.net')
+            ->setTo('viktor85a@gmail.com')
+            ->setSubject('Email confirmation for ' . Yii::$app->name)
+            ->setTextBody('Plain text content')
+            ->setHtmlBody('<b>HTML content</b>' . $post['email'])
+            ->send();
+        return true;
     }
+
     public function actionToken()
     {
         $model = new TokenForm();
-        $us    = new User();
+        $us = new User();
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
@@ -280,7 +291,7 @@ class SiteController extends Controller
         \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $model->name]);
         $this->getMetaTagsDefault();
         return $this->render('about', [
-                'model' => $model,
+            'model' => $model,
         ]);
     }
 
@@ -331,28 +342,28 @@ class SiteController extends Controller
 
         \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => '']);
         $this->getMetaTagsDefault();
-        
+
         $questionsYes = Questions::find()->andWhere(['yes' => 1])->all();
-        $questionsNo  = Questions::find()->andWhere(['no' => 1])->all();
+        $questionsNo = Questions::find()->andWhere(['no' => 1])->all();
 
-        $customYes            = new Questions();
-        $customYes->id        = 1000001;
+        $customYes = new Questions();
+        $customYes->id = 1000001;
         $customYes->questions = 'Iншi';
-        $customYes->yes       = 1;
-        $questionsYes[]      = $customYes;
+        $customYes->yes = 1;
+        $questionsYes[] = $customYes;
 
-        $customNo            = new Questions();
-        $customNo->id        = 1000002;
+        $customNo = new Questions();
+        $customNo->id = 1000002;
         $customNo->questions = 'Iншi';
-        $customNo->no        = 1;
-        $questionsNo[]       = $customNo;
+        $customNo->no = 1;
+        $questionsNo[] = $customNo;
 
         $result = Vote::getResult();
 
         return $this->render('result', [
-                'questionsYes' => $questionsYes,
-                'questionsNo'  => $questionsNo,
-                'result'       => $result
+            'questionsYes' => $questionsYes,
+            'questionsNo' => $questionsNo,
+            'result' => $result
         ]);
     }
 
@@ -367,8 +378,8 @@ class SiteController extends Controller
             \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $new->description]);
 
 
-            \Yii::$app->view->registerMetaTag(['property' => 'og:url', 'content'  => 'http://' . Yii::$app->request->getServerName() . Url::to(['site/news', 'url' => isset($new->url)
-                            ? $new->url : null])]);
+            \Yii::$app->view->registerMetaTag(['property' => 'og:url', 'content' => 'http://' . Yii::$app->request->getServerName() . Url::to(['site/news', 'url' => isset($new->url)
+                    ? $new->url : null])]);
             \Yii::$app->view->registerMetaTag(['property' => 'og:title', 'content' => $new->title]);
             \Yii::$app->view->registerMetaTag(['property' => 'og:type', 'content' => 'article']);
             \Yii::$app->view->registerMetaTag(['property' => 'og:description', 'content' => $new->pre_content]);
@@ -377,9 +388,9 @@ class SiteController extends Controller
 
             $arrow = $this->arrow($new->id);
             return $this->render('news', [
-                    'new'   => $new,
-                    'arrow' => $arrow,
-                    'p'     => '???'
+                'new' => $new,
+                'arrow' => $arrow,
+                'p' => '???'
             ]);
         } else {
 
@@ -390,7 +401,7 @@ class SiteController extends Controller
             $news = $news->all();
 
             return $this->render('news', [
-                    'news' => $news,
+                'news' => $news,
             ]);
         }
     }
@@ -436,8 +447,8 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if (isset($model)) {
                 $user = User::findOne([
-                        'status' => User::STATUS_ACTIVE,
-                        'email'  => $model->email,
+                    'status' => User::STATUS_ACTIVE,
+                    'email' => $model->email,
                 ]);
                 if ($user) {
                     $password_hash = $user->generate_password();
@@ -459,7 +470,7 @@ class SiteController extends Controller
         }
 
         return $this->render('requestPasswordResetToken', [
-                'model' => $model,
+            'model' => $model,
         ]);
     }
 
@@ -478,7 +489,7 @@ class SiteController extends Controller
         }
 
         return $this->render('resetPassword', [
-                'model' => $model,
+            'model' => $model,
         ]);
     }
 
@@ -487,10 +498,10 @@ class SiteController extends Controller
 
         $seo = Seo::find()->where(['id' => 1])->one();
         if ($false !== false) {
-            \Yii::$app->view->registerMetaTag(['name'    => 'keywords', 'content' => isset($seo)
-                && $seo !== null ? $seo->keywords : '']);
-            \Yii::$app->view->registerMetaTag(['name'    => 'description', 'content' => isset($seo)
-                && $seo !== null ? $seo->keywords : '']);
+            \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => isset($seo)
+            && $seo !== null ? $seo->keywords : '']);
+            \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => isset($seo)
+            && $seo !== null ? $seo->keywords : '']);
 
             \Yii::$app->view->registerMetaTag(['property' => 'og:url', 'content' => 'http://' . Yii::$app->request->getServerName()]);
             \Yii::$app->view->registerMetaTag(['property' => 'og:title', 'content' => $seo->title]);
@@ -511,7 +522,7 @@ class SiteController extends Controller
         $profile = Yii::$app->user->identity->getProfile()->one();
 
         return $this->render('thanks', [
-                'profile' => $profile
+            'profile' => $profile
         ]);
     }
 
@@ -536,9 +547,9 @@ class SiteController extends Controller
 
             $key = md5(microtime());
 
-            $subscribes         = new Subscribes();
-            $subscribes->email  = $email;
-            $subscribes->key    = $key;
+            $subscribes = new Subscribes();
+            $subscribes->email = $email;
+            $subscribes->key = $key;
             $subscribes->status = 0;
             if ($subscribes->save()) {
 
@@ -563,7 +574,7 @@ class SiteController extends Controller
         $confirm = (\Yii::$app->request->get('confirm'));
 
         if (isset($confirm)) {
-            $model         = Subscribes::findOne(['key' => $confirm]);
+            $model = Subscribes::findOne(['key' => $confirm]);
             $model->status = 1;
             $model->save();
         }

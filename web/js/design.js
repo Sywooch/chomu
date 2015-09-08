@@ -139,14 +139,15 @@ $(document).ready(function () {
     }
 
     $('form#signup').submit(function () {
-        var msg = $('#formx').serialize();
+        var msg = $('#signup').serialize();
         $.ajax({
             type: 'POST',
             url: 'signup.html',
             data: msg,
             success: function (data) {
                 console.log(data);
-                welcome();
+                console.log('msg: ' + msg);
+                welcome(data);
             },
             error: function (xhr, str) {
                 alert('Возникла ошибка: ' + xhr.responseCode);
@@ -154,9 +155,18 @@ $(document).ready(function () {
         });
         return false;
     });
-    function welcome() {
+
+    function send(){
+        var msg = $('#signup').serialize();
+        console.log('msg');
+        console.log(msg);
+        console.log('msg');
+    }
+
+    function welcome(data) {
         $('.popup').hide();
         $('.popup_holder').show();
+        $('#test').html(data);
         $('.popup_email-send').fadeIn(250);
     }
 

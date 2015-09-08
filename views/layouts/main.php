@@ -315,31 +315,24 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                         Авторизація<br/>через емейл
                     </div>
 
-<?php $signupModel = new SignupForm();?>
-                    <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-
-                    <?= $form->field($signupModel, 'name') ?>
-
-                    <?= $form->field($signupModel, 'email') ?>
-                    <?= $form->field($signupModel, 'password')->passwordInput() ?>
-
-                    <div class="form-group">
-                        <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
-                    </div>
-                    <?php ActiveForm::end(); ?>
-
+                    <form class="popup-form" id="signup" >
+                        <input id="email" name="email" type="email" placeholder="Емейл" />
+                        <input id="name" name= "name" type="text" placeholder="Ім'я" />
+                        <input id="password" name= "password" type="text" placeholder="Пароль" />
+                        <input id="repeatpassword" name= "repeatpassword" type="text" placeholder="Підтвердження пароля" />
+                        <input type="hidden" id="rules" name="rules" value="1"/>
+                        <label for="agreement" class="checkbox"><span></span>я згоден(а) з <a href="#">Правилами конфіденційності</a> та <a href="#">Умовами використання</a></label>
+                        <input type="submit" value="Зареєструватись" class="popup__yellow-btn" />
+                        <button class="popup__yellow-btn">Вже зареєстрований</button>
+                    </form>
                 </div>
             </div>
 
             <div class="popup popup_email-send" style="display: none;">
 
-                <div class="popup_email-send__in">
+                <div class="popup_email-send__in" id="test">
 
-                    <span class="popup-close" onclick="auth_close();
-                        return false;">Закрити</span>
-                    <div class="nd-popup-head">
-                        На вашу електронну пошту<br/>надіслано підтвердження
-                    </div>
+
                 </div>
             </div>
 

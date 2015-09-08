@@ -37,13 +37,13 @@ class SignupForm extends Model
             ['email', 'email', 'message' => 'Введіть коректну E-mail адресу'],
             ['email', 'unique', 'targetClass' => User::className(), 'message' => 'Ця адреса електронної пошти вже зайнято.'],
 
-            /*['password', 'required', 'message' => 'Це поле є обов’язковим для заповнення'],
-            ['password', 'string', 'min' => 6, 'message' => 'Значення «Пароль» повинно містити мінімум 6 символу.'],*/
+            ['password', 'required', 'message' => 'Це поле є обов’язковим для заповнення'],
+            ['password', 'string', 'min' => 6, 'message' => 'Значення «Пароль» повинно містити мінімум 6 символу.'],
 
             ['name', 'required', 'message' => 'Це поле є обов’язковим для заповнення'],
             ['name', 'string', 'max' => 255],
 
-            array('password', 'required', 'message' => 'Це поле є обов’язковим для заповнення'),
+//            array('password', 'required', 'message' => 'Це поле є обов’язковим для заповнення'),
             array('repeatpassword', 'compare', 'compareAttribute' => 'password', 'message' => "Passwords don't match"),
 
             /*['last_name', 'required', 'message' => 'Це поле є обов’язковим для заповнення'],
@@ -98,16 +98,17 @@ class SignupForm extends Model
                 $profile->name = $this->name;
                 $profile->save();
 
-                $mailer =  new \yii\swiftmailer\Mailer;
+//                $mailer =  new \yii\swiftmailer\Mailer;
+//
+//
+//                $mailer->compose()
+//                    ->setFrom(['welcome@chomu.net' => 'welcome@chomu.net'])
+//                    ->setTo($this->email)
+//                    ->setSubject('Email confirmation for ' . Yii::$app->name)
+//                    ->setTextBody('Plain text content')
+//                    ->setHtmlBody('<b>HTML content</b>')
+//                    ->send();
 
-
-                $mailer->compose()
-                    ->setFrom(['welcome@chomu.net' => 'welcome@chomu.net'])
-                    ->setTo($this->email)
-                    ->setSubject('Email confirmation for ' . Yii::$app->name)
-                    ->setTextBody('Plain text content')
-                    ->setHtmlBody('<b>HTML content</b>')
-                    ->send();
 
 //                $transport = Swift_SmtpTransport::newInstance('smtp.example.org', 25)
 //                    ->setUsername('username')
