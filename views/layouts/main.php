@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use app\assets\AppAsset;
 use yii\bootstrap\Alert;
@@ -80,13 +79,8 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
 <?php
 //if (Yii::$app->user->isGuest and empty($_SESSION['flag'])) {
-<<<<<<< HEAD
-   // $_SESSION['flag'] = true;
-    ?>
-=======
 // $_SESSION['flag'] = true;
 ?>
->>>>>>> 6056f48204846e4e4916997290ff40da32297dd5
 
 <!--    <div class="load_video hidden-tablet hidden-phone">-->
 
@@ -95,34 +89,20 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 <!--            <div class="load_video__logo">-->
 <!--                <a href="#"><img src="/web/images/logo.png" alt="#"></a>-->
 <!--            </div>-->
-<<<<<<< HEAD
-            <!--.load_video__logo-->
-=======
 <!--.load_video__logo-->
->>>>>>> 6056f48204846e4e4916997290ff40da32297dd5
 
 <!--            <div class="load_video__skip" onclick="ga('send', 'event', 'Propusk', 'Click');">Пропустити відео</div>-->
 
 <!--        </div>-->
-<<<<<<< HEAD
-        <!--.load_video__wrap-->
-=======
 <!--.load_video__wrap-->
->>>>>>> 6056f48204846e4e4916997290ff40da32297dd5
 
 <!--        <video poster="images/bg-main.jpg" preload="none" autoplay id="load_video">-->
 <!--            <source src="/web/video/intro.mp4" type="video/mp4">-->
 <!--            <source src="/web/video/intro.webm" type="video/webm">-->
 <!--            <source src="/web/video/intro.ogv" type="video/ogg">-->
 <!--        </video>-->
-<<<<<<< HEAD
 
 <!--    </div><!--.load_video-->
-
-=======
-
-<!--    </div><!--.load_video-->
->>>>>>> 6056f48204846e4e4916997290ff40da32297dd5
 
 
 <div class="bg_video">
