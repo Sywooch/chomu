@@ -315,13 +315,13 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                         Авторизація<br/>через емейл
                     </div>
 
-                    <form class="popup-form" id="signup" >
+                    <form class="popup-form tcenter" id="signup" >
                         <input id="email" name="email" type="email" placeholder="Емейл" />
                         <input id="name" name= "name" type="text" placeholder="Ім'я" />
                         <input id="password" name= "password" type="text" placeholder="Пароль" />
                         <input id="repeatpassword" name= "repeatpassword" type="text" placeholder="Підтвердження пароля" />
-                        <input type="hidden" id="rules" name="rules" value="1"/>
-                        <label for="agreement" class="checkbox"><span></span>я згоден(а) з <a href="#">Правилами конфіденційності</a> та <a href="#">Умовами використання</a></label>
+                        <input type="checkbox" id="rules" name="rules"/>
+                        <label for="rules" class="checkbox"><span></span>я згоден(а) з <a href="#">Правилами конфіденційності</a> та <a href="#">Умовами використання</a></label>
                         <input type="submit" value="Зареєструватись" class="popup__yellow-btn" />
                         <button class="popup__yellow-btn">Вже зареєстрований</button>
                     </form>
