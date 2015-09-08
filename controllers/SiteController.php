@@ -500,7 +500,7 @@ class SiteController extends Controller
                     $user->password_reset_token = $token;
                     if ($user->save()) {
                         Yii::$app->mailer->compose()
-                            ->setFrom('reset@chomu.net')
+                            ->setFrom('welcome@chomu.net')
                             ->setTo($model->email)
                             ->setSubject('Відновлення пароля для ' . Yii::$app->name)
                             ->setTextBody('Plain text content')
