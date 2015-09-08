@@ -259,7 +259,7 @@ body {
 /* Top */
 .top {
 	/*position: absolute;*/
-	top: 20px;
+	top: 00px;
 	right: 0;
 	left: 0;
 
@@ -3065,6 +3065,7 @@ body {
 
 .email {
 	vertical-align: middle;
+	margin-bottom: 19px;
 }
 
 #pass-recovery {
@@ -3090,3 +3091,14 @@ body {
 	margin-top: 20px;
 }
 
+#email-signin {
+	margin-top: 45px;
+}
+
+.main_page {
+	margin-top: -50px;
+}
+
+.eauth {
+	vertical-align: middle;
+}
