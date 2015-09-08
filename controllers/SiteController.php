@@ -264,8 +264,8 @@ class SiteController extends Controller
         $user = User::find()
             ->where('email_confirm_token > :email_confirm_token', [':email_confirm_token' => $token])
             ->one();
-        $name = $user['email'];
-        Yii::$app->user->login($name, 0);
+
+        Yii::$app->user->loginByAccessToken($token);
 
     }
 
