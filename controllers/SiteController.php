@@ -481,24 +481,12 @@ class SiteController extends Controller
 
 
         $model = new PasswordResetRequestForm();
-//        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-//            Yii::$app->response->format = Response::FORMAT_JSON;
-//            return ActiveForm::validate($model);
-//        }
-//        var_dump('<pre>');
-//        var_dump('post');
-//        var_dump(Yii::$app->request->post());
-//        var_dump('get');
-//        var_dump(Yii::$app->request->get());
-//        var_dump('</pre>');
+//
 
+        $get = Yii::$app->request->get();
 
-//        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-
-        $post = Yii::$app->request->get();
-
-        if (isset($post["PasswordResetRequestForm"]["email"])) {
-            $model->email = $post["PasswordResetRequestForm"]["email"];
+        if (isset($get["PasswordResetRequestForm"]["email"])) {
+            $model->email = $get["PasswordResetRequestForm"]["email"];
         }
 
         if (isset($model)) {
@@ -517,25 +505,24 @@ class SiteController extends Controller
                 $user->generatePasswordResetToken();
 
                 if ($user->save()) {
-                    if (!empty($send))
-                        unset($send);
-
-                    $send = new Yii::$app->mailer;
-                    $send->compose()
+                    $message = Yii::$app->mailer
+                        ->compose()
                         ->setFrom('welcome@chomu.net')
                         ->setTo($model->email)
                         ->setSubject('Відновлення пароля для ' . Yii::$app->name)
                         ->setTextBody('Plain text content')
                         ->setHtmlBody("Для восстановления пароля перейдите по ссылке: <a href='token=$user->password_reset_token'>token=$user->password_reset_token</a>")
                         ->send();
-
-                    Yii::$app->getSession()->setFlash('success_reset', 'success');
+                    if($message){
+                        Yii::$app->session->setFlash('success_reset', 'success', true);
+                    }
 
                 }
             }
         }
         return $this->render('requestPasswordResetToken', [
             'model' => $model,
+
         ]);
     }
 
