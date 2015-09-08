@@ -324,6 +324,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
                         <label for="rules" class="checkbox"><span></span>я згоден(а) з <a href="#">Правилами конфіденційності</a> та <a href="#">Умовами використання</a></label>
                         <input type="submit" value="Зареєструватись" class="popup__yellow-btn" />
                         <button class="popup__yellow-btn">Вже зареєстрований</button>
+                        <div class="pass-reminder"><a href="/reset.html">Забули пароль?</a></div>
                     </form>
                 </div>
             </div>

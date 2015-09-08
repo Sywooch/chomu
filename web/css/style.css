@@ -2894,10 +2894,11 @@ body {
 }
 
 .pass-reminder {
-    text-align: right;
+    /*text-align: right;
     display: block;
     margin: 10px 0 35px 40px;
-    width: 100%;
+    width: 100%;*/
+    margin-top: 20px;
 }
 
 .pass-reminder a {
