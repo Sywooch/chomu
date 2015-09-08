@@ -214,7 +214,7 @@ class SiteController extends Controller
           } */
         $confirm = false;
         $get = Yii::$app->request->get();
-        if(isset($get['confirmation'])){
+        if (isset($get['confirmation'])) {
             $confirm = $get['confirmation'];
         }
 
@@ -478,68 +478,75 @@ class SiteController extends Controller
 
     public function actionReset()
     {
+
+
         $model = new PasswordResetRequestForm();
 //        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
 //            Yii::$app->response->format = Response::FORMAT_JSON;
 //            return ActiveForm::validate($model);
 //        }
-        //if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-        $post = Yii::$app->request->post();
-        $model->email = "afanasjev-v@yandex.ru";
-if(isset($post["PasswordResetRequestForm"]["email"])){
-    $model->email = $post["PasswordResetRequestForm"]["email"];
-
-}
-
-            if (isset($model)) {
-//                $user = User::findOne([
-//                    'status' => User::STATUS_ACTIVE,
-//                    'email' => $model->email,
-                $where = [
-                    'status' => User::STATUS_ACTIVE,
-                    'email' => $model->email,
-                ];
-                $user = User::find()
-                    ->andFilterWhere($where)
-                    ->one();
-//                ]);
+//        var_dump('<pre>');
+//        var_dump('post');
+//        var_dump(Yii::$app->request->post());
+//        var_dump('get');
+//        var_dump(Yii::$app->request->get());
+//        var_dump('</pre>');
 
 
-                if ($user) {
-//                    $password_hash = $user->generate_password();
-//                    $user->setPassword($password_hash);
-                    $token = $user->generatePasswordResetToken();
-                    $user->password_reset_token = $token;
-                   $user->save();
-                        Yii::$app->mailer->compose()
-                            ->setFrom('welcome@chomu.net')
-                            ->setTo($model->email)
-                            ->setSubject('Відновлення пароля для ' . Yii::$app->name)
-                            ->setTextBody('Plain text content')
-                            ->setHtmlBody("Для восстановления пароля перейдите по ссылке: <a href='$token'>$token</a>")
-                            ->send();
+//        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
+        $post = Yii::$app->request->get();
+
+        if (isset($post["PasswordResetRequestForm"]["email"])) {
+            $model->email = $post["PasswordResetRequestForm"]["email"];
+        }
+
+        if (isset($model)) {
+
+            $where = [
+                'status' => User::STATUS_ACTIVE,
+                'email' => $model->email,
+            ];
+            $user = User::find()
+                ->andFilterWhere($where)
+                ->one();
+
+
+            if ($user) {
+
+                $user->generatePasswordResetToken();
+
+                if ($user->save()) {
+                    if (!empty($send))
+                        unset($send);
+
+                    $send = new Yii::$app->mailer;
+                    $send->compose()
+                        ->setFrom('welcome@chomu.net')
+                        ->setTo($model->email)
+                        ->setSubject('Відновлення пароля для ' . Yii::$app->name)
+                        ->setTextBody('Plain text content')
+                        ->setHtmlBody("Для восстановления пароля перейдите по ссылке: <a href='token=$user->password_reset_token'>token=$user->password_reset_token</a>")
+                        ->send();
+
+                    Yii::$app->getSession()->setFlash('success_reset', 'success');
 
                 }
-                Yii::$app->getSession()->setFlash('success_reset', 'Якщо Ви правильно вказали електронну адресу,<br />то на неї Вам було відправлено пароль');
-
-                return $this->goHome();
-            } else {
-                Yii::$app->getSession()->setFlash('success_reset', 'Вибачте. У нас виникли проблеми з відправкою.');
             }
-       // }
-        $user = User::findOne([
-            'status' => User::STATUS_ACTIVE,
-            'email' => $model->email,
-        ]);
+        }
         return $this->render('requestPasswordResetToken', [
             'model' => $model,
-//            'user' => $token,
-//            'post' => $post
         ]);
     }
 
-    public function actionResetPassword($token)
+    public function actionResetPassword()
     {
+        $get = Yii::$app->request->get();
+        $token = false;
+        if (isset($get['token'])) {
+            $token = $get['token'];
+        }
+
         try {
             $model = new ResetPasswordForm($token);
         } catch (InvalidParamException $e) {
@@ -576,6 +583,7 @@ if(isset($post["PasswordResetRequestForm"]["email"])){
 
         return true;
     }
+
 
     public function actionThanks()
     {
@@ -648,5 +656,10 @@ if(isset($post["PasswordResetRequestForm"]["email"])){
         //Yii::$app->controller->goBack();
         //Yii::$app->response->getHeaders()->set('X-Pjax-Url: ' . Yii::$app->request->referrer);
         //return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionSuccess()
+    {
+        return $this->render('success');
     }
 }
