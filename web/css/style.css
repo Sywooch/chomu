@@ -259,7 +259,7 @@ body {
 /* Top */
 .top {
 	/*position: absolute;*/
-	top: 20px;
+	top: 00px;
 	right: 0;
 	left: 0;
 
@@ -2787,7 +2787,7 @@ body {
 }
 
 .popup-form {
-    padding: 28px 20px;
+    padding: 28px 30px;
 }
 
 .popup-form input {
@@ -3065,6 +3065,7 @@ body {
 
 .email {
 	vertical-align: middle;
+	margin-bottom: 19px;
 }
 
 #pass-recovery {
@@ -3075,4 +3076,29 @@ body {
 
 .control-label {
 	display: none;
+}
+
+#email-signin .pass-reminder{
+	text-align: right;
+	margin-top: 0px;
+}
+
+#email-signin {
+	padding: 60px 0 30px;
+	max-width: 650px;
+}
+#email-signin .popup__yellow-btn{
+	margin-top: 20px;
+}
+
+#email-signin {
+	margin-top: 45px;
+}
+
+.main_page {
+	margin-top: -50px;
+}
+
+.eauth {
+	vertical-align: middle;
 }
