@@ -233,7 +233,7 @@ class SiteController extends Controller
         $post = Yii::$app->request->post();
         $model->email = $post['email'];
         $model->password = $post['password'];
-        $model->name = $post['name'];
+        $model->username = $post['name'];
 
         if ($user = $model->signup()) {
             $session = new Session;

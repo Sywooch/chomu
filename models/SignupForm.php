@@ -87,8 +87,8 @@ class SignupForm extends Model
         if ($this->validate()) {
             $user = new User();
             $user->email = $this->email;
-            $generatePassword = $this->generate_password();
-            $user->setPassword($generatePassword);
+            //$generatePassword = $this->generate_password();
+            $user->setPassword($this->password);
             $user->status = User::STATUS_ACTIVE;
             $user->generateAuthKey();
             $user->generateEmailConfirmToken();
@@ -146,6 +146,8 @@ class SignupForm extends Model
 
         return null;
     }
+
+
 
     public function generate_password($number = 16)
     {
