@@ -261,8 +261,9 @@ class SiteController extends Controller
         $get = Yii::$app->request->get();
 
         $token = $get['token'];
+        $where = ['email_confirm_token' => $token];
         $user = User::find()
-            ->where('email_confirm_token > :email_confirm_token', [':email_confirm_token' => $token])
+            ->andFilterWhere($where)
             ->one();
         $user->role = 1;
         $user->save();
