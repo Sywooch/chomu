@@ -2958,7 +2958,7 @@ body {
 }
 
 .main_page {
-	margin-top: -50px;
+	/*margin-top: -50px;*/
 }
 
 @media screen and (max-width: 767px) {
