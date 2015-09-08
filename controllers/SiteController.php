@@ -190,7 +190,7 @@ class SiteController extends Controller
     public function actionLogin()
     {
 
-        $this->layout = 'admin';
+        //$this->layout = false;
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -268,7 +268,8 @@ class SiteController extends Controller
         $user->role = 1;
         $user->save();
 
-        return $this->redirect('/result.html');
+
+        return $this->redirect('/login.html');
     }
 
     public function send($email, $token)
@@ -276,7 +277,6 @@ class SiteController extends Controller
 
 
         Yii::$app->mailer->compose()
-
             ->setFrom('welcome@chomu.net')
             ->setTo($email)
             ->setSubject('Email confirmation for ' . Yii::$app->name)
