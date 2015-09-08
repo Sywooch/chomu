@@ -3072,3 +3072,7 @@ body {
     margin: 45px auto;
     max-width: 650px;
 }
+
+.control-label {
+	display: none;
+}
