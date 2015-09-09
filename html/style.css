@@ -54,6 +54,10 @@ body {
 	        background-size: cover;
 }
 
+.h900 {
+	min-height: 900px;
+}
+
 .hold {
 	overflow: hidden;
 }
@@ -241,6 +245,19 @@ body {
 	color: #00A3C4;
 }
 
+.btn-y-bordered-yellow,
+.btn-y-bordered-yellow:hover {
+	border-color: #F8EB47;
+	background-color: #f8eb47;
+	color: #009fc6;
+}
+
+.btn-y-bordered-red,
+.btn-y-bordered-red:hover {
+	border-color: #C42D33;
+	background-color: #C42D33;
+	color: #fff;
+}
 
 /* Vam */
 .vam {
@@ -1359,6 +1376,21 @@ body {
 	vertical-align: middle;
 }
 
+.vote_page__list ul li input[type="text"] {
+	outline: none;
+
+	display: inline-block;
+	width: 500px;
+	border: none;
+	
+	background-color: transparent;
+	
+	font: normal 26px/140% "Roboto", Arial;
+	color: #fff;
+	vertical-align: middle;
+	
+	cursor: pointer;
+}
 
 
 /* About page */
@@ -1391,6 +1423,61 @@ body {
 }
 
 
+
+/* Avtoriz page */
+.avtoriz_page {
+	padding: 180px 0 20px 0;
+	
+	text-align: center;
+}
+
+.avtoriz_page h2 {
+	margin: 0 0 35px 0;
+	padding: 0 0 45px 0;
+	
+	background: url(images/h2-w.png) center bottom no-repeat;
+
+	font: bold 64px/100% "Roboto", Arial;
+	color: #FFED48;
+}
+
+.avtoriz_page .txt {
+	margin: 0 0 30px 0;	
+}
+
+.avtoriz_page .txt p {
+	font: normal 20px/130% "Roboto", Arial;
+	color: #fff;
+}
+
+.avtoriz_page .btn-auth {
+	display: inline-block;
+	height: 100px;
+	margin: 0 0 30px 0;
+	border: 4px solid #f8eb47;
+	padding: 0 30px 0 100px;
+	
+	-webkit-border-radius: 5px;
+	        border-radius: 5px;
+	
+	-webkit-transition: all 200ms ease;
+	   -moz-transition: all 200ms ease;
+	    -ms-transition: all 200ms ease;
+	     -o-transition: all 200ms ease;
+	        transition: all 200ms ease;
+	
+	background: #f8eb47 url(images/ico-auth-btn.png) 40px center no-repeat;
+	
+	font: normal 36px/100px "Roboto", Arial;
+	color: #009FC6;
+	text-align: center;
+	text-decoration: none;
+}
+
+.avtoriz_page .btn-auth:hover {
+	background: transparent url(images/ico-auth-btn-y.png) 40px center no-repeat;
+	color: #F8EB47;
+}
 
 /* Thanks page */
 .thanks_page {

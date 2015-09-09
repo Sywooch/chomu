@@ -1593,8 +1593,9 @@ body {
 	border: 1px solid #08C;
 }
 .jq-radio.disabled {
-	opacity: .55;
+	opacity: .54;
 }
+
 
 
 .inp-vote {
@@ -2646,7 +2647,13 @@ body {
 	.result_page,.vote_result {
 		padding-top: 110px;
 	}
-
+	input {
+		-webkit-appearance: none;
+		border-radius: 0;
+	}
+	.popup__yellow-btn + .popup__yellow-btn {
+		margin: 10px 0!important	;
+	}
 }
 .eauth{
     overflow: visible;
@@ -3132,6 +3139,13 @@ body {
 	}
 	.is-active + .top__usr {
 		display: none;
+	}
+	.popup__yellow-btn {
+		font-size: 19px;
+	}
+	.popup_email-send__in .nd-popup-head {
+		font-size: 19px;
+		line-height: 25px;
 	}
 }
 
