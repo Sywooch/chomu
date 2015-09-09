@@ -44,13 +44,13 @@ class PasswordResetRequestForm extends Model
         ]);
         if ($user) {
             $user->generatePasswordResetToken();
-
+$url = $_SERVER['HTTP_HOST'] . '/token='.$user->password_reset_token;
             if ($user->save()) {
                 return Yii::$app->mailer->compose()
                     ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
                     ->setTo($user->email)
                     ->setSubject('Відновлення пароля для ' . Yii::$app->name)
-                    ->setHtmlBody("Для восстановления пароля перейдите по ссылке: <a href='" .Url::toRoute('/site/index')."token=$user->password_reset_token'>token=$user->password_reset_token</a>")
+                    ->setHtmlBody("Для восстановления пароля перейдите по ссылке: <a href='" .$url ."'>$url</a>")
                     ->send();
             }
         }
