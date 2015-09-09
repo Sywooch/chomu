@@ -14,7 +14,7 @@
 <script src="js/design.js"></script>
 </head>
 
-<body class="h100">
+<body class="h900">
 
 <div class="bg_video">
 	<video poster="images/bg-main.jpg" preload="none" loop autoplay muted id="bg_video">
@@ -58,6 +58,14 @@
 	<h2>Скажи чесно! чому ні?</h2>
 
 	<form action="#">
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('.myvote, .myvote .jq-radio').click(function(){
+			$('.myvote').find('input:text').val('').focus();
+		});
+	});
+	</script>
 	
 	<div class="vote_page__list">
 		<ul>
@@ -66,10 +74,13 @@
 			<li><input type="radio" name="#" class="inp-decorate inp-vote" id="vote_page3"> <label for="vote_page3">Не хочу витрачати свій час та сили</label></li>
 			<li><input type="radio" name="#" class="inp-decorate inp-vote" id="vote_page4"> <label for="vote_page4">Від мене нічого не залежить</label></li>
 			<li><input type="radio" name="#" class="inp-decorate inp-vote" id="vote_page5"> <label for="vote_page5">Важко визначитись із кандидатом</label></li>
+			<li class="myvote"><input type="radio" name="#" class="inp-decorate inp-vote" id="vote_page6"> <label for="vote_page6"><input type="text" name="#" placeholder="Власний варіант відповіді" value="Власний варіант відповіді"></label></li>
 		</ul>
 	</div><!--.vote_page__list-->
 
 	<input type="submit" value="Відповісти" class="btn-y-bordered">
+	<input type="submit" value="Відповісти" class="btn-y-bordered btn-y-bordered-yellow">
+	<input type="submit" value="Відповісти" class="btn-y-bordered btn-y-bordered-red">
 
 	</form>
 

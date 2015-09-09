@@ -23,12 +23,18 @@ class FacebookOAuth2Service extends \nodge\eauth\services\FacebookOAuth2Service
         $this->attributes = $this->makeSignedRequest('me', array(
             'query' => array(
                 //'uids' => $tokenData['params']['user_id'],
-                //'fields' => '', // uid, first_name and last_name is always available
+                //'fields' => 'first_name, last_name, ', // uid, first_name and last_name is always available
+                //'fields' => 'uid',//', first_name, last_name',//, pic_square, pic_big, sex',
                 'fields' => implode(',', [
                     'id',
                     'name',
-                    //self::SCOPE_EMAIL,
-                    self::SCOPE_USER_PHOTOS,
+                    'first_name',
+                    'last_name',
+                    self::SCOPE_EMAIL,
+                    'gender',
+                    'picture'
+                    //'profile_picture',
+                    //self::SCOPE_USER_PHOTOS,
                     //'photos'
                     ]
                 ),
