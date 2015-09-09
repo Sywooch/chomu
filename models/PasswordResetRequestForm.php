@@ -44,7 +44,7 @@ class PasswordResetRequestForm extends Model
         ]);
         if ($user) {
             $user->generatePasswordResetToken();
-$url = $_SERVER['HTTP_HOST'] . '/token='.$user->password_reset_token;
+$url = 'http://'.$_SERVER['HTTP_HOST'] . '/token='.$user->password_reset_token;
             if ($user->save()) {
                 return Yii::$app->mailer->compose()
                     ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])

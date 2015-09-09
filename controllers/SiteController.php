@@ -204,7 +204,6 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             if (Yii::$app->user->identity->role == 2) {
                 return $this->redirect('/admin/index');
-                //return $this->redirect(Yii::$app->request->referrer);
             } else {
                 return $this->redirect('/result.html');
             }
@@ -291,9 +290,10 @@ class SiteController extends Controller
     public function send($email, $token)
     {
 
+        $link = 'http://' .$_SERVER['HTTP_HOST'] .'/confirm.html?token=' .$token;
         $html = "«Дякуємо за участь у нашому опитуванні! <br>"
             . "Для завершення реєстрації, перейдіть, будь-ласка, по посиланню .  <br>"
-            . "<a href='http://chomu.dev.skykillers.com/confirm.html?token=$token'>http://chomu.dev.skykillers.com/confirm.html?token=$token</a> <br>"
+            . "<a href='$link'>$link</a> <br>"
             . "З повагою, <br>"
             . "chomu.net»";
         Yii::$app->mailer->compose()
