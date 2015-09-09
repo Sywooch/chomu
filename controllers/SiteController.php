@@ -478,49 +478,11 @@ class SiteController extends Controller
 
     public function actionReset()
     {
-
-
         $model = new PasswordResetRequestForm();
         $model->load(Yii::$app->request->post());
-       // $model->email = 'afanasjev-v@yandex.ru';
         if($model->sendEmail()){
-//            return $this->goHome();
+            Yii::$app->session->setFlash("success_reset", 'success');
         }
-////
-//
-
-
-//        if (isset($model)) {
-//
-//            $where = [
-//                'status' => User::STATUS_ACTIVE,
-//                'email' => $model->email,
-//            ];
-//            $user = User::find()
-//                ->andFilterWhere($where)
-//                ->one();
-//
-//
-//            if ($user) {
-//
-//                $user->generatePasswordResetToken();
-//
-//                if ($user->save()) {
-//                    $message = Yii::$app->mailer
-//                        ->compose()
-//                        ->setFrom('welcome@chomu.net')
-//                        ->setTo($model->email)
-//                        ->setSubject('Відновлення пароля для ' . Yii::$app->name)
-//                        ->setTextBody('Plain text content')
-//                        ->setHtmlBody("Для восстановления пароля перейдите по ссылке: <a href='token=$user->password_reset_token'>token=$user->password_reset_token</a>")
-//                        ->send();
-//                    if(!$message){
-//                        Yii::$app->session->setFlash('success_reset', 'success');
-//                    }
-//
-//                }
-//            }
-//        }
         return $this->render('requestPasswordResetToken', [
             'model' => $model,
 

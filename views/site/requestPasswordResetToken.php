@@ -7,8 +7,6 @@ use yii\bootstrap\ActiveForm;
 /* @var $model \frontend\models\PasswordResetRequestForm */
 $this->title = 'Вiдновлення паролю';
 $this->params['breadcrumbs'][] = $this->title;
-echo '<h1>sdfsdf' . Yii::$app->getSession()->getFlash("succes_reset") . '</h1>';
-
 ?>
 
 
@@ -19,13 +17,10 @@ echo '<h1>sdfsdf' . Yii::$app->getSession()->getFlash("succes_reset") . '</h1>';
             <?= Html::encode($this->title) ?>
         </div>
         <?php if (Yii::$app->session->hasFlash("success_reset")): ?>
-
             <div class="popup-form tcenter" id="success">
                 <p>На вашу електронну пошту<br/>надіслано підтвердження</p>
             </div>
         <?php else: ?>
-
-
             <?php $form = ActiveForm::begin([
                 'id' => 'request-password-reset-form',
                 'method' => 'post',
@@ -39,7 +34,6 @@ echo '<h1>sdfsdf' . Yii::$app->getSession()->getFlash("succes_reset") . '</h1>';
                 <?= Html::submitButton('Надіслати', ['class' => 'popup__yellow-btn', 'id' => 'thanks']) ?>
             </div>
             <?php ActiveForm::end(); ?>
-
         <?php endif; ?>
     </div>
 </div>
