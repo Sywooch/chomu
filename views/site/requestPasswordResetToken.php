@@ -17,7 +17,7 @@ echo '<h1>sdfsdf'. Yii::$app->getSession()->getFlash("succes_reset") . '</h1>';
         <div class="nd-popup-head">
             <?= Html::encode($this->title) ?>
         </div>
-        <?php if (Yii::$app->session->hasFlash("success_reset") == true): ?>
+        <?php if (Yii::$app->session->hasFlash("success_reset")): ?>
 
         <div class="popup-form tcenter" id="success">
             <p>На вашу електронну пошту<br/>надіслано підтвердження</p>
