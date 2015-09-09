@@ -489,6 +489,7 @@ class SiteController extends Controller
         ]);
     }
 
+
     public function actionResetPassword()
     {
         $get = Yii::$app->request->get();

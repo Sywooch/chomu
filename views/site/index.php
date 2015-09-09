@@ -175,5 +175,27 @@ $this->title = Seo::find()->where(['id' => 1])->one()->title;
 
     </div><!--.popup_wrap-->
 </div><!--.popup_holder-->
+<?php if(Yii::$app->session->hasFlash('succes')): ?>
+<div class="popup_holder_ animate succes" style="display:none;">
+    <div class="popup_wrap">
 
+        <div class="popup__in">
+            <div class="popup popup_succes">
+
+                <h4><?= Yii::$app->session->getFlash('success');?></h4>
+                 <span class="popup-close" onclick="auth_close();
+                        return false;">Закрити</span>
+            </div><!--.popup_auth-->
+
+
+        </div>
+
+        <div class="popup_layer"></div>
+
+    </div><!--.popup_wrap-->
+</div><!--.popup_holder-->
+    <script>
+        $('.succes').fadeIn(250);
+    </script>
+<?php endif; ?>
 
