@@ -481,9 +481,10 @@ class SiteController extends Controller
 
 
         $model = new PasswordResetRequestForm();
-        $model->email = 'afanasjev-v@yandex.ru';
+        $model->load(Yii::$app->request->post());
+       // $model->email = 'afanasjev-v@yandex.ru';
         if($model->sendEmail()){
-            return $this->goHome();
+//            return $this->goHome();
         }
 ////
 //

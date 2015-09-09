@@ -32,6 +32,7 @@ class PasswordResetRequestForm extends Model
      *
      * @return boolean whether the email was send
      */
+
     public function sendEmail()
     {
         /* @var $user User */
