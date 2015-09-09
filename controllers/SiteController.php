@@ -214,7 +214,7 @@ class SiteController extends Controller
           } */
         $confirm = false;
         $get = Yii::$app->request->get();
-        if(isset($get['confirmation'])){
+        if (isset($get['confirmation'])) {
             $confirm = $get['confirmation'];
         }
 
@@ -478,47 +478,62 @@ class SiteController extends Controller
 
     public function actionReset()
     {
+
+
         $model = new PasswordResetRequestForm();
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
+        $model->email = 'afanasjev-v@yandex.ru';
+        if($model->sendEmail()){
+            return $this->goHome();
         }
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if (isset($model)) {
-                $user = User::findOne([
-                    'status' => User::STATUS_ACTIVE,
-                    'email' => $model->email,
-                ]);
-                if ($user) {
-//                    $password_hash = $user->generate_password();
-//                    $user->setPassword($password_hash);
-                    $token = $user->generatePasswordResetToken();
-                    $user->password_reset_token = $token;
-                    if ($user->save()) {
-                        Yii::$app->mailer->compose()
-                            ->setFrom(['afanasjev-v@yandex.ru' => Yii::$app->name])
-                            ->setTo($model->email)
-                            ->setSubject('Відновлення пароля для ' . Yii::$app->name)
-                            ->setTextBody('Plain text content')
-                            ->setHtmlBody("Для восстановления пароля перейдите по ссылке: <a href='$token'>$token</a>")
-                            ->send();
-                    }
-                }
-                Yii::$app->getSession()->setFlash('success_reset', 'Якщо Ви правильно вказали електронну адресу,<br />то на неї Вам було відправлено пароль');
+////
+//
 
-                return $this->goHome();
-            } else {
-                Yii::$app->getSession()->setFlash('success_reset', 'Вибачте. У нас виникли проблеми з відправкою.');
-            }
-        }
 
+//        if (isset($model)) {
+//
+//            $where = [
+//                'status' => User::STATUS_ACTIVE,
+//                'email' => $model->email,
+//            ];
+//            $user = User::find()
+//                ->andFilterWhere($where)
+//                ->one();
+//
+//
+//            if ($user) {
+//
+//                $user->generatePasswordResetToken();
+//
+//                if ($user->save()) {
+//                    $message = Yii::$app->mailer
+//                        ->compose()
+//                        ->setFrom('welcome@chomu.net')
+//                        ->setTo($model->email)
+//                        ->setSubject('Відновлення пароля для ' . Yii::$app->name)
+//                        ->setTextBody('Plain text content')
+//                        ->setHtmlBody("Для восстановления пароля перейдите по ссылке: <a href='token=$user->password_reset_token'>token=$user->password_reset_token</a>")
+//                        ->send();
+//                    if(!$message){
+//                        Yii::$app->session->setFlash('success_reset', 'success');
+//                    }
+//
+//                }
+//            }
+//        }
         return $this->render('requestPasswordResetToken', [
             'model' => $model,
+
         ]);
     }
 
-    public function actionResetPassword($token)
+    public function actionResetPassword()
     {
+        $get = Yii::$app->request->get();
+        $token = false;
+        if (isset($get['token'])) {
+            $token = $get['token'];
+        }
+
         try {
             $model = new ResetPasswordForm($token);
         } catch (InvalidParamException $e) {
@@ -555,6 +570,7 @@ class SiteController extends Controller
 
         return true;
     }
+
 
     public function actionThanks()
     {
@@ -627,5 +643,10 @@ class SiteController extends Controller
         //Yii::$app->controller->goBack();
         //Yii::$app->response->getHeaders()->set('X-Pjax-Url: ' . Yii::$app->request->referrer);
         //return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionSuccess()
+    {
+        return $this->render('success');
     }
 }
