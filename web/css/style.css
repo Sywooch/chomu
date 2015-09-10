@@ -2575,7 +2575,7 @@ body {
 		/*padding-bottom: 160px;*/
 	}
 	.scroller-desktop {
-		overflow: auto;
+		overflow: visible;
 	}
 	.bg_video {
 		display: none;
