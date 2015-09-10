@@ -3186,3 +3186,9 @@ body {
 .eauth {
 	vertical-align: middle;
 }
+
+#pass-recovery p{
+	font-family: "Roboto";
+    color: #009fc5;
+    font-size: 22px;
+}
