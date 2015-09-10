@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin([
                 'id' => 'reset-password-form',
                 'options' => [
-                    'class' => 'nd-popup-form cssFormClassName'
+                    'class' => 'tcenter popup-form cssFormClassName'
                 ]
             ]); ?>
             <?= $form->field($model, 'password')->passwordInput() ?>
