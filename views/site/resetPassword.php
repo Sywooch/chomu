@@ -8,14 +8,13 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Скинути пароль';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-reset-password">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Будь-ласка, введіть новий пароль:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin([
+<div id="pass-recovery" class="popup popup_pass-recovery">
+    <div class="popup-inside popup_pass-recovery__in">
+        <div class="nd-popup-head">
+            <?= Html::encode($this->title) ?>
+        </div>
+        <?php $form = ActiveForm::begin([
                 'id' => 'reset-password-form',
                 'options' => [
                     'class' => 'cssFormClassName'
@@ -25,7 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="form-group">
                 <?= Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>
             </div>
-            <?php ActiveForm::end(); ?>
-        </div>
+        <?php ActiveForm::end(); ?>
     </div>
 </div>
