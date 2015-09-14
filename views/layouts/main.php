@@ -362,7 +362,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
                 <div class="popup_pass-reset__in" id="test">
                     <div class="nd-popup-head">
-                        Відновлення<br/>пароля
+                        Відновлення <br> паролю
                     </div>
                     <form class="popup-form">
                         <input type="text" placeholder="Емейл" />
@@ -377,7 +377,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
                 <div class="popup_pass-recovery__in" id="test">
                     <div class="nd-popup-head">
-                        Відновлення<br/>пароля
+                        Відновлення <br> паролю
                     </div>
                     <form class="popup-form">
                        
