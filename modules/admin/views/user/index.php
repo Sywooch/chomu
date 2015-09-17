@@ -1,4 +1,5 @@
 <?php
+
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 use kartik\grid\DataColumn;
@@ -8,7 +9,7 @@ use app\models\User;
 use app\modules\admin\models\Profile;
 use yii\helpers\Url;
 
-$this->title = 'Пользователи';
+$this->title                   = 'Пользователи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
@@ -17,61 +18,77 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?= GridView::widget([
+    </p>    
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'pjax'=>true,
-        'export' => [
+        'filterModel'  => $searchModel,
+        'pjax'         => true,
+        'export'       => [
             'fontAwesome' => true
         ],
-        'panel' => [
+        'panel'        => [
             'type' => GridView::TYPE_PRIMARY,
 //            'heading' => $heading,
         ],
-        'columns' => [
+        'columns'      => [
             ['class' => 'kartik\grid\SerialColumn'],
-
-            /*[
+            //'username',
+            [
                 'attribute' => 'name',
-                'value' => 'name.name',
+                'value'     => function ($model) {
+                    return $model->getProfile()->one()->name;
+                }
             ],
-            'username',*/
-            'name',
-            'last_name',
-            'age',
-            'city',
+            [
+                'attribute' => 'last_name',
+                'value'     => function ($model) {
+                    return $model->getProfile()->one()->last_name;
+                }
+            ],
+            [
+                'attribute' => 'age',
+                'value'     => function ($model) {
+                    return $model->getProfile()->one()->age;
+                }
+            ],
+            [
+                'attribute' => 'city',
+                'value'     => function ($model) {
+                    return $model->getProfile()->one()->city;
+                }
+            ],
             'email:email',
             'social_id',
             [
                 'attribute' => 'created_at',
-                'value' => 'created_at',
-                'format' =>  ['date', 'php:Y-m-d H:i:s'],
-                /*'filter' => DatePicker::widget([
-                        'model' => $searchModel,
-                        'attribute' => 'created_at',
-                        'template' => '{addon}{input}',
-                            'clientOptions' => [
-                                'autoclose' => true,
-                                'format' => 'yyyy-m-d'
-                            ]
-                    ]),*/
+                'value'     => 'created_at',
+                'format'    => ['date', 'php:Y-m-d H:i:s'],
+            /* 'filter' => DatePicker::widget([
+              'model' => $searchModel,
+              'attribute' => 'created_at',
+              'template' => '{addon}{input}',
+              'clientOptions' => [
+              'autoclose' => true,
+              'format' => 'yyyy-m-d'
+              ]
+              ]), */
             ],
             [
-                'class' => 'kartik\grid\ActionColumn',
+                'class'    => 'kartik\grid\ActionColumn',
                 'template' => '{update} {delete}{link}',
             ],
         ],
-        'responsive'=>true,
-        'hover'=>true,
-        'toolbar' => [
+        'responsive'       => true,
+        'hover'            => true,
+        'toolbar'          => [
             '{export}',
             '{toggleData}'
         ],
-        'containerOptions'=>['style'=>'overflow: auto'],
-        'headerRowOptions'=>['class'=>'kartik-sheet-style'],
-        'filterRowOptions'=>['class'=>'kartik-sheet-style'],
-    ]); ?>
+        'containerOptions' => ['style' => 'overflow: auto'],
+        'headerRowOptions' => ['class' => 'kartik-sheet-style'],
+        'filterRowOptions' => ['class' => 'kartik-sheet-style'],
+    ]);
+    ?>
 
 </div>

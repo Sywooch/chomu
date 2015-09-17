@@ -24,29 +24,29 @@ use yii\web\IdentityInterface;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
-
-    const ROLE_USER = 0;
+    const ROLE_USER  = 0;
     const ROLE_MODER = 1;
     const ROLE_ADMIN = 2;
-    
-    const STATUS_BLOCKED = 0;
-    const STATUS_ACTIVE = 1;
-    const STATUS_WAIT = 2;
-    const SCENARIO_PROFILE = 'profile';
+    const STATUS_BLOCKED            = 0;
+    const STATUS_ACTIVE             = 1;
+    const STATUS_WAIT               = 2;
+    const SCENARIO_PROFILE          = 'profile';
+
     public $name;
     public static $statusMess = [
-            '' => '',
-            self::STATUS_BLOCKED => 'Заблокирован',
-            self::STATUS_ACTIVE => 'Активен',
-            self::STATUS_WAIT => 'Ожидает подтверждения',
-        ];
-    public static $typeUser = [
-                '' => 'Тип пользователя', 
-                self::ROLE_USER => 'User',
-                self::ROLE_MODER => 'Moderator', 
-                self::ROLE_ADMIN => 'Admin'
-                ];
-    public static $role = 0;
+        ''                   => '',
+        self::STATUS_BLOCKED => 'Заблокирован',
+        self::STATUS_ACTIVE  => 'Активен',
+        self::STATUS_WAIT    => 'Ожидает подтверждения',
+    ];
+    public static $typeUser   = [
+        ''               => 'Тип пользователя',
+        self::ROLE_USER  => 'User',
+        self::ROLE_MODER => 'Moderator',
+        self::ROLE_ADMIN => 'Admin'
+    ];
+    public static $role       = 0;
+
     /**
      * @inheritdoc
      */
@@ -58,27 +58,22 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-   public function rules()
+    public function rules()
     {
         return [
 
             [['role, username, email, status'], 'safe'],
-
             ['email', 'required', 'message' => 'Це поле є обов’язковим для заповнення'],
             ['email', 'email'],
             ['email', 'unique', 'targetClass' => self::className(), 'message' => 'Ця адреса електронної пошти вже зайнято.'],
             ['email', 'string', 'max' => 255],
-            
             ['name', 'required', 'message' => 'Це поле є обов’язковим для заповнення'],
             ['name', 'string', 'max' => 255],
-
             ['last_name', 'required', 'message' => 'Це поле є обов’язковим для заповнення'],
             ['last_name', 'string', 'max' => 255],
-
             ['status', 'integer'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => array_keys(self::getStatusesArray())],
-
             ['user_role', 'integer'],
             ['user_role', 'default', 'value' => self::STATUS_BLOCKED],
             ['user_role', 'in', 'range' => array_keys(self::getRoleArray())],
@@ -92,21 +87,21 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             self::SCENARIO_PROFILE => ['email'],
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
-   public function attributeLabels()
+    public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id'         => 'ID',
             'created_at' => 'Создан',
             'updated_at' => 'Обновлён',
-            'username' => 'Имя пользователя',
-            'email' => 'Email',
-            'role' => 'Роль пользователя',
-            'status' => 'Статус',
-            'name' => 'Ім`я',
+            'username'   => 'Имя пользователя',
+            'email'      => 'Email',
+            'role'       => 'Роль пользователя',
+            'status'     => 'Статус',
+            'name'       => 'Ім`я',
         ];
     }
 
@@ -120,8 +115,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             self::STATUS_BLOCKED => 'Заблокирован',
-            self::STATUS_ACTIVE => 'Активен',
-            self::STATUS_WAIT => 'Ожидает подтверждения',
+            self::STATUS_ACTIVE  => 'Активен',
+            self::STATUS_WAIT    => 'Ожидает подтверждения',
         ];
     }
 
@@ -134,9 +129,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public static function getRoleArray()
     {
         return [
-            '' => 'Тип пользователя', 
-            self::ROLE_USER => 'User',
-            self::ROLE_MODER => 'Moderator', 
+            ''               => 'Тип пользователя',
+            self::ROLE_USER  => 'User',
+            self::ROLE_MODER => 'Moderator',
             self::ROLE_ADMIN => 'Admin'
         ];
     }
@@ -153,18 +148,17 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasMany(Profile::className(), ['user_id' => 'id']);
     }
 
-
     public static function findIdentity($id)
     {
         return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
- 
     /* public static function findIdentity($id)
-    {
-        $user = static::findOne($id);
-        self::$role = $user['user_role'];
-        return $user;
-    }*/
+      {
+      $user = static::findOne($id);
+      self::$role = $user['user_role'];
+      return $user;
+      } */
+
     /**
      * @inheritdoc
      */
@@ -172,7 +166,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         throw new NotSupportedException('findIdentityByAccessToken is not implemented.');
     }
- 
+
     /**
      * @inheritdoc
      */
@@ -180,7 +174,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->getPrimaryKey();
     }
- 
+
     /**
      * @inheritdoc
      */
@@ -188,7 +182,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->auth_key;
     }
- 
+
     /**
      * @inheritdoc
      */
@@ -197,7 +191,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->getAuthKey() === $authKey;
     }
 
-        /**
+    /**
      * Finds user by username
      *
      * @param string $username
@@ -207,7 +201,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return static::findOne(['username' => $username]);
     }
- 
+
     /**
      * Validates password
      *
@@ -223,7 +217,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
     }
- 
+
     /**
      * Generates "remember me" authentication key
      */
@@ -231,7 +225,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
- 
+
     /**
      * @inheritdoc
      */
@@ -246,17 +240,17 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return false;
     }
 
-       public static function findByPasswordResetToken($token)
+    public static function findByPasswordResetToken($token)
     {
         if (!static::isPasswordResetTokenValid($token)) {
             return null;
         }
         return static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
+                'password_reset_token' => $token,
+                'status'               => self::STATUS_ACTIVE,
         ]);
     }
- 
+
     /**
      * Finds out if password reset token is valid
      *
@@ -268,12 +262,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         if (empty($token)) {
             return false;
         }
-        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
-        $parts = explode('_', $token);
+        $expire    = Yii::$app->params['user.passwordResetTokenExpire'];
+        $parts     = explode('_', $token);
         $timestamp = (int) end($parts);
         return $timestamp + $expire >= time();
     }
- 
+
     /**
      * Generates new password reset token
      */
@@ -281,7 +275,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
     }
- 
+
     /**
      * Removes password reset token
      */
@@ -290,7 +284,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
-       /**
+    /**
      * @param string $email_confirm_token
      * @return static|null
      */
@@ -298,7 +292,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return static::findOne(['email_confirm_token' => $email_confirm_token, 'status' => self::STATUS_WAIT]);
     }
- 
+
     /**
      * Generates email confirmation token
      */
@@ -306,7 +300,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $this->email_confirm_token = Yii::$app->security->generateRandomString();
     }
- 
+
     /**
      * Removes email confirmation token
      */
@@ -315,4 +309,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $this->email_confirm_token = null;
     }
 
+    public function getProfile()
+    {
+        return $this->hasOne(Profile::className(), ['id' => 'user_id']);
+    }
 }

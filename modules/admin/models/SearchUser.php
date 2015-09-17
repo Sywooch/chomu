@@ -50,19 +50,12 @@ class SearchUser extends User
      * @return ActiveDataProvider
      */
     public function search($params)
-    {
-        //$query = User::find();
-        //$query->joinWith(['name']);
-        //$query = User::find()->select(['user.*', 'vote.user_id','vote.story_id','vote.like','story.name_story','story.email AS story_email'])->leftJoin('vote', 'vote.user_id=user.id')->leftJoin('story', 'story.id=vote.story_id')->where("story.status = 1")->orderBy('story.id ASC');
-        $query = User::find()->select(['user.*', 'profile.name','profile.last_name'])->leftJoin('profile', 'profile.user_id=user.id')->orderBy('user.id ASC');
+    {        
+        $query = User::find();
+     
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-        ]);
-
-       /*$dataProvider->sort->attributes['name'] = [
-                'asc' => ['tbl_name.name' => SORT_ASC],
-                'desc' => ['tbl_name.name' => SORT_DESC],
-            ];*/
+        ]);  
 
         $this->load($params);
 
@@ -91,7 +84,7 @@ class SearchUser extends User
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'social_id', $this->social_id])
             ->andFilterWhere(['like', 'email', $this->email]);
-
+        
         return $dataProvider;
     }
 }
