@@ -1,6 +1,6 @@
 <?php
-use kartik\export\ExportMenu;
 use kartik\grid\GridView;
+use kartik\export\ExportMenu;
 use kartik\grid\DataColumn;
 use yii\helpers\Html;
 use dosamigos\datepicker\DatePicker;
@@ -19,18 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'pjax'=>true,
-        'export' => [
-            'fontAwesome' => true
-        ],
-        'panel' => [
-            'type' => GridView::TYPE_PRIMARY,
-//            'heading' => $heading,
-        ],
-        'columns' => [
+<?
+$gridColumns = [
             ['class' => 'kartik\grid\SerialColumn'],
 
             /*[
@@ -38,10 +28,70 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'name.name',
             ],
             'username',*/
-            'name',
-            'last_name',
-            'age',
-            'city',
+            [
+                'attribute' => 'name',
+                'value'     => function ($model) {
+                    return $model->getProfile()->one()->name;
+                }
+            ],
+            [
+                'attribute' => 'last_name',
+                'value'     => function ($model) {
+                    return $model->getProfile()->one()->last_name;
+                }
+            ],
+            [
+                'attribute' => 'email',
+                'value' => 'email',
+                //'filter' => false,
+            ],
+            [
+                'attribute' => 'social_id',
+                'value' => 'social_id',
+                //'filter' => false,
+            ],
+            [
+                'attribute' => 'created_at',
+                'value' => 'created_at',
+                'format' =>  ['date', 'php:Y-m-d H:i:s'],
+                /*'filter' => DatePicker::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'created_at',
+                        'template' => '{addon}{input}',
+                            'clientOptions' => [
+                                'autoclose' => true,
+                                'format' => 'yyyy-m-d'
+                            ]
+                    ]),*/
+            ],
+            [
+                'class' => 'kartik\grid\ActionColumn',
+                'template' => '{update} {delete}{link}',
+            ],
+        ];
+
+$fullExportMenu = ExportMenu::widget([
+    'dataProvider' => $dataProvider,
+    'columns' => [
+            ['class' => 'kartik\grid\SerialColumn'],
+
+            /*[
+                'attribute' => 'name',
+                'value' => 'name.name',
+            ],
+            'username',*/
+            [
+                'attribute' => 'name',
+                'value'     => function ($model) {
+                    return $model->getProfile()->one()->name;
+                }
+            ],
+            [
+                'attribute' => 'last_name',
+                'value'     => function ($model) {
+                    return $model->getProfile()->one()->last_name;
+                }
+            ],
             'email:email',
             'social_id',
             [
@@ -63,10 +113,41 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{update} {delete}{link}',
             ],
         ],
+    'target' => ExportMenu::TARGET_BLANK,
+    'fontAwesome' => true,
+    'pjaxContainerId' => 'kv-pjax-container',
+    'dropdownOptions' => [
+        'label' => 'Все',
+        'class' => 'btn btn-default',
+        'itemsBefore' => [
+            '<li class="dropdown-header">Экспорт всех данных</li>',
+        ],
+    ],
+    'exportConfig' => [
+    ExportMenu::FORMAT_PDF => false,
+],
+]); 
+
+?>
+
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        //'filterModel' => false,
+        'columns' => $gridColumns,
+        'pjax'=>true,
+        'export' => /*[
+            'fontAwesome' => true
+        ],*/ false,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+//            'heading' => $heading,
+        ],
         'responsive'=>true,
         'hover'=>true,
         'toolbar' => [
-            '{export}',
+            $fullExportMenu,
+            //'{export}',
             '{toggleData}'
         ],
         'containerOptions'=>['style'=>'overflow: auto'],

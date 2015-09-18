@@ -51,18 +51,13 @@ class SearchUser extends User
      */
     public function search($params)
     {
-        //$query = User::find();
+        $query = User::find();
         //$query->joinWith(['name']);
         //$query = User::find()->select(['user.*', 'vote.user_id','vote.story_id','vote.like','story.name_story','story.email AS story_email'])->leftJoin('vote', 'vote.user_id=user.id')->leftJoin('story', 'story.id=vote.story_id')->where("story.status = 1")->orderBy('story.id ASC');
-        $query = User::find()->select(['user.*', 'profile.name','profile.last_name'])->leftJoin('profile', 'profile.user_id=user.id')->orderBy('user.id ASC');
+        //$query = User::find()->select(['user.*', 'profile.name','profile.last_name'])->leftJoin('profile', 'profile.user_id=user.id')->orderBy('user.id ASC');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
-       /*$dataProvider->sort->attributes['name'] = [
-                'asc' => ['tbl_name.name' => SORT_ASC],
-                'desc' => ['tbl_name.name' => SORT_DESC],
-            ];*/
 
         $this->load($params);
 
@@ -83,8 +78,8 @@ class SearchUser extends User
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'profile.name', $this->name])
-            ->andFilterWhere(['like', 'profile.last_name', $this->last_name])
+            //->andFilterWhere(['like', 'profile.name', $this->name])
+            //->andFilterWhere(['like', 'profile.last_name', $this->last_name])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
             ->andFilterWhere(['like', 'email_confirm_token', $this->email_confirm_token])
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
