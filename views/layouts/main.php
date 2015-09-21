@@ -283,7 +283,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
             <div class="popup popup_auth" style="display: none;">
 
-                <h3>Авторизуватися:</h3>
+                <h3>Авторизуйтесь за допомогою</h3>
 
                 <?php echo \nodge\eauth\Widget::widget(array('action' => 'site/social-login')); ?>
                 <!--                <ul>-->
@@ -362,7 +362,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
                 <div class="popup_pass-reset__in" id="test">
                     <div class="nd-popup-head">
-                        Відновлення<br/>пароля
+                        Відновлення <br> паролю
                     </div>
                     <form class="popup-form">
                         <input type="text" placeholder="Емейл" />
@@ -377,7 +377,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id
 
                 <div class="popup_pass-recovery__in" id="test">
                     <div class="nd-popup-head">
-                        Відновлення<br/>пароля
+                        Відновлення <br> паролю
                     </div>
                     <form class="popup-form">
                        

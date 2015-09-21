@@ -3194,3 +3194,29 @@ body {
     color: #009fc5;
     font-size: 22px;
 }
+
+@media screen and (min-width: 1024px) {
+	#email-signin .popup-form{
+		padding-left: 0;
+		padding-right: 0;
+	}
+	#email-signin {
+		box-sizing: border-box;
+		max-width: 885px;
+		padding-left: 110px;
+		padding-right: 110px;
+	}
+	.popup_email-send {
+	    box-sizing: border-box;
+		padding: 130px 50px;
+	}
+	.popup_email-send .nd-popup-head{
+		font-size: 44px;
+	    line-height: 56px;
+	}
+	#pass-recovery .nd-popup-head{
+		max-width: 400px;
+	    text-align: center;
+	    margin: 0 auto;
+	}
+}
