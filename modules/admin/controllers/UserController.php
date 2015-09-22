@@ -12,28 +12,30 @@ use app\modules\admin\models\Profile;
 use yii\filters\AccessControl;
 use yii\db\Query;
 use app\models\Vote;
+
 /**
  * UserController implements the CRUD actions for User model.
  */
 class UserController extends DefaultController
 {
+
     public function behaviors()
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
+                'class'        => AccessControl::className(),
+                'rules'        => [
                     [
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
                 ],
                 'denyCallback' => function ($rule, $action) {
-                        $this->redirect('/');
-                }
+                $this->redirect('/');
+            }
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class'   => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -47,12 +49,12 @@ class UserController extends DefaultController
      */
     public function actionIndex()
     {
-        $searchModel = new SearchUser();
+        $searchModel  = new SearchUser();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                'searchModel'  => $searchModel,
+                'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -64,7 +66,7 @@ class UserController extends DefaultController
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                'model' => $this->findModel($id),
         ]);
     }
 
@@ -75,17 +77,17 @@ class UserController extends DefaultController
      */
     public function actionCreate()
     {
-        $model = new User();
+        $model   = new User();
         $profile = new Profile();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                $profile->user_id = $model->id;
-                $profile->name = $model->name;
-                $profile->save(false);
+            $profile->user_id = $model->id;
+            $profile->name    = $model->name;
+            $profile->save(false);
             return $this->redirect(['update', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                    'model' => $model,
             ]);
         }
     }
@@ -98,16 +100,16 @@ class UserController extends DefaultController
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model   = $this->findModel($id);
         $profile = $this->findModelProfile($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                $profile->name = $model->name;
-                $profile->save();
+            $profile->name = $model->name;
+            $profile->save();
             return $this->redirect(['update', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                    'model' => $model,
             ]);
         }
     }
@@ -123,6 +125,18 @@ class UserController extends DefaultController
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionExport($format = 'csv')
+    {
+        switch ($format) {
+            case 'csv':
+                $fname = Yii::$app->basePath . '/export/user.csv';                
+                \app\components\filesystem\FileHelper::fileForceDownload($fname);
+                break;
+            default :
+                echo 'undefined format';
+        }
     }
 
     /**
@@ -143,7 +157,8 @@ class UserController extends DefaultController
 
     protected function findModelProfile($id)
     {
-        if (($model = Profile::find()->where('user_id = :user_id', [':user_id' => $id])->one()) !== null) {
+        if (($model = Profile::find()->where('user_id = :user_id', [':user_id' => $id])->one())
+            !== null) {
             return $model;
         } else {
             return false;

@@ -18,7 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success']) ?>
-    </p> 
+        <?= Html::a('Export all', ['export', 'format' => 'csv'], ['class' => 'btn btn-success']) ?>
+    </p>
 
     <?=
     GridView::widget([
@@ -47,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'     => function ($model) {
                     return $model->getProfile()->one()->last_name;
                 },
-                'filter' => false,
+                'filter'       => false,
             ],
             'email:email',
             'social_id',
@@ -74,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'hover'            => true,
         'toolbar'          => [
             '{export}',
-            //'{toggleData}'
+        //'{toggleData}'
         ],
         'containerOptions' => ['style' => 'overflow: auto'],
         'headerRowOptions' => ['class' => 'kartik-sheet-style'],
