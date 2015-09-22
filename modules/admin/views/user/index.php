@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Export all', ['export', 'format' => 'csv'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Экспортировать всё', ['export', 'format' => 'csv'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?=
