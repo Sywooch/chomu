@@ -135,12 +135,21 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
         background-image: url('/web/images/icons-share.png');
         background-repeat: no-repeat;
         position: absolute;
-        /* top: 0; */
-        /* left: -60px; */
+        top: -14px;
+        left: -60px;
         /* bottom: 0; */
         /* right: 0; */
         width: 60px;
         height: 60px;
+
+    }
+    li.fb span.icon-inner-text:before{
+        background-position: 0px 8px;
+    }
+    li.ok span.icon-inner-text:before{
+        background-position: 0px 8px;
+    }
+    li.vk span.icon-inner-text:before{
         background-position: 0px 8px;
     }
 </style>
