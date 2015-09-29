@@ -73,7 +73,7 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
 								    }
 								}
 					",
-        View::POS_END
+        View::POS_READY
     );
     ?>
 
