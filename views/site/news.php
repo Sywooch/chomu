@@ -61,12 +61,12 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
 					                $('.vk-count_' + ".$new->id.").html(count);
 					            }
 					    }
-					}
+					};
 					var ODKL = {
 								updateCount: function(value, count) {
 						                $('.odn-count_' + ".$new->id.").html(count);
 								    }
-								}
+								};
                     var FB =    {
                                 updateCount: function(value, count) {
 						                $('.fb-count_' + ".$new->id.").html(count);
