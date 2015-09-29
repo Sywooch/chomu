@@ -132,7 +132,7 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
     }
     span.icon-inner-text:before{
         content: '';
-        background-image: url('/images/icons-share.png');
+        background-image: url('/web/images/icons-share.png');
         background-repeat: no-repeat;
         position: absolute;
         /* top: 0; */
