@@ -126,3 +126,21 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
 
     </div><!--.news_page-->
 <?php } ?>
+<style>
+    span.icon-inner-text{
+        position:relative;
+    }
+    span.icon-inner-text:before{
+        content: '';
+        background-image: url('/images/icons-share.png');
+        background-repeat: no-repeat;
+        position: absolute;
+        /* top: 0; */
+        /* left: -60px; */
+        /* bottom: 0; */
+        /* right: 0; */
+        width: 60px;
+        height: 60px;
+        background-position: 0px 8px;
+    }
+</style>
