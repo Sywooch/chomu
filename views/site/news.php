@@ -152,13 +152,13 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
     li.vk span.icon-inner-text:before{
         background-position: -128px 8px;
     }
-    li.fb span.icon-inner-text:hover span.icon-inner-text:before{
-        background-position: 0px 8px;
+    li.fb:hover span.icon-inner-text:before{
+        background-position: 0px 64px;
     }
-    li.ok span.icon-inner-text:hover span.icon-inner-text:before{
-        background-position: -64px 8px;
+    li.ok:hover span.icon-inner-text:before{
+        background-position: -64px -64px;
     }
-    li.vk span.icon-inner-text:hover span.icon-inner-text:before{
-        background-position: -128px 8px;
+    li.vk:hover span.icon-inner-text:before{
+        background-position: -128px 64px;
     }
 </style>
