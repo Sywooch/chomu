@@ -14,6 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="nd-popup-head">
             <?= Html::encode($this->title) ?>
         </div>
+
         <?php $form = ActiveForm::begin([
                 'id' => 'reset-password-form',
                 'options' => [

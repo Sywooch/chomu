@@ -52,7 +52,7 @@ $this->title = isset($new) && $new !== null ? $new->title : 'Новини';
     );
     $this->registerJs(
         "Share.count_fb('http://".Yii::$app->request->getServerName()."/news/".htmlspecialchars($new->url).".html',".$new->id.");",
-        View::POS_LOAD
+        View::POS_READY
     );
     $this->registerJs(
         "var VK = {
