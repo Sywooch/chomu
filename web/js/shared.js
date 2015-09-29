@@ -1,3 +1,6 @@
+$(document).ready(function(){
+
+
 Share = {
 
     countServiceUrl : 'https://api.facebook.com/method/fql.query?format=json&query=',
@@ -65,3 +68,4 @@ Share = {
         return Share.countServiceUrl + encodeURIComponent(fql);
     }
 };
+});
